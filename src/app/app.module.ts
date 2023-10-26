@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { HttpErrorInterceptor } from './Core/http/http-error.interceptor';
 import { HttpResponseInterceptor } from './Core/http/http-response.interceptor';
+import { SharedModule } from './Shared/shared.module';
 
 
 @NgModule({
@@ -15,7 +16,7 @@ import { HttpResponseInterceptor } from './Core/http/http-response.interceptor';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    SharedModule
   ],
   providers: [ {
     provide: HTTP_INTERCEPTORS,

@@ -2,6 +2,7 @@ import { CanActivateFn } from '@angular/router';
 import { rolesMapping } from '../Models/roles-mapping';
 
 export const authenticationGuard: CanActivateFn = (route, state) => {
+  debugger
   const moduleName = route.routeConfig?.path; // Obtén el nombre del módulo de la ruta
   return hasPermissionToLoadModule(moduleName);
 };

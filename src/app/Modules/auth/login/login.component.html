@@ -2,20 +2,26 @@
     <article class="login">
         <h3>Bienvenido a</h3>
         <h2>AMBIEFAC</h2>
-        <form class="form">
+        <form [formGroup]="formGroup" class="form">
             <div class="input-group">
                 <span class="input-group-addon">
                     <i class="fa fa-envelope"></i>
                 </span>
-                <input type="email" class="form-control-1" placeholder="Ingrese su correo">
+                <input type="email" class="form-control-1" placeholder="Ingrese su correo" formControlName="email">
+                <div *ngIf="campoTieneError('email')" placement="top" ngbTooltip="Correo electrónico no válido">
+                    <i class="fa fa-exclamation-triangle text-danger"></i>
+                </div>
             </div>
             <div class="input-group">
                 <span class="input-group-addon">
                     <i class="fa fa-lock"></i>
                 </span>
-                <input type="password" class="form-control-1" placeholder="Contraseña">
+                <input type="password" class="form-control-1" placeholder="Contraseña" formControlName="password">
+                <div *ngIf="campoTieneError('Contraseña')" placement="top" ngbTooltip="Correo electrónico no válido">
+                    <i class="fa fa-exclamation-triangle text-danger"></i>
+                </div>
             </div>
-            <button type="submit">Iniciar sesion</button>
+            <button type="button" (click)="logIn()">Iniciar sesión</button>
             <span>
                 Has olvidado tu contraseña?
             </span>
@@ -27,7 +33,7 @@
             <div class="content-info">
                 <p>Tu guía eco en una app. Cursos y consejos <br>
                     para salvar el planeta. Descárgala y haz la diferencia.</p>
-                <button>Leer mas</button>
+                <button>Leer más</button>
             </div>
         </div>
         <div class="large-circle"></div>
