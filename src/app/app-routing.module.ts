@@ -3,16 +3,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { authenticationGuard } from './Core/authentication/authentication.guard';
 
 const routes: Routes = [
-  {
-    path: '',
-    canActivate: [authenticationGuard] ,
-    children: [
-      { path: 'Login', loadChildren: () => import('./Modules/auth/auth.module').then(m => m.AuthModule) },
-      { path: '**', pathMatch: 'full', redirectTo: 'Login' },
-    ], 
-  },
-  {path:'**', pathMatch: 'full', redirectTo: '' }
-
+      { path: 'AMBIEFAC', loadChildren: () => import('./Shared/components/components.module').then(m => m.ComponentsModule) },
+      { path: 'login', loadChildren: () => import('./Modules/auth/auth.module').then(m => m.AuthModule) },
+      { path: '**', pathMatch: 'full', redirectTo: 'AMBIEFAC' },
 ];
 
 @NgModule({

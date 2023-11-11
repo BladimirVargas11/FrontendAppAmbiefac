@@ -1,1 +1,16 @@
-<p>navbar works!</p>
+<nav class="nav_bar">
+    <div class="logo"></div>
+    <ul class="nav-list_" [class.show]="showMenu">
+      <li><a href="#">Cursos</a></li>
+      <li><a href="#">Mas</a></li>
+      <li><a href="#">Apoyo</a></li>
+      <li><a href="#">Sobre nosotros</a></li>
+    </ul>
+    <div class="search-bar">
+        <input type="text" placeholder="Buscar...">
+        <div class="button-search"></div>
+    </div>
+    <div class="login-button"><a type="button">Iniciar sesion</a></div>
+    <div class="burger-menu" (click)="toggleMenu()">&#9776;</div>
+  </nav>
+  

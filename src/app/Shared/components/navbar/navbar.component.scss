@@ -1,0 +1,114 @@
+/* src/app/navbar/navbar.component.scss */
+$font-family-poppins: 'Poppins', sans-serif;
+.nav_bar {
+    font-family: $font-family-poppins;
+    background-color: #FFFFFF;
+    padding: 0px 18px;
+    display: flex;
+    align-items: center;
+    color: rgb(92, 64, 64);
+    justify-content: flex-start;
+    position: relative;
+    box-shadow: 0px 7px 23px -4px rgba(0, 0, 0, 0.39);
+    -webkit-box-shadow: 0px 7px 23px -4px rgba(0, 0, 0, 0.39);
+    -moz-box-shadow: 0px 7px 23px -4px rgba(0, 0, 0, 0.39);
+
+    .login-button {
+        margin: auto;
+    }
+
+    .logo {
+        background-image: url('../../../../assets/AMBIEFAC_LOGO.png');
+        background-size: contain; 
+        background-repeat: no-repeat;
+        margin: 0 50px;
+        height: 90px; 
+        width: 150px;
+    }
+
+    .nav-list_ {
+        list-style: none;
+        display: flex;  
+        margin: 0;
+        padding: 0;
+
+        li {
+            margin: 0 40px;
+
+            a {
+                text-decoration: none;
+                color: rgb(75, 58, 58);
+            }
+        }
+    }
+
+    .burger-menu {
+        display: none;
+        font-size: 1.5em;
+        cursor: pointer;
+    }
+
+    .content {
+        padding: 20px;
+    }
+
+    .search-bar {
+        display: flex;
+        align-items: center;
+        width: 30%;
+        height: 36px;
+        background-color: #fff;
+        border: #3333332a solid 1px;
+        border-radius: 10px;
+
+        input {
+            border: none;
+            width: 100%;
+            background-color: transparent;
+            padding: 0 18px;
+        }
+
+        .button-search {
+            background-image: url('../../../../assets/search\ icons.svg');
+            background-size: contain;
+            background-repeat: no-repeat;
+            width: 5%;
+            height: 20px;
+            border: none;
+            filter: invert(63%) sepia(0%) saturate(747%) hue-rotate(173deg) brightness(96%) contrast(91%);
+        }
+    }
+
+    @media only screen and (max-width: 768px) {
+        .nav-list_ {
+            display: none;
+            flex-direction: column;
+            position: absolute;
+            top: 65px;
+            left: 0;
+            width: 100%;
+            background-color: #333;
+
+            &.show {
+                display: flex;
+            }
+
+            li {
+                text-align: center;
+                margin: 10px 0;
+            }
+        }
+
+        .burger-menu {
+            display: block;
+        }
+
+        .login-button {
+            margin: auto;
+        }
+
+        .search-bar {
+            margin: 10px 0;
+        }
+    }
+}

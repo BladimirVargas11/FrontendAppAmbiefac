@@ -7,16 +7,12 @@ import { ModalComponent } from './components/modal/modal.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
+import { BodyComponent } from './components/body/body.component';
 
 
 
 @NgModule({
-  declarations: [
-    ErrorsComponent,
-    NavbarComponent,
-    FooterComponent,
-    ModalComponent
-  ],
+  declarations: [],
   imports: [
     CommonModule,
   ],
