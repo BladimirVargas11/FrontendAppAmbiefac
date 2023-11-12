@@ -8,6 +8,10 @@ import { ErrorsComponent } from './errors/errors.component';
 import { FooterComponent } from './footer/footer.component';
 import { ModalComponent } from './modal/modal.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { CursosComponent } from 'src/app/Modules/pages/cursos/cursos.component';
+import { HomeComponent } from 'src/app/Modules/pages/home/home.component';
+import { TemasContenidoComponent } from 'src/app/Modules/pages/temas-contenido/temas-contenido.component';
+import { TemasInscripcionComponent } from 'src/app/Modules/pages/temas-inscripcion/temas-inscripcion.component';
 
 
 @NgModule({
@@ -16,7 +20,11 @@ import { NavbarComponent } from './navbar/navbar.component';
     ErrorsComponent,
     FooterComponent,
     ModalComponent,
-    NavbarComponent
+    NavbarComponent,
+    HomeComponent,
+    CursosComponent,
+    TemasInscripcionComponent,
+    TemasContenidoComponent,
   ],
   imports: [
     CommonModule,
