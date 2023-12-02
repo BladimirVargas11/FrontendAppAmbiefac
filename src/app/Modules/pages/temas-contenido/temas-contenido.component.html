@@ -1,1 +1,59 @@
-<p>temas-contenido works!</p>
+<div class="header-topic">
+    <div class="header-topic-row">
+        <div class="header-topic-colum tile-topic">
+            <p>Ambiente</p>
+            <h1>Recicla y Recicla y Transforma</h1>
+            <p>Por AMBIEFAC Academy</p>
+        </div>
+        <div class="header-topic-colum image-topic">
+            <img src="../../../../assets/galeria-de-imagenes.png" alt="">
+        </div>
+    </div>
+</div>
+
+<div class="information-topic">
+    <h2>Temas Esenciales para una Vida Sostenible</h2>
+    <div class="information-topic-row">
+        <div class="information-topic-colum ">
+            <div class="information-topic-row" *ngFor="let tema of [1,2,3,4]; index as i">
+                <div class="card-topic">
+                    <div class="card-topic-row">
+                        <div class="card-topic-colum item-topic">
+                            <h1>{{i+1}}</h1>
+                        </div>
+                        <div class="card-topic-colum information-card">
+                            <div class="information-card-row title">Importancia del Reciclaje</div>
+                            <div class="information-card-row info">Beneficios ambientales, sociales y económicos del
+                                reciclaje.</div>
+                        </div>
+                        <div class="card-topic-colum button-card"><button class="button-start">Comenzar</button></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="information-topic-colum duration">
+            <div class="duration-topic-row">
+                <div class="length">
+                    <img src="../../../../assets/hora.png" alt="">
+                    <p>6hr</p>
+                </div>
+            </div>
+            <div class="duration-topic-row">
+                <div class="level">
+                    <div class="length">
+                        <img src="../../../../assets/siguiente-nivel (1).png" alt="">
+                        <p>Intermedio</p>
+                    </div>
+                </div>
+            </div>
+            <div class="duration-topic-row">
+                <div class="idioma">
+                    <div class="length">
+                        <img src="../../../../assets/traduccion.png" alt="">
+                        <p>Español</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

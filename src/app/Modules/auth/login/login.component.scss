@@ -179,6 +179,16 @@
     p {
         font-weight: 540;
         width: 100%;
+
+        a {
+            color: #000 !important;
+            text-decoration: none !important;
+
+            :hover {
+                color: #0056b3;
+                /* Cambia el color al pasar el ratón sobre el enlace */
+            }
+        }
     }
 
 }
@@ -206,36 +216,37 @@
 .large-circle-1 {
     right: 74%;
 }
+
 @media (min-width: 300px) and (max-width: 680px) {
 
     .input-group {
-        width: 100% ;
+        width: 100%;
     }
 
     .form-control-1 {
-        width: calc(84% - 1.5rem - 2px)!important ;
+        width: calc(84% - 1.5rem - 2px) !important;
     }
 
     .article-info {
-        display: none ;
+        display: none;
     }
 
     .large-circle,
     .large-circle-1 {
-        bottom: -358px ;
-        right: 24% ;
+        bottom: -358px;
+        right: 24%;
     }
 
 
     .large-circle-1 {
-        right: 28% ;
+        right: 28%;
     }
 }
 
 @media (min-width: 680px) and (max-width: 1900px) {
 
     .input-group {
-        width: 61% ;
+        width: 61%;
     }
 
     .form-control-1 {
@@ -243,12 +254,13 @@
     }
 
     .article-info {
-        display: grid ;
+        display: grid;
     }
+
     .large-circle,
     .large-circle-1 {
-        bottom: -358px ;
-        right: 64% ;
+        bottom: -358px;
+        right: 64%;
     }
 
 
