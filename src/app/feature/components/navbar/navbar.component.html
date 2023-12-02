@@ -1,7 +1,7 @@
 <nav class="nav_bar">
-    <div class="logo"></div>
+    <div class="logo" (click)="redirecToHome()"></div>
     <ul class="nav-list_" [class.show]="showMenu">
-      <li><a routerLink="/AMBIEFAC/cursos">Cursos</a></li>
+      <li (click)="redirecToCursos()"><a>Cursos</a></li>
       <!-- <li><a href="#">Mas</a></li>
       <li><a href="#">Apoyo</a></li> -->
       <li><a href="#">Sobre nosotros</a></li>
@@ -9,8 +9,8 @@
         <a>Login</a>
         <div class="dropdown-content"  *ngIf="showDropdown">
             <ul>
-              <li>Iniciar sesion</li>
-              <li>Resgistrarme</li>
+              <li (click)="redirecToLogin()">Iniciar sesion</li>
+              <li (click)="redirecToRegister()" >Resgistrarme</li>
             </ul>
 
         </div>
@@ -20,10 +20,10 @@
         <input type="text" placeholder="Buscar...">
         <div class="button-search"></div>
     </div>
-    <div class="login-button">
-      <a>Iniciar sesion</a>
+    <div class="login-button" >
+      <a (click)="redirecToLogin()" >Iniciar sesion</a>
       <div class="dropdown-content">
-        <a href="#">Registrarme</a>
+        <a (click)="redirecToRegister()">Registrarme</a>
     </div>
     </div>
     <div class="burger-menu" (click)="toggleMenu()">&#9776;</div>

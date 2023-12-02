@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ServiceAuthService } from 'src/app/Core/services/service-auth.service';
+import { ServiceAuthService } from 'src/app/feature/auth/shared/service/service-auth.service';
 const jsonData = [
   {
     DIMENSION: "Celda 1",
