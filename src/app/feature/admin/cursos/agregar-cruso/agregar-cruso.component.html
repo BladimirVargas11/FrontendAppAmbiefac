@@ -1,0 +1,34 @@
+<app-card-body [Titulo]='titulo' [linkBack]="'admin/consultar-curso'" [ButtonRigth]="AddCurso" [isSave]="true"
+  [tooltip]="'Agregar'" [tooltipBack]="'Volver'">
+  <form class="w-full flex flex-col items-center">
+    <div class="m-2 w-[50%]">
+      <label for="nombre-curso" class="block mb-2 text-sm font-medium text-gray-900">Nombre del curso</label>
+      <input type="text" id="nombre-curso"
+        class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+        placeholder="Ejemplo: Gestión Sostenible de Residuos" required>
+    </div>
+    <div class="m-2 w-[50%]">
+      <label for="tiempo" class="block mb-2 text-sm font-medium text-gray-900">Tiempo</label>
+      <input type="text" id="tiempo" placeholder="Ejemplo: 30 hr"
+        class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+        required>
+    </div>
+    <div class="m-2 w-[50%]">
+      <label for="Descripcion" class="block mb-2 text-sm font-medium text-gray-900">Descripcion</label>
+      <textarea id="Descripcion"
+        placeholder="Ejemplo: Aprende las mejores prácticas para la gestión sostenible de residuos....... "
+        class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+        required></textarea>
+    </div>
+    <div class="m-2 w-[50%] h-[50px]"  *ngIf="OnSave">
+      <div (click)="addContent()" class="border flex fle-col justify-center rounded-[6px] cursor-pointer">
+        <svg xmlns="http://www.w3.org/2000/svg" height="50" width="50" placement="bottom"
+          [ngbTooltip]="'Agregar contenido'"
+          viewBox="0 0 448 512">
+          <path fill="#a6a6a6"
+            d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z" />
+        </svg>
+      </div>
+    </div>
+  </form>
+</app-card-body>

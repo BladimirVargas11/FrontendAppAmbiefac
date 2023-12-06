@@ -1,0 +1,29 @@
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+
+import { PageAdminComponent } from './page-admin/page-admin.component';
+import { AgregarCrusoComponent } from './cursos/agregar-cruso/agregar-cruso.component';
+import { ActualizarCrusoComponent } from './cursos/actualizar-cruso/actualizar-cruso.component';
+import { ConsultarCursosComponent } from './cursos/consultar-cursos/consultar-cursos.component';
+import { InformacionTemaComponent } from './contenido-curso/informacion-tema/informacion-tema.component';
+import { SubtemasCursoComponent } from './contenido-curso/subtemas-curso/subtemas-curso.component';
+
+const routes: Routes = [
+  {path: '',
+  component: PageAdminComponent,
+  children:[
+    {path: '', pathMatch: 'full',redirectTo: 'consultar-curso'},
+    {path:'agregar-curso', component: AgregarCrusoComponent},
+    {path:'actualizar-curso', component: ActualizarCrusoComponent},
+    {path:'consultar-curso', component: ConsultarCursosComponent},
+    {path:'temas-cruso/:id/:name', component: SubtemasCursoComponent},
+    {path:'informacion-tema/:id', component: InformacionTemaComponent},
+  ]
+  }
+];
+
+@NgModule({
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule]
+})
+export class AdminRoutingModule { }

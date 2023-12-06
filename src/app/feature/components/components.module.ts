@@ -8,6 +8,8 @@ import { LayoutAdminComponent } from './layout-admin/layout-admin.component';
 import { LayoutComponent } from './layout/layout.component';
 import { LayoutClienteComponent } from './layout-cliente/layout-cliente.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { NavbarClientComponent } from './navbar-client/navbar-client.component';
+import { SidenavAdminComponent } from './sidenav-admin/sidenav-admin.component';
 
 
 
@@ -19,16 +21,20 @@ import { NavbarComponent } from './navbar/navbar.component';
     LayoutAdminComponent,
     LayoutClienteComponent,
     NavbarComponent,
+    NavbarClientComponent,
+    SidenavAdminComponent,
   ],
   imports: [
     CommonModule,
     RouterModule,
+    
   ],
   exports: [
     LayoutComponent,
     LayoutAdminComponent,
     LayoutClienteComponent,
-    
+    SidenavAdminComponent,
+    NavbarClientComponent
   ]
 })
 export class ComponentsModule { }

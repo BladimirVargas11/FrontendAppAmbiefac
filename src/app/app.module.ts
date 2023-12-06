@@ -7,6 +7,9 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { HttpErrorInterceptor } from './Core/http/http-error.interceptor';
 import { HttpResponseInterceptor } from './Core/http/http-response.interceptor';
 import { SharedModule } from './Shared/shared.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -16,7 +19,10 @@ import { SharedModule } from './Shared/shared.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    SharedModule
+    SharedModule,
+    BrowserAnimationsModule,
+    FontAwesomeModule,
+    NgbModule,
   ],
   providers: [ {
     provide: HTTP_INTERCEPTORS,

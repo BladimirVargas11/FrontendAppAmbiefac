@@ -1,0 +1,23 @@
+<body class="p-[25px]" >
+    <div class="flex w-full  h-[15%] ">
+        <div class="bg-green-500 text-white p-4 rounded-lg shadow-lg w-full ">
+            <div class="actions  py-[5px] items-center  w-full  mb-2 flex flex-row justify-between">
+                <i class="mr-[20px] fa-solid fa-chevron-left text-[40px] cursor-pointer" placement="bottom" [ngbTooltip]="tooltipBack"  (click)="navigateToBack()"></i>
+                <h1 class="text-xl w-full font-bold mb-2 pl-[20px]">{{Titulo}}</h1>
+                <i 
+                class="ml-[20px]  text-[40px] cursor-pointer" 
+                [class]="(isSave)?'fa-solid fa-floppy-disk':'fa-solid fa-plus'" placement="bottom" [ngbTooltip]="tooltip" 
+                (click)="navigateToSave()">
+                </i>
+            </div>
+        </div>
+    </div>
+
+    <div class="flex w-full  h-auto my-[3%] ">
+        <div class="bg-with-500 text-white p-4 rounded-lg shadow-lg w-full">
+            <div class="w-full mb-2">
+                <ng-content></ng-content>
+            </div> 
+        </div>
+    </div>
+</body>
