@@ -1,5 +1,5 @@
-<app-card-body [Titulo]='titulo' [linkBack]="'admin/consultar-curso'" [ButtonRigth]="addElemts" [isSave]="false"
-  [tooltip]="'Nuevo contenido'" [tooltipBack]="'Volver'">
+<app-card-body [Titulo]='titulo' [linkBack]="'admin/consultar-curso'" [ButtonRigth]="saveElemts"
+  [tooltip]="'Nuevo contenido'" [tooltipBack]="'Volver'" >
   <section cdkDropListGroup class="layout">
     <div class="sidebar">
       <div class="example-container">
@@ -46,7 +46,7 @@
                 <ng-container class="w-100" [ngSwitch]="item.type" [formGroupName]="i">
                   <!-- Usa formGroupName para enlazar con el FormGroup del elemento actual -->
                   <div class="flex flex-row justify-between w-[100%]">
-                    <h3>Posicion {{ i + 1 }}</h3>
+                    <h3>Posicion {{ contentArray.controls[i].get('position')?.value || i + 1 }}</h3>
                     <button (click)="deleteItem(i)"><i class="fa-regular fa-trash-can"></i></button>
                   </div>
                   <div *ngSwitchCase="'text'" class="w-100">
@@ -55,37 +55,70 @@
                       <input type="text" id="tiempo" placeholder="Ejemplo: 30 hr"
                         class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                         formControlName="title" required>
+                        <div *ngIf="contentArray.controls[i].get('title')?.invalid && contentArray.controls[i].get('title')?.touched">
+                          Campo obligatorio
+                        </div>
                     </div>
                     <div class="m-2 w-[100%]">
                       <label for="Descripcion" class="block mb-2 text-sm font-medium text-gray-900">Descripcion</label>
                       <textarea id="Descripcion"
                         placeholder="Ejemplo: Aprende las mejores prácticas para la gestión sostenible de residuos....... "
                         class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                        formControlName="description" required></textarea>
+                        formControlName="InfoContent" required></textarea>
+                        <div *ngIf="contentArray.controls[i].get('InfoContent')?.invalid && contentArray.controls[i].get('title')?.touched">
+                          Campo obligatorio. Por favor, proporciona una descripción.
+                        </div>
                     </div>
                   </div>
-                  <div *ngSwitchCase="'video'">
+                  <div *ngSwitchCase="'video'" class="flex flex-col w-50">
                     <div class="m-2 w-[100%]">
+                      <label for="tiempo" class="block mb-2 text-sm font-medium text-gray-900">Titulo</label>
+                      <input type="text" id="tiempo" placeholder="Ejemplo: 30 hr"
+                        class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                        formControlName="title" required>
+                        <div *ngIf="contentArray.controls[i].get('title')?.invalid && contentArray.controls[i].get('title')?.touched">
+                          Campo obligatorio.
+                        </div>
+                    </div>
+                    <div class="m-2 w-[100%]" >
                       <label for="videoFile" class="block mb-2 text-sm font-medium text-gray-900">Link Video</label>
                       <input type="text" id="videoFile"
                         class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                        formControlName="videoLink" accept="video/*" required>
-                      <div class="mt-[10px]">
-                        <iframe width="560" height="315"
-                          [src]="viewVideo(i)"
-                          title="YouTube video player" frameborder="0"
+                        formControlName="InfoContent" required>
+                        <div *ngIf="contentArray.controls[i].get('InfoContent')?.invalid && contentArray.controls[i].get('title')?.touched">
+                          Por favor, proporciona un enlace de video válido.
+                        </div>
+                      <div class="mt-[10px] flex flex-row jumbotron w-100 justify-center" *ngIf="viewVideo(i)">
+                        <iframe width="560" height="315" [src]="viewVideo(i)" title="YouTube video player"
+                          frameborder="0"
                           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                           allowfullscreen></iframe>
                       </div>
                     </div>
                   </div>
-                  <div *ngSwitchCase="'image'">
+                  <div *ngSwitchCase="'image'" class="flex flex-col w-50" >
+                    <div class="m-2 w-[100%]">
+                      <label for="tiempo" class="block mb-2 text-sm font-medium text-gray-900">Titulo</label>
+                      <input type="text" id="tiempo" placeholder="Ejemplo: 30 hr"
+                        class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                        formControlName="title" required>
+                        <div *ngIf="contentArray.controls[i].get('title')?.invalid && contentArray.controls[i].get('title')?.touched">
+                          Campo obligatorio.
+                        </div>
+                    </div>
+                    <div class="m-2 w-[100%]">
                     <label for="imageFile" class="block mb-2 text-sm font-medium text-gray-900">Subir Imagen</label>
-                    <input type="file" id="imageFile" (change)="previewImage($event, i)"
+                    <input type="text" id="imageFile"
                       class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                      formControlName="imageFile" accept="image/*" required>
-                    <img [src]="viewImage(i)" alt="Vista previa de la imagen"
+                      formControlName="InfoContent" required>
+                      <div *ngIf="contentArray.controls[i].get('InfoContent')?.invalid && contentArray.controls[i].get('title')?.touched">
+                        Por favor, proporciona un enlace o carga una imagen válida.
+                      </div>
+                    </div>
+                    <div class="m-2  flex flex-row jumbotron w-100 justify-center" *ngIf="viewImage(i)">
+                      <img [src]="viewImage(i)" alt="Vista previa de la imagen"
                       style="max-width: 100%; max-height: 200px;">
+                    </div>
                   </div>
                 </ng-container>
               </div>

@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SharedModule } from '../Shared/shared.module';
+import { LocalService } from './services/local.service';
 
 
 
@@ -9,6 +10,7 @@ import { SharedModule } from '../Shared/shared.module';
   imports: [
     CommonModule,
     SharedModule
-  ]
+  ],
+  providers:[LocalService]
 })
 export class CoreModule { }

@@ -1,10 +1,11 @@
-export interface Curso {
-  nombre: string;
-  descripcion: string;
+export interface CursoForm {
+  nombreCurso: string;
+  imagen: string;
   tiempo: string;
-  contenido: number;
+  descripcion: string;
 }
-export const cursos: Curso[] = [
+
+export const cursos: any[] = [
   {
     nombre: 'Gestión Sostenible de Residuos',
     descripcion: 'Aprende las mejores prácticas para la gestión sostenible de residuos y contribuye al cuidado del medio ambiente.',

@@ -2,11 +2,11 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { PageAdminComponent } from './page-admin/page-admin.component';
-import { AgregarCrusoComponent } from './cursos/agregar-cruso/agregar-cruso.component';
-import { ActualizarCrusoComponent } from './cursos/actualizar-cruso/actualizar-cruso.component';
-import { ConsultarCursosComponent } from './cursos/consultar-cursos/consultar-cursos.component';
-import { InformacionTemaComponent } from './contenido-curso/informacion-tema/informacion-tema.component';
-import { SubtemasCursoComponent } from './contenido-curso/subtemas-curso/subtemas-curso.component';
+import { AgregarCrusoComponent } from './cursos/components/agregar-cruso/agregar-cruso.component';
+import { ActualizarCrusoComponent } from './cursos/components/actualizar-cruso/actualizar-cruso.component';
+import { ConsultarCursosComponent } from './cursos/components/consultar-cursos/consultar-cursos.component';
+import { InformacionTemaComponent } from './contenido-curso/components/informacion-tema/informacion-tema.component';
+import { SubtemasCursoComponent } from './contenido-curso/components/subtemas-curso/subtemas-curso.component';
 
 const routes: Routes = [
   {path: '',

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { Curso, cursos } from '../shared/models/cursosModels';
+import { cursos } from '../../shared/models/cursosModels';
 
 @Component({
   selector: 'app-consultar-cursos',
@@ -8,8 +8,8 @@ import { Curso, cursos } from '../shared/models/cursosModels';
   styleUrls: ['./consultar-cursos.component.scss']
 })
 export class ConsultarCursosComponent {
-titulo: string = 'Cursos';
-data : Curso[] = []
+titulo: string = 'Temas';
+data : any[] = []
 currentPage = 1;
 pageSize = 5;
 

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
-import { Subtema, subtemas } from '../../cursos/shared/models/subTemasModels';
+import { Subtema, subtemas } from '../../../cursos/shared/models/subTemasModels';
 
 @Component({
   selector: 'app-subtemas-curso',
