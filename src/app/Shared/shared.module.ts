@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDatepickerModule, NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
 import { CardBodyComponent } from './components/card-body/card-body.component';
 import { PaginationPipe } from './pipes/pagination.pipe';
 import { PaginationComponent } from './components/pagination/pagination.component';
+import { ModalbodyComponent } from './components/modalbody/modalbody.component';
 
 
 
@@ -14,7 +15,8 @@ import { PaginationComponent } from './components/pagination/pagination.componen
     CardBodyComponent,
     PaginationPipe,
     PaginationComponent,
-    PaginationPipe
+    PaginationPipe,
+    ModalbodyComponent
   ],
   imports: [
     CommonModule,
@@ -28,7 +30,9 @@ import { PaginationComponent } from './components/pagination/pagination.componen
     PaginationPipe,
     ReactiveFormsModule,
     NgbTooltipModule,
-    HttpClientModule
+    HttpClientModule,
+    NgbDatepickerModule
+
   ]
 })
 export class SharedModule { }

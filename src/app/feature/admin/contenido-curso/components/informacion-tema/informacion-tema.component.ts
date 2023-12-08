@@ -108,14 +108,13 @@ export class InformacionTemaComponent implements OnInit {
     this.getParameters();
     this.getContent();
     console.log(this.done)
-
   }
 
   saveElemts = () => {
     if (this.validFrom()) {
       let newElements = this.hesNewElementsData()
       let updateElements = this.checkModifiedElements();
-      
+      debugger
       if(newElements.length>0)
         this.informacionService.addData(this.rutaId ?? 0,newElements);
       if(updateElements.length>0)

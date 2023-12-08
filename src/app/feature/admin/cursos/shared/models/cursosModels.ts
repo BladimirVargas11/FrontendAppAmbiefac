@@ -1,4 +1,5 @@
 export interface CursoForm {
+  id:number,
   nombreCurso: string;
   imagen: string;
   tiempo: string;

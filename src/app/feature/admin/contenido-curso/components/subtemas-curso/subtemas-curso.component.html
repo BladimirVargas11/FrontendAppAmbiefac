@@ -17,3 +17,23 @@
   <app-pagination [list]="listSubtemas" (currentPageChange)="handleCurrentPageChange($event)"></app-pagination>
  </div>
 </app-card-body>
+
+<ng-template #modalContent>
+  <!-- Puedes colocar aquí cualquier contenido que desees -->
+  <form class="w-full flex flex-col items-center">
+    <div class="m-2 w-[100%]">
+      <label for="nombre-curso" class="block mb-2 text-sm font-medium text-gray-900">Nombre del subtema</label>
+      <input type="text" id="nombreCurso" 
+        class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+        placeholder="Ejemplo: Gestión Sostenible de Residuos" required>
+        <!-- <div  *ngIf="miFormulario.get('nombreCurso')?.invalid && miFormulario.get('nombreCurso')?.touched">
+        <span  class="text-red-500 text-sm mt-1">Por favor, introduce el nombre del subtema.</span>
+        </div> -->
+    </div>
+    <div class="w-full ">
+      <button type="submit" 
+      class="flex w-full justify-center rounded-md bg-[#22c55e] px-3 py-1.5 text-white font-semibold leading-6 text-white shadow-sm hover:bg-[#22c55eb8] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+        Agregar</button>
+    </div>
+  </form>
+</ng-template>

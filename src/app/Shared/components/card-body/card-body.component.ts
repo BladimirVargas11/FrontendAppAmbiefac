@@ -13,6 +13,8 @@ export class CardBodyComponent {
 @Input() isSave: boolean = true;
 @Input() tooltip: string = '';
 @Input() tooltipBack: string = '';
+@Input() hideIcon: boolean = true;
+
 
 
 

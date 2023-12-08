@@ -14,7 +14,7 @@ const routes: Routes = [
   children:[
     {path: '', pathMatch: 'full',redirectTo: 'consultar-curso'},
     {path:'agregar-curso', component: AgregarCrusoComponent},
-    {path:'actualizar-curso', component: ActualizarCrusoComponent},
+    {path:'actualizar-curso/:id', component: ActualizarCrusoComponent},
     {path:'consultar-curso', component: ConsultarCursosComponent},
     {path:'temas-cruso/:id/:name', component: SubtemasCursoComponent},
     {path:'informacion-tema/:id', component: InformacionTemaComponent},
