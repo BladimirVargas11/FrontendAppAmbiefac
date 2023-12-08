@@ -4,7 +4,7 @@
             <div class="actions  py-[5px] items-center  w-full  mb-2 flex flex-row justify-between">
                 <i class="mr-[20px] fa-solid fa-chevron-left text-[40px] cursor-pointer" placement="bottom" [ngbTooltip]="tooltipBack"  (click)="navigateToBack()"></i>
                 <h1 class="text-xl w-full font-bold mb-2 pl-[20px]">{{Titulo}}</h1>
-                <i 
+                <i *ngIf="hideIcon"
                 class="ml-[20px]  text-[40px] cursor-pointer" 
                 [class]="(isSave)?'fa-solid fa-floppy-disk':'fa-solid fa-plus'" placement="bottom" [ngbTooltip]="tooltip" 
                 (click)="navigateToSave()">

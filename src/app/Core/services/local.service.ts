@@ -14,7 +14,7 @@ export class LocalService<T>  {
     });
   }
   addDataArray(id: number, data: T[], entidad:string): Observable<string> {
-    const existingDataString = localStorage.getItem(`${entidad} ${id.toString()}`);
+    const existingDataString = localStorage.getItem(`${entidad}${id.toString()}`);
     let lastId = 99;
     let existingData: T[] = [];
     if (existingDataString) {
@@ -55,7 +55,25 @@ export class LocalService<T>  {
       return of([]);
     }
   }
-
+  getDataById(id: number, entidad: string): Observable<T | null> {
+    if (id <= 0) {
+      return of(null);
+    }
+  
+    const storedDataString = localStorage.getItem(`${entidad}`);
+    if (storedDataString) {
+      const storedDataArray: T[] = JSON.parse(storedDataString) as T[];
+      const objetoConId = storedDataArray.find(item => (item as any).id=== id);
+  
+      if (objetoConId) {
+        return of(objetoConId);
+      } else {
+        return of(null);
+      }
+    } else {
+      return of(null);
+    }
+  }
   updateDataArray(id: number, updatedItems: T[], entidad:string): Observable<string> {
     const existingDataString =  localStorage.getItem(`${entidad} ${id.toString()}`);
     if (existingDataString) {
@@ -75,14 +93,33 @@ export class LocalService<T>  {
       return of('No hay datos existentes para actualizar');
     }
   }
+
+  updateDataItem(id: number, updatedItem: T, entidad: string): Observable<string> {
+    const existingDataString = localStorage.getItem(`${entidad}`);
+    if (existingDataString) {
+      const existingData: T[] = JSON.parse(existingDataString) as T[];
+      const indexToUpdate = existingData.findIndex(item => (item as any).id === (updatedItem as any).id);
+      if (indexToUpdate !== -1) {
+        existingData[indexToUpdate] = updatedItem;
+        localStorage.setItem(`${entidad}`, JSON.stringify(existingData));
+        this.builderSucessMessage('Actualización correcta');
+        return of('Actualización correcta');
+      } else {
+        console.warn('Objeto no encontrado para actualizar:', updatedItem);
+        return of('Objeto no encontrado para actualizar');
+      }
+    } else {
+      return of('No hay datos existentes para actualizar');
+    }
+  }
   updateDataObject(id: number, updatedItem: T, entidad:string): Observable<string> {
-    const existingDataString =  localStorage.getItem(`${entidad} ${id.toString()}`);
+    const existingDataString =  localStorage.getItem(`${entidad}`);
     if (existingDataString) {
         const existingData: T[] = JSON.parse(existingDataString) as T[];
         const indexToUpdate = existingData.findIndex(item => (item as any).id === (updatedItem as any).id);
         if (indexToUpdate !== -1) {
             existingData[indexToUpdate] = updatedItem;
-            localStorage.setItem(`contenido ${id.toString()}`, JSON.stringify(existingData));
+            localStorage.setItem(`${entidad}`, JSON.stringify(existingData));
             this.builderSucessMessage('Actualización correcta');
             return of('Actualización correcta');
         } else {

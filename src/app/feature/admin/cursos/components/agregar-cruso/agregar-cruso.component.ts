@@ -60,6 +60,7 @@ export class AgregarCrusoComponent implements OnInit {
 
   private formBuilders() {
     this.miFormulario = this.formBuilder.group({
+      id:[],
       nombreCurso: ['', Validators.required],
       imagen: ['', Validators.required],
       tiempo: ['', Validators.required],

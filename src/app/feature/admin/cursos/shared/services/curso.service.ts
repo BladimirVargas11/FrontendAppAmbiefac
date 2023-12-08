@@ -18,15 +18,18 @@ export class CursoService {
     return this.localService.addData( data, this.entidad);
   }
 
-  getData(id: number): Observable<CursoForm[]> {
+  getData(id: number = 0): Observable<CursoForm[]> {
     return this.localService.getData(id, this.entidad);
   }
-
-  updateDataArray(id: number, updatedItems: CursoForm[]): Observable<string> {
-    return this.localService.updateDataArray(id, updatedItems, this.entidad);
+  getById(id: number = 0): Observable<CursoForm|null> {
+    return this.localService.getDataById(id, this.entidad);
   }
 
-  updateDataObject(id: number, updatedItem: CursoForm): Observable<string> {
+  updateDataArray(id: number, updatedItems: CursoForm): Observable<string> {
+    return this.localService.updateDataItem(id, updatedItems, this.entidad);
+  }
+
+  updateDataObject(id: number = 0, updatedItem: CursoForm): Observable<string> {
     return this.localService.updateDataObject(id, updatedItem, this.entidad);
   }
 
