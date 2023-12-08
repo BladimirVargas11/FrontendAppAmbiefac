@@ -1,0 +1,12 @@
+<!-- hangman-game.component.html -->
+
+<h1>Juego de Ahorcado</h1>
+<div id="hangman">
+    <img id="hangman-image" [src]="mostrarHangman()" alt="Hangman">
+</div>
+<div id="word-display">{{ letrasAdivinadas.join(" ") }}</div>
+<div id="message" *ngIf="message">{{ message }}</div>
+<div id="message" *ngIf="message">{{ message }}</div>
+<input type="text" id="guess-input" placeholder="Adivina una letra" [(ngModel)]="letra">
+<button (click)="guessLetter()">Adivinar</button>
+<button (click)="resetGame()">Reiniciar</button>

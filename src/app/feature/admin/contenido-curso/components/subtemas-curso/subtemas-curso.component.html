@@ -1,0 +1,19 @@
+<app-card-body [Titulo]='titulo' [linkBack]="'admin/consultar-curso'" [ButtonRigth]="addSubTema" [isSave]="false"
+  [tooltip]="'Nuevo contenido'" [tooltipBack]="'Volver'">
+  <div class="flex flex-col border mb-4" *ngFor="let subtema of listSubtemas | pagination:currentPage:pageSize">
+    <div class="flex flex-row justify-start items-center mb-2">
+      <img [src]="subtema.imageUrl" alt="Foto del subtema" class="w-16 h-16 rounded-md mx-4">
+      <h3 class="text-lg text-black font-semibold">{{ subtema.name }}</h3>
+      <div class="flex items-center justify-end ml-auto cursor-pointer" (click)="redirecToUpdateTema()">
+        <svg xmlns="http://www.w3.org/2000/svg" height="16" width="10" class="mx-5" 
+        viewBox="0 0 320 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.-->
+        <path
+        d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z" />
+      </svg>
+    </div>
+  </div>
+</div>
+<div class="flex flex-col items-center">
+  <app-pagination [list]="listSubtemas" (currentPageChange)="handleCurrentPageChange($event)"></app-pagination>
+ </div>
+</app-card-body>

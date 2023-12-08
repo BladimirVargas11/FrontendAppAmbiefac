@@ -1,0 +1,33 @@
+<div class="header-topic">
+    <div class="header-topic-row">
+        <div class="header-topic-colum tile-topic">
+            <h1>Cursos</h1>
+            <p>Explora y Aprende: <span> Cursos de Ambiente para un Futuro Sostenible</span> </p>
+            <p>Encontrarás programas educativos centrados en la conservación del medio
+                ambiente. Desde la biodiversidad hasta la gestión sostenible de recursos, energías renovables,
+                ecoturismo responsable, cambio climático y agricultura sostenible, ofrecemos una variedad de cursos para
+                profundizar tu comprensión y habilidades en temas ambientales clave. Explora nuestras opciones
+                educativas y únete a nosotros en el camino hacia un futuro más sostenible.</p>
+        </div>
+        <div class="header-topic-colum image-topic">
+            <img src="../../../../assets/galeria-de-imagenes.png" alt="">
+        </div>
+    </div>
+</div>
+
+<div class="cursos-content">
+    <h2>Nuestros cursos</h2>
+    <div class="crusos-body-colum">
+        <div class="cursos-row"*ngFor="let row of curosos">
+            <img class="cursos-image" src="../../../../assets/galeria-de-imagenes.png" alt="">
+            <div class="cursos-info">
+                <h2>{{row.title}}</h2>
+                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Recusandae nihil perspiciatis vero sequi
+                    sed! Nemo voluptatibus aperiam magni odio sit. Qui, exercitationem fuga! Optio porro enim ab
+                    molestiae et facilis.</p>
+                <div class="level-curso">Intermedio</div>
+            </div>
+            <button class="mas-information-curso" (click)="navegarAInformacion(row.id)">Mas informacion</button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,43 @@
+ /* Ajustes adicionales para el botón */
+.button-container {
+  position: relative;
+}
+
+.fixed-button {
+  position: absolute;
+  top: 3%;
+  width: 30px;
+  height: 30px;
+}
+
+.leftmenu{
+  left: 13rem;
+}
+
+.show-box{
+  box-shadow: 14px 4px 15px -3px rgba(0,0,0,0.1);
+}
+
+/* Agrega esto a tu archivo de estilos del componente */
+.scrollable-content {
+  max-height: 100vh;
+  overflow-y: auto;
+}
+
+.scrollable-content::-webkit-scrollbar {
+  width: 12px;
+}
+
+.scrollable-content::-webkit-scrollbar-thumb {
+  background-color: #a0aec0;
+  border-radius: 6px; /* Ajusta el radio para que sea redondo */
+  border: 3px solid transparent; /* Ajusta el ancho y color del borde según tus necesidades */
+}
+
+.scrollable-content::-webkit-scrollbar-track {
+  background-color: transparent; /* Fondo transparente */
+}
+
+.scrollable-content::-webkit-scrollbar-corner {
+  background-color: transparent; /* Esquinas transparentes */
+}

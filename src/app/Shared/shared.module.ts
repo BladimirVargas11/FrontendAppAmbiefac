@@ -1,23 +1,34 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ErrorsComponent } from './components/errors/errors.component';
-import { NavbarComponent } from './components/navbar/navbar.component';
-import { FooterComponent } from './components/footer/footer.component';
-import { ModalComponent } from './components/modal/modal.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
+import { HttpClientModule } from '@angular/common/http';
+import { CardBodyComponent } from './components/card-body/card-body.component';
+import { PaginationPipe } from './pipes/pagination.pipe';
+import { PaginationComponent } from './components/pagination/pagination.component';
 
 
 
 @NgModule({
   declarations: [
-    
-  
-    ErrorsComponent,
-            NavbarComponent,
-            FooterComponent,
-            ModalComponent
+    CardBodyComponent,
+    PaginationPipe,
+    PaginationComponent,
+    PaginationPipe
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    FormsModule,
+    HttpClientModule,
+    NgbTooltipModule
+  ],
+  exports:[
+    CardBodyComponent,
+    PaginationComponent,
+    PaginationPipe,
+    ReactiveFormsModule,
+    NgbTooltipModule,
+    HttpClientModule
   ]
 })
 export class SharedModule { }

@@ -1,0 +1,61 @@
+// Define common styles
+$footer-bg-color: #33CC57;
+$text-color: #FFFFFF;
+
+.footer-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    background-color: $footer-bg-color;
+    color: $text-color;
+    padding: 70px;
+
+    .footer-colum {
+        width: 100%;
+
+        @media (min-width: 768px) {
+            width: 25%;
+        }
+
+        .title {
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+
+            li {
+                margin-bottom: 8px;
+            }
+
+            a {
+                color: $text-color;
+                text-decoration: none;
+
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+
+    .footer-img {
+        max-width: 100px;
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+    }
+}
+
+.derechos {
+    background-color: #fff;
+    color: #333;
+    text-align: center;
+    padding: 10px;
+    margin-top: 20px;
+}

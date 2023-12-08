@@ -1,0 +1,42 @@
+/* hangman-game.component.css */
+
+#hangman {
+    margin-top: 20px;
+  }
+  
+  #hangman-image {
+    max-width: 29%;
+    height: 157px;
+  }
+  
+  #word-display {
+    font-size: 24px;
+    margin: 20px 0;
+  }
+  
+  #message {
+    font-size: 18px;
+    color: red;
+    margin-top: 10px;
+  }
+  
+  #guess-input {
+    font-size: 18px;
+    margin-bottom: 10px;
+    padding: 5px;
+  }
+  
+  button {
+    font-size: 16px;
+    padding: 8px 16px;
+    background-color: #4caf50;
+    color: white;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #45a049;
+  }
+  
+  /* Add more styles as needed */
+  
