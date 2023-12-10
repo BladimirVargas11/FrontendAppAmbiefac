@@ -7,6 +7,7 @@ import { MiAprendizajeComponent } from './mi-aprendizaje/mi-aprendizaje.componen
 import { MisLogrosComponent } from './mis-logros/mis-logros.component';
 import { PerfilComponent } from './perfil/perfil.component';
 import { ComponentsModule } from '../../components/components.module';
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { ComponentsModule } from '../../components/components.module';
   imports: [
     CommonModule,
     ClientRoutingModule,
-    ComponentsModule
+    ComponentsModule,
+    RouterModule
   ]
 })
 export class ClientModule { }
