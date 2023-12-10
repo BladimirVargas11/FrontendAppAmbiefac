@@ -7,6 +7,7 @@ import { CardBodyComponent } from './components/card-body/card-body.component';
 import { PaginationPipe } from './pipes/pagination.pipe';
 import { PaginationComponent } from './components/pagination/pagination.component';
 import { ModalbodyComponent } from './components/modalbody/modalbody.component';
+import { SharedTableComponent } from './components/shared-table/shared-table.component';
 
 
 
@@ -16,7 +17,8 @@ import { ModalbodyComponent } from './components/modalbody/modalbody.component';
     PaginationPipe,
     PaginationComponent,
     PaginationPipe,
-    ModalbodyComponent
+    ModalbodyComponent,
+    SharedTableComponent
   ],
   imports: [
     CommonModule,
@@ -27,6 +29,8 @@ import { ModalbodyComponent } from './components/modalbody/modalbody.component';
   exports:[
     CardBodyComponent,
     PaginationComponent,
+    SharedTableComponent,
+    
     PaginationPipe,
     ReactiveFormsModule,
     NgbTooltipModule,
