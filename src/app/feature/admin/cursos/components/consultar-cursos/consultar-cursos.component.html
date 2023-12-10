@@ -6,7 +6,8 @@
         <div class="flex flex-wrap -mx-4">
           <div class="w-full show-box-table rounded-2">
             <div class="max-w-full overflow-x-auto rounded-1">
-              <table class="table-auto w-full rounded-1">
+             <!--<table class="table-auto w-full rounded-1">
+              
                 <thead>
                   <tr class="bg-[#22c55e] text-center">
                     <th
@@ -25,7 +26,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <!-- Iterar sobre la lista de cursos -->
+                  
                   <tr *ngFor="let curso of data">
                     <td
                       class="flex items-center text-center text-dark font-medium text-base py-2 px-2 bg-[#F3F6FF] border-b border-l border-[#E8E8E8]">
@@ -41,11 +42,11 @@
                       {{ curso.descripcion }}
                     </td>
                     <td class="text-center text-dark font-medium text-base py-2 px-2 bg-white border-b border-[#E8E8E8]">
-                      <!-- Icono de Editar con Tooltip -->
+                      
                       <span ngbTooltip="Editar" class="mr-4 cursor-pointer">
                         <i class="fas fa-edit" (click)="editarCurso(curso.id)"></i>
                       </span>
-                      <!-- Icono de Eliminar con Tooltip -->
+               
                       <span ngbTooltip="Eliminar" class="mr-4 cursor-pointer">
                         <i class="fas fa-trash " (click)="eliminarCurso(curso)"></i>
                       </span>
@@ -55,7 +56,17 @@
                     </td>
                   </tr>
                 </tbody>
-              </table>
+              </table> -->
+            <app-shared-table
+            [data]="data"
+            [hasActionView]="true"
+            [content]="verContenidoCurso"
+            [hasActionDelete]="true"
+            [delete]="eliminarCurso"
+            [hasActionUpdate]="true"
+            [update]="editarCurso"
+            >
+            </app-shared-table>
             </div>
           </div>
         </div>
