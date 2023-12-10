@@ -1,1 +1,26 @@
-<p>mi-aprendizaje works!</p>
+<app-layout-cliente>
+  <section class="w-full h-[150px] p-0 
+  fondo2 flex flex-col items-center justify-center text-white">
+    <label class=" text-[1.5rem]">Bienvenido</label>
+    <label class="text-[2.5rem] font-bold">Esteban Daniel Alfonso Melendez</label>
+  </section>
+  <section class="w-full flex justify-center gap-2 h-[500px]">
+   <section class="w-[60%]  border flex flex-col gap-4">
+    <div class="w-full mt-4 indent-2">
+      <label class="text-[1.5rem]" >Mis cursos</label>
+    </div>
+    <div class="w-full flex justify-around">
+      <div *ngFor="let curso of cursos" 
+      class="w-[30%] shadow-md rounded-md h-[300px] border flex flex-col gap-3 indent-3">
+        <div class="w-full flex items-center justify-center h-[45%] border overflow-hidden">
+          <img  src={{curso.img}} alt="" width="100">
+        </div>
+        <label for="">{{curso.nombre}}</label>
+      </div>
+    </div>
+   </section>
+   <section class="w-[30%]  border">
+
+   </section>
+  </section>
+</app-layout-cliente>

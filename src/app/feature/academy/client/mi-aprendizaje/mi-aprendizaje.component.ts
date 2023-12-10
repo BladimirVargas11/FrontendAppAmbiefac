@@ -7,4 +7,22 @@ import { Component } from '@angular/core';
 })
 export class MiAprendizajeComponent {
 
+  cursos = [
+    {
+      id:1,
+      img:"assets/galeria-de-imagenes.png",
+      nombre:"Curso #1"
+    },
+    {
+      id:2,
+      img:"assets/galeria-de-imagenes.png",
+      nombre:"Curso #2"
+    },
+    {
+      id:3,
+      img:"assets/galeria-de-imagenes.png",
+      nombre:"Curso #3"
+    },
+  ]
+
 }

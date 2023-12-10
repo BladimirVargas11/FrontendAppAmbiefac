@@ -10,6 +10,9 @@ import { LayoutClienteComponent } from './layout-cliente/layout-cliente.componen
 import { NavbarComponent } from './navbar/navbar.component';
 import { NavbarClientComponent } from './navbar-client/navbar-client.component';
 import { SidenavAdminComponent } from './sidenav-admin/sidenav-admin.component';
+import { LayoutLearningComponent } from './layout-learning/layout-learning.component';
+import { SidenavLearningComponent } from './sidenav-learning/sidenav-learning.component';
+import { NavbarLearningComponent } from './navbar-learning/navbar-learning.component';
 
 
 
@@ -23,6 +26,9 @@ import { SidenavAdminComponent } from './sidenav-admin/sidenav-admin.component';
     NavbarComponent,
     NavbarClientComponent,
     SidenavAdminComponent,
+    LayoutLearningComponent,
+    SidenavLearningComponent,
+    NavbarLearningComponent,
   ],
   imports: [
     CommonModule,
@@ -34,7 +40,9 @@ import { SidenavAdminComponent } from './sidenav-admin/sidenav-admin.component';
     LayoutAdminComponent,
     LayoutClienteComponent,
     SidenavAdminComponent,
-    NavbarClientComponent
+    NavbarClientComponent,
+    LayoutLearningComponent,
+    SidenavLearningComponent
   ]
 })
 export class ComponentsModule { }
