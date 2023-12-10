@@ -13,6 +13,10 @@ import { SubtemasCursoComponent } from './contenido-curso/components/subtemas-cu
 import { InformacionTemaComponent } from './contenido-curso/components/informacion-tema/informacion-tema.component';
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import { CoreModule } from 'src/app/Core/core.module';
+import { AgregarExamenComponent } from './manag-exams/components/agregar-examen/agregar-examen.component';
+import { ConsultarExamenComponent } from './manag-exams/components/consultar-examen/consultar-examen.component';
+import { FormsModule } from '@angular/forms';
+import { AgregarPreguntasComponent } from './manag-exams/components/agregar-preguntas/agregar-preguntas.component';
 
 
 @NgModule({
@@ -23,6 +27,9 @@ import { CoreModule } from 'src/app/Core/core.module';
     ConsultarCursosComponent,
     SubtemasCursoComponent,
     InformacionTemaComponent,
+    AgregarExamenComponent,
+    ConsultarExamenComponent,
+    AgregarPreguntasComponent,
   ],
   imports: [
     CommonModule,
@@ -31,7 +38,8 @@ import { CoreModule } from 'src/app/Core/core.module';
     SharedModule,
     NgbTooltipModule,
     DragDropModule,
-    CoreModule
+    CoreModule,
+    FormsModule
   ]
 })
 export class AdminModule { }

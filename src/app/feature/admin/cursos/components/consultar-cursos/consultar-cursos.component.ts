@@ -31,7 +31,10 @@ getCursos(){
 }
 eliminarCurso(curso:any){}
 editarCurso=(id:number)=> this.router.navigate([`admin/actualizar-curso/${id}`]);
-verContenidoCurso=(id:number, name:string)=> this.router.navigate([`admin/temas-cruso/${id}/${name}`]);
+verContenidoCurso=(id:number)=> {
+  let data = this.data.find(x=> x.id === id);
+  this.router.navigate([`admin/temas-cruso/${id}/${data?.nombreCurso}`])
+}
 handleCurrentPageChange(newPage: number) {
   console.log(newPage);
   this.currentPage = newPage;
