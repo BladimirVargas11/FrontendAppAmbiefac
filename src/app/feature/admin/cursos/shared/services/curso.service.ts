@@ -1,21 +1,25 @@
 import { Injectable } from '@angular/core';
-import { CursoForm } from '../models/cursosModels';
+import { Curso, CursoForm, cursos } from '../models/cursosModels';
 import { LocalService } from 'src/app/Core/services/local.service';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
+import { GenericLocalService } from 'src/app/Core/services/generic-local.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CursoService {
   entidad = 'cursos';
-  constructor(private localService: LocalService<CursoForm>) {
-    
+  constructor(private localService: LocalService<CursoForm>,
+    private repository: GenericLocalService<CursoForm>) {
+    repository.localStorageKey = "cursos"
   }
   builderSucessMessage(message?: string): void {
   }
+  
 
-  addData(data: CursoForm): Observable<string> {
-    return this.localService.addData( data, this.entidad);
+  addData(data: Curso): Observable<number> {
+    // return this.localService.addData( data, this.entidad);
+    return this.repository.saveItem(data);
   }
 
   getData(id: number = 0): Observable<CursoForm[]> {

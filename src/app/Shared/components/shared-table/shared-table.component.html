@@ -1,50 +1,52 @@
 <table class="table-auto w-full rounded-1">
-    <thead>
-      <tr class="bg-[#22c55e] text-center">
-        <th
-          class="w-1/6 min-w-[160px] text-lg font-semibold text-white py-3 px-3 lg:px-4 border-l border-transparent">
-          Nombre del Curso
-        </th>
-        <th class="w-1/6 min-w-[160px] text-lg font-semibold text-white py-3 px-3 lg:px-4">
-          Duración
-        </th>
-        <th class="w-1/6 min-w-[160px] text-lg font-semibold text-white py-3 px-3 lg:px-4">
-          Descripción
-        </th>
-        <th class="w-1/6 min-w-[160px] text-lg font-semibold text-white py-3 px-3 lg:px-4">
-          Acciones
-        </th>
-      </tr>
-    </thead>
-    <tbody>
-      <!-- Iterar sobre la lista de cursos -->
-      <tr *ngFor="let curso of data">
-        <td
-          class="flex items-center text-center text-dark font-medium text-base py-2 px-2 bg-[#F3F6FF] border-b border-l border-[#E8E8E8]">
+  <thead>
+    <tr class="bg-[#22c55e] text-center">
+      <th class="w-1/6 min-w-[160px] text-lg font-semibold text-white py-3 px-3 lg:px-4 border-l border-transparent">
+        Nombre del Curso
+      </th>
+      <th class="w-1/6 min-w-[160px] text-lg font-semibold text-white py-3 px-3 lg:px-4">
+        Duración
+      </th>
+      <th class="col-span-4 w-1/6 min-w-[160px] text-lg font-semibold text-white py-3 px-3 lg:px-4">
+        Descripción
+      </th>
+      <th class="w-1/6 min-w-[160px] text-lg font-semibold text-white py-3 px-3 lg:px-4">
+        Acciones
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- Iterar sobre la lista de cursos -->
+    <tr *ngFor="let curso of data">
+      <td
+        class=" text-center text-dark font-medium text-base py-2 px-2 bg-[#F3F6FF] border-b border-l border-[#E8E8E8]">
+        <div class=" flex items-center">
           <img [src]="curso.imagen" alt="Imagen del curso" class="w-12 h-12 object-cover rounded-full mr-4">
           {{ curso.nombreCurso }}
-        </td>
-        <td
-          class="text-center text-dark font-medium text-base py-2 px-2 bg-white border-b border-[#E8E8E8]">
-          {{ curso.tiempo }}
-        </td>
-        <td
-          class="text-center text-dark font-medium text-base py-2 px-2 bg-[#F3F6FF] border-b border-[#E8E8E8]">
+        </div>
+      </td>
+      <td class="text-center text-dark font-medium text-base py-2 px-2 bg-white border-b border-[#E8E8E8]">
+        {{ curso.tiempo }}
+      </td>
+      <td
+        class="col-span-4 max-h-20 text-center text-dark font-medium text-base py-2 px-2 bg-[#F3F6FF] border-b border-[#E8E8E8] overflow-hidden">
+        <div class="line-clamp-4">
           {{ curso.descripcion }}
-        </td>
-        <td class="text-center text-dark font-medium text-base py-2 px-2 bg-white border-b border-[#E8E8E8]">
-          <!-- Icono de Editar con Tooltip -->
-          <span *ngIf="hasActionUpdate" ngbTooltip="Editar" class="mr-4 cursor-pointer">
-            <i class="fas fa-edit" (click)="onUpdate(curso.id)"></i>
-          </span>
-          <!-- Icono de Eliminar con Tooltip -->
-          <span *ngIf="hasActionUpdate"  ngbTooltip="Eliminar" class="mr-4 cursor-pointer">
-            <i class="fas fa-trash " (click)="OnDelete(curso)"></i>
-          </span>
-          <span *ngIf="hasActionView" ngbTooltip="Ver Contenido" class="mr-4 cursor-pointer">
-            <i class="fas fa-eye " (click)="ViewContent(curso.id)"></i>
-          </span>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+        </div>
+      </td>
+      <td class="text-center text-dark font-medium text-base py-2 px-2 bg-white border-b border-[#E8E8E8]">
+        <!-- Icono de Editar con Tooltip -->
+        <span *ngIf="hasActionUpdate" ngbTooltip="Editar" class="mr-4 cursor-pointer">
+          <i class="fas fa-edit" (click)="onUpdate(curso.id)"></i>
+        </span>
+        <!-- Icono de Eliminar con Tooltip -->
+        <span *ngIf="hasActionUpdate" ngbTooltip="Eliminar" class="mr-4 cursor-pointer">
+          <i class="fas fa-trash " (click)="OnDelete(curso)"></i>
+        </span>
+        <span *ngIf="hasActionView" ngbTooltip="Ver Contenido" class="mr-4 cursor-pointer">
+          <i class="fas fa-eye " (click)="ViewContent(curso.id)"></i>
+        </span>
+      </td>
+    </tr>
+  </tbody>
+</table>

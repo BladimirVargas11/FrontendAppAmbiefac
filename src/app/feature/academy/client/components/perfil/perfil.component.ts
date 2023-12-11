@@ -1,21 +1,18 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
-import { CursoService } from '../../shared/services/curso.service';
-import { Curso } from '../../shared/models/cursosModels';
-import { data } from 'jquery';
+import { Component } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Router, ActivatedRoute } from '@angular/router';
+import { CursoService } from 'src/app/feature/admin/cursos/shared/services/curso.service';
 
 @Component({
-  selector: 'app-agregar-cruso',
-  templateUrl: './agregar-cruso.component.html',
-  styleUrls: ['./agregar-cruso.component.scss']
+  selector: 'app-perfil',
+  templateUrl: './perfil.component.html',
+  styleUrls: ['./perfil.component.scss']
 })
-export class AgregarCrusoComponent implements OnInit {
+export class PerfilComponent {
   titulo: string = 'Agregar curso';
   OnSave: boolean = false;
   rutaId: string | null = null;
   miFormulario!: FormGroup;
-  myIdCurso: number = 0;
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -29,8 +26,7 @@ export class AgregarCrusoComponent implements OnInit {
       return;
     }
     console.log(this.miFormulario.value)
-    let curso = Curso.CursoDesdeObject(this.miFormulario.value)
-    this.cursoService.addData(curso).subscribe(id => this.myIdCurso = id)
+    this.cursoService.addData(this.miFormulario.value)
     this.OnSave = true
   }
 
@@ -39,9 +35,9 @@ export class AgregarCrusoComponent implements OnInit {
   addContent = () => {
     // Resto de tu lógica para guardar el curso.
     console.log('si cambia', this.OnSave);
+    let idCurso = 'f47ac10b-58cc-4372-a567-0e02b2c3d479'
     let nameTema = 'Gestión Sostenible de Residuos';
-    debugger
-    this.router.navigate([`admin/temas-cruso/${this.myIdCurso}/${this.miFormulario.value.nombreCurso}`])
+    this.router.navigate([`admin/temas-cruso/${idCurso}/${nameTema}`])
 
   }
 

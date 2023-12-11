@@ -16,15 +16,17 @@ import { TodoItem, todo } from '../../shared/models/tipoElements';
   styleUrls: ['./informacion-tema.component.scss']
 })
 export class InformacionTemaComponent implements OnInit {
-  rutaId: number | null = null;
+  rutaId: number = 0;
   todo: TodoItem[] = todo;
   done: ContenidoItem[] = [];
   errorMessages: string[] = [];
   titulo: string = 'Elementos de: '
+  return = 'admin/consultar-curso'
   imagePreview: any;
   contentForm!: FormGroup;
   contentArray: FormArray;
-  informacion: ContenidoItem[] | undefined;
+  informacion: ContenidoItem[] = [];
+  idCurso: number = 0;
   constructor(
     private route: ActivatedRoute,
     private fb: FormBuilder,
@@ -78,8 +80,8 @@ export class InformacionTemaComponent implements OnInit {
 
 
   deleteItem(index: number) {
-    
-    this.informacionService.deleteData(this.rutaId?? 0,this.done[index].id);
+
+    this.informacionService.deleteData(this.rutaId ?? 0, this.done[index].id);
     this.done.splice(index, 1);
     this.contentArray.removeAt(index);
   }
@@ -115,13 +117,15 @@ export class InformacionTemaComponent implements OnInit {
       let newElements = this.hesNewElementsData()
       let updateElements = this.checkModifiedElements();
       debugger
-      if(newElements.length>0)
-        this.informacionService.addData(this.rutaId ?? 0,newElements);
-      if(updateElements.length>0)
-        this.informacionService.updateDataArray(this.rutaId ?? 0,updateElements);
+      let modificado = newElements.map((value, index = this.informacion.length +1) => {value.id = index;return value;});
+      debugger
+      if (newElements.length > 0)
+        this.informacionService.add(this.idCurso, this.rutaId, modificado);
+      if (updateElements.length > 0)
+        this.informacionService.update(this.idCurso, this.rutaId, updateElements);
 
       console.log('Nuevos: ', newElements);
-      console.log('Modificados: ',updateElements);
+      console.log('Modificados: ', updateElements);
     }
   }
 
@@ -146,7 +150,7 @@ export class InformacionTemaComponent implements OnInit {
   }
   private setFocusOnInvalidControl(controlName: string, index: number) {
     const invalidControls = this.el.nativeElement.querySelectorAll(`[formcontrolname="${controlName}"]`);
-    
+
     if (invalidControls && invalidControls.length > index) {
       const invalidControl = invalidControls[index] as HTMLElement;
       invalidControl.focus();
@@ -175,14 +179,15 @@ export class InformacionTemaComponent implements OnInit {
   }
 
   private getContent() {
-    this.informacionService.getData(this.rutaId?? 0).subscribe(
+    this.informacionService.get(this.idCurso, this.rutaId).subscribe(
       (data) => {
         this.informacion = data;
         while (this.contentArray.length !== 0) {
           this.contentArray.removeAt(0);
         }
-        this.informacion.forEach((item, index) => {
-          this.contentArray.push(this.addFormContol(item.type, index, item));
+        this.informacion.forEach((item: ContenidoItem, index) => {
+          let fromArray = this.addFormContol(item.type, index, item)
+          this.contentArray.push(fromArray);
         });
         this.done = this.array;
         console.log('Información recibida:', this.informacion);
@@ -195,7 +200,9 @@ export class InformacionTemaComponent implements OnInit {
 
   private getParameters() {
     this.route.paramMap.subscribe(params => {
-      this.rutaId = parseInt(params.get('id')?? '0', 10);
+      this.rutaId = parseInt(params.get('id') ?? '0', 10);
+      this.idCurso = parseInt(params.get('idCurso') ?? '0', 10);
+      this.return = `admin/temas-cruso/${this.idCurso}/hola`
       if (!isNaN(this.rutaId)) {
         console.log('ID de la ruta:', this.rutaId);
       }

@@ -1,11 +1,38 @@
+import { SubTemaModel } from "../../../contenido-curso/shared/models/subtemas";
+
 export interface CursoForm {
   id:number,
   nombreCurso: string;
   imagen: string;
   tiempo: string;
   descripcion: string;
+  Subtemas: SubTemaModel[]
 }
 
+export class Curso {
+  static CursoDesdeObject(obj: any) {
+    return new Curso(
+      obj.id || 0, // Use 0 if id is null
+      obj.nombreCurso || "",
+      obj.imagen || "",
+      obj.tiempo || "",
+      obj.descripcion || "",
+      [] 
+    );
+  }
+
+  constructor(
+    // public usuarioCrea: string,
+    public id: number,
+    public nombreCurso: string,
+    public imagen: string,
+    public tiempo: string,
+    public descripcion: string,
+    public Subtemas: SubTemaModel[]
+  ) {
+    // Implementation of the constructor
+  }
+}
 export const cursos: any[] = [
   {
     nombre: 'Gestión Sostenible de Residuos',

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CursoService } from '../../shared/services/curso.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-actualizar-cruso',
@@ -18,7 +19,8 @@ export class ActualizarCrusoComponent {
     private router: Router,
     private route: ActivatedRoute,
     private formBuilder: FormBuilder,
-    private cursoService: CursoService) { }
+    private cursoService: CursoService,
+    private spinner: NgxSpinnerService) { }
 
   updateCurso = () => {
     if (this.miFormulario.invalid) {
@@ -60,13 +62,29 @@ export class ActualizarCrusoComponent {
     });
   }
   getCurso(id:number){
-    this.cursoService.getById(id).subscribe((data)=> {
-      this.setFormValues(data)})
+    this.cursoService.getById(id).subscribe(
+      (data)=> {
+      this.setFormValues(data)
+      this.hiden();
+    },
+    (error:any)=> this.hiden())
   }
   setFormValues(valores: any) {
-    this.miFormulario.setValue(valores);
+    this.miFormulario.setValue({
+      id: valores.id,
+      nombreCurso: valores.nombreCurso,
+      imagen: valores.imagen,
+      tiempo: valores.tiempo,
+      descripcion: valores.descripcion
+    });
+  }
+  hiden(){
+    setTimeout(() => {
+      this.spinner.hide();
+    }, 1000);
   }
   private getParams() {
+  this.spinner.show();
     this.route.paramMap.subscribe(params => {
       this.rutaId = parseInt(params.get('id')?? '0');
       if (this.rutaId) {

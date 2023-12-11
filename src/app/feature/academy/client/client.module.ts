@@ -2,12 +2,15 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ClientRoutingModule } from './client-routing.module';
 
-import { ClientCursosComponent } from './client-cursos/client-cursos.component';
-import { MiAprendizajeComponent } from './mi-aprendizaje/mi-aprendizaje.component';
-import { MisLogrosComponent } from './mis-logros/mis-logros.component';
-import { PerfilComponent } from './perfil/perfil.component';
+import { ClientCursosComponent } from './components/client-cursos/client-cursos.component';
+import { MiAprendizajeComponent } from './components/mi-aprendizaje/mi-aprendizaje.component';
+import { MisLogrosComponent } from './components/mis-logros/mis-logros.component';
+import { PerfilComponent } from './components/perfil/perfil.component';
 import { ComponentsModule } from '../../components/components.module';
 import { RouterModule } from '@angular/router';
+import { PageClientComponent } from './components/page-client/page-client.component';
+import { TabsClientComponent } from './components/tabs-client/tabs-client.component';
+import { SharedModule } from 'src/app/Shared/shared.module';
 
 
 @NgModule({
@@ -15,13 +18,16 @@ import { RouterModule } from '@angular/router';
     ClientCursosComponent,
     PerfilComponent,
     MiAprendizajeComponent,
-    MisLogrosComponent
+    MisLogrosComponent,
+    PageClientComponent,
+    TabsClientComponent
   ],
   imports: [
     CommonModule,
     ClientRoutingModule,
     ComponentsModule,
-    RouterModule
+    RouterModule,
+    SharedModule
   ]
 })
 export class ClientModule { }

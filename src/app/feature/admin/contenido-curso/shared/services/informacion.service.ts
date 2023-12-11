@@ -1,19 +1,68 @@
 import { Injectable } from '@angular/core';
 import { InformacionTema, informacionTemaData } from '../models/informacion';
-import { Observable, of } from 'rxjs';
+import { Observable, Observer, of } from 'rxjs';
 import { ContenidoItem } from '../models/contenido';
-import Swal from 'sweetalert2'
 import { LocalService } from 'src/app/Core/services/local.service';
+import { GenericLocalService } from 'src/app/Core/services/generic-local.service';
+import { CursoForm, cursos } from '../../../cursos/shared/models/cursosModels';
 
 @Injectable({
   providedIn: 'root'
 })
 export class InformacionService {
   entidad = 'contenido';
-  constructor(private localService: LocalService<ContenidoItem>) {
-    
+  constructor(private localService: LocalService<ContenidoItem>,
+    private repository: GenericLocalService<CursoForm>) {
+    repository.localStorageKey = "cursos"
   }
-  builderSucessMessage(message?: string): void {
+
+  add(idCurso: number = 0, idSub: number = 0, data: any) {
+    debugger;
+    const curso = this.repository.getItemById(idCurso);
+    if (curso) {
+      const index = curso.Subtemas.findIndex((tema) => tema.id === idSub);
+      if (index !== -1) {
+        const dataExisting = curso.Subtemas[index].contenido || [];
+        curso.Subtemas[index].contenido = [...dataExisting, ...data];
+        this.repository.updateItem(curso);
+      }
+    }
+  }
+  update(idCurso: number, idSub: number, data: any) {
+    debugger;
+    const curso = this.repository.getItemById(idCurso);
+    if (curso) {
+      const index = curso.Subtemas.findIndex((tema) => tema.id === idSub);
+      if (index !== -1) {
+        data.forEach((updatedItem: any) => {
+          const contenidoArray = curso.Subtemas[index].contenido;
+          if (contenidoArray) {
+            const indexToUpdate = contenidoArray.findIndex(
+              (item: any) => item?.id === updatedItem?.id
+            );
+
+            if (indexToUpdate !== -1) {
+              contenidoArray[indexToUpdate] = updatedItem;
+            } else {
+              console.warn('Objeto no encontrado para actualizar:', updatedItem);
+            }
+          }
+        });
+
+        this.repository.updateItem(curso);
+      }
+    }
+  }
+
+  get(idCurso: number, idSub: number): Observable<ContenidoItem[]> {
+    const curso = this.repository.getItemById(idCurso);
+    if (curso) {
+      const subtema = curso.Subtemas.find(x => x.id === idSub);
+      if (subtema) {
+        return of(subtema.contenido.flat());
+      }
+    }
+    return of([]);
   }
 
   addData(id: number, data: ContenidoItem[]): Observable<string> {
@@ -35,5 +84,5 @@ export class InformacionService {
   deleteData(id: number, dataId: number): Observable<string> {
     return this.localService.deleteData(id, dataId, this.entidad);
   }
-  
+
 }

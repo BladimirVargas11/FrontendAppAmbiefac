@@ -1,10 +1,17 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { MiAprendizajeComponent } from './mi-aprendizaje/mi-aprendizaje.component';
+import { MiAprendizajeComponent } from './components/mi-aprendizaje/mi-aprendizaje.component';
+import { PageClientComponent } from './components/page-client/page-client.component';
 
 const routes: Routes = [
-  {path:'',redirectTo:'my-learning',pathMatch:'full'},
-  {path:'my-learning',component:MiAprendizajeComponent}
+  {
+    path: '',
+    component: PageClientComponent,
+    children: [
+      { path: '', redirectTo: 'my-learning', pathMatch: 'full' },
+      { path: 'my-learning', component: MiAprendizajeComponent }
+    ]
+  }
 ];
 
 @NgModule({

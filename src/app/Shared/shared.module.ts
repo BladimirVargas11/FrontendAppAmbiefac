@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbDatepickerModule, NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
@@ -8,6 +8,8 @@ import { PaginationPipe } from './pipes/pagination.pipe';
 import { PaginationComponent } from './components/pagination/pagination.component';
 import { ModalbodyComponent } from './components/modalbody/modalbody.component';
 import { SharedTableComponent } from './components/shared-table/shared-table.component';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 
@@ -35,8 +37,10 @@ import { SharedTableComponent } from './components/shared-table/shared-table.com
     ReactiveFormsModule,
     NgbTooltipModule,
     HttpClientModule,
-    NgbDatepickerModule
+    NgbDatepickerModule,
+    NgxSpinnerModule
 
-  ]
+  ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class SharedModule { }

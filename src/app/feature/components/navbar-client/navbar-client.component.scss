@@ -1,11 +1,14 @@
 div.my-learning {
-  border-bottom: 4px solid white;
+  border-bottom: 4px solid #949694;
   padding-bottom: 10px; 
 font-weight: bold;
 
 }
 
 div.my-learning:hover{
-  border-bottom: 4px solid #c8c9c8;
+  border-bottom: 4px solid #33cc57;
 }
 
+.border-right-icon{
+  border-right: 4px solid #949694;
+}

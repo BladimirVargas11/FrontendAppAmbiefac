@@ -17,6 +17,7 @@ import { AgregarExamenComponent } from './manag-exams/components/agregar-examen/
 import { ConsultarExamenComponent } from './manag-exams/components/consultar-examen/consultar-examen.component';
 import { FormsModule } from '@angular/forms';
 import { AgregarPreguntasComponent } from './manag-exams/components/agregar-preguntas/agregar-preguntas.component';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 
 @NgModule({

@@ -1,0 +1,35 @@
+.fondo2 {
+  background-image: url("../../../../../../assets/portada-client.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.profile {
+  position: relative;
+  z-index: 1000;
+}
+
+.potho {
+  position: relative;
+  z-index: 1001;
+  top: -30px;
+  left: 8%;
+}
+
+.scrollContent{
+  max-height: 900px;
+  overflow-y: auto;
+}
+.scrollContent::-webkit-scrollbar {
+  width: 8px; /* Ancho de la barra de desplazamiento */
+}
+
+.scrollContent::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0); /* Color del pulgar de la barra de desplazamiento (transparente en este ejemplo) */
+  border-radius: 6px; /* Borde redondeado del pulgar */
+}
+
+.scrollContent::-webkit-scrollbar-track {
+  background-color: transparent; /* Fondo de la barra de desplazamiento */
+}

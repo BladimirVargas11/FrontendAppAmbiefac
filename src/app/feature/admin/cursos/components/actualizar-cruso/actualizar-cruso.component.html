@@ -1,5 +1,12 @@
 <app-card-body [Titulo]='titulo' [linkBack]="'admin/consultar-curso'" [ButtonRigth]="updateCurso" [isSave]="true"
   [hideIcon]="hide" [tooltip]="'Guardar cambios'" [tooltipBack]="'Volver'">
+  <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)"size = "medium"color = "#fff"type = "square-jelly-box"[fullScreen]="false">
+    <div class=" flex flex-col items-center">
+      <div class="spinner-border" role="status">
+      </div>
+      <span class="text-white">Loading...</span>
+    </div>
+    </ngx-spinner>
   <form [formGroup]="miFormulario" class="w-full flex flex-col items-center">
     <div class="m-2 w-[50%]">
       <label for="nombre-curso" class="block mb-2 text-sm font-medium text-gray-900">Nombre del curso</label>

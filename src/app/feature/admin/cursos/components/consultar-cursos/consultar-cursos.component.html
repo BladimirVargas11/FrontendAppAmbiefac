@@ -1,5 +1,12 @@
 <app-card-body [Titulo]="titulo" [linkBack]="'admin/consultar-curso'" [ButtonRigth]="navigateToAdd" [isSave]="false"
   [tooltip]="'Nuevo curso'">
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)"size = "medium"color = "#fff"type = "square-jelly-box"[fullScreen]="false">
+<div class=" flex flex-col items-center">
+  <div class="spinner-border" role="status">
+  </div>
+  <span class="text-white">Loading...</span>
+</div>
+</ngx-spinner>
   <div class="flex flex-col items-center block ">
     <section class="bg-white w-100">
       <div class="container">
