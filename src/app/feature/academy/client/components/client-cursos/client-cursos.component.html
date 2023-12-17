@@ -2,11 +2,11 @@
     <label class="text-[1.5rem]">Mis cursos</label>
 </div>
 <div class="w-full flex flex-wrap justify-around h-[900px] ">
-    <div *ngFor="let curso of cursos"
+    <div (click)="seleccionarCurso(curso)" *ngFor="let curso of cursos"
         class="w-[30%] shadow-md rounded-md h-[200px] border flex flex-col gap-3 indent-3 mb-4">
         <div class="w-full flex items-center justify-center h-[45%] border">
-            <img src={{curso.img}} alt="" width="100">
+            <img src="assets/" alt="" width="100">
         </div>
-        <label for="">{{curso.nombre}}</label>
+        <label for="">{{curso.titleCourse}}</label>
     </div>
 </div>

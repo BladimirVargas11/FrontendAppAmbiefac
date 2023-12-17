@@ -37,7 +37,7 @@ export class RegisterComponent {
     if (this.formGroup?.valid) {
       let logInModel = LoginRegister.DesdeObject(this.formGroup?.value);
       console.log(logInModel)
-      this.service.logIn(logInModel);
+    //  this.service.logIn(logInModel);
       
     }
   }

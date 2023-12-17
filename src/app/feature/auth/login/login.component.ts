@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import * as $ from 'jquery';
 import { Login } from 'src/app/Core/Models/Login-models';
 import { AuthenticationService } from 'src/app/Core/authentication/authentication.service';
@@ -14,7 +15,7 @@ export class LoginComponent implements OnInit {
   formGroup!: FormGroup;
 
   constructor(private fb: FormBuilder,
-    private service: AuthenticationService) {
+    private service: AuthenticationService,private router:Router) {
     
     this.formBuilder();
   }
@@ -23,7 +24,7 @@ export class LoginComponent implements OnInit {
   }
   private formBuilder() {
     this.formGroup = this.fb.group({
-      email: new FormControl('', [Validators.required, Validators.email]),
+      username: new FormControl('', [Validators.required]),
       password: new FormControl('', Validators.required)
     });
   }
@@ -32,10 +33,19 @@ export class LoginComponent implements OnInit {
     const control = this.formGroup.get(campo);
     return control?.invalid && control?.touched || false;
   }
+
   logIn(){
     if (this.formGroup?.valid) {
       let logInModel = Login.DesdeObject(this.formGroup?.value);
-      this.service.logIn(logInModel);
+      this.service.logIn(logInModel).subscribe(
+        data=>{
+          console.log(data);
+          this.router.navigate(['/academy/my-learning'])
+        },
+        error=>{
+          console.log(error);
+        }
+      );
     }
   }
 }

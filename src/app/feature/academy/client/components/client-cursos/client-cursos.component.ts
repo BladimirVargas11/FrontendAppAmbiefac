@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { cursos } from '../../../data/cursos';
+import { CursoServiceService } from '../../../shared/services/curso.service.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-client-cursos',
@@ -6,64 +9,18 @@ import { Component } from '@angular/core';
   styleUrls: ['./client-cursos.component.scss']
 })
 export class ClientCursosComponent {
-  cursos = [
-    {
-      id: 1,
-      img: "assets/galeria-de-imagenes.png",
-      nombre: "Curso #1"
-    },
-    {
-      id: 2,
-      img: "assets/galeria-de-imagenes.png",
-      nombre: "Curso #2"
-    },
-    {
-      id: 3,
-      img: "assets/galeria-de-imagenes.png",
-      nombre: "Curso #3"
-    },
-    {
-      id: 3,
-      img: "assets/galeria-de-imagenes.png",
-      nombre: "Curso #3"
-    },
-    
-    {
-      id: 2,
-      img: "assets/galeria-de-imagenes.png",
-      nombre: "Curso #2"
-    },
-    {
-      id: 3,
-      img: "assets/galeria-de-imagenes.png",
-      nombre: "Curso #3"
-    },
-    {
-      id: 3,
-      img: "assets/galeria-de-imagenes.png",
-      nombre: "Curso #3"
-    },
-    
-    {
-      id: 3,
-      img: "assets/galeria-de-imagenes.png",
-      nombre: "Curso #3"
-    },
-    
-    {
-      id: 2,
-      img: "assets/galeria-de-imagenes.png",
-      nombre: "Curso #2"
-    },
-    {
-      id: 3,
-      img: "assets/galeria-de-imagenes.png",
-      nombre: "Curso #3"
-    },
-    {
-      id: 3,
-      img: "assets/galeria-de-imagenes.png",
-      nombre: "Curso #3"
-    },
-  ]
+  cursos = cursos;
+
+  cursoSelecionado: any;
+
+  constructor(private cursoService: CursoServiceService, private router:Router){}
+
+  seleccionarCurso(curso:any){
+   this.cursoService.setCurso(curso);
+   this.router.navigate(['/academy/learning/course'])
+  }
+
+  
+
+
 }

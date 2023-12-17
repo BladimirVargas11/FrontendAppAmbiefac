@@ -1,0 +1,10 @@
+<article   class="w-full flex flex-col h-screen overflow-y-auto  mt-[30px] items-center">
+ <div *ngFor="let info of informations" class="w-[95%] bg-white justify-around">
+  <div class="w-full bg-gray-400" *ngIf="info.type==='image'">
+    <img class="w-full h-[95%]" [src]="info.content" alt="" >
+  </div>
+  <div class="w-full bg-gray-200 flex justify-center items-center h-[300px]" *ngIf="info.type==='texto'">
+   <p class="w-[90%] text-justify">{{info.content}}</p>
+  </div>
+ </div>
+</article>

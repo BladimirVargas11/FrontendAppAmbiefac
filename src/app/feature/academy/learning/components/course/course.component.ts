@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { CursoServiceService } from '../../../shared/services/curso.service.service';
 
 @Component({
   selector: 'app-course',
@@ -6,5 +7,17 @@ import { Component } from '@angular/core';
   styleUrls: ['./course.component.scss']
 })
 export class CourseComponent {
+
+  curso:any;
+  subtopics?:any[];
+  informations:any;
+
+  constructor(private cursoService:CursoServiceService){
+    this.curso = cursoService.getCurso();
+  }
+
+  ngOnInit(): void {
+    console.log(this.informations);
+  }
 
 }

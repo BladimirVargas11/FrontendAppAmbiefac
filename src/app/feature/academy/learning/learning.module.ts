@@ -5,11 +5,13 @@ import { LearningRoutingModule } from './learning-routing.module';
 import { CourseComponent } from './components/course/course.component';
 import { ComponentsModule } from '../../components/components.module';
 import { AppRoutingModule } from 'src/app/app-routing.module';
+import { CourseContentComponent } from './components/course-content/course-content.component';
 
 
 @NgModule({
   declarations: [
-    CourseComponent
+    CourseComponent,
+    CourseContentComponent
   ],
   imports: [
     CommonModule,

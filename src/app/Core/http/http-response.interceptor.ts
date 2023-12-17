@@ -18,7 +18,7 @@ export class HttpResponseInterceptor implements HttpInterceptor {
       // Agrega el token de autenticación a la solicitud
       request = request.clone({
         setHeaders: {
-          Authorization: `Bearer ${this.authService.getToken}`
+          //Authorization: `Bearer ${this.authService.getToken}`
         }
       });
     }

@@ -2,13 +2,13 @@ export class Login {
 
     static DesdeObject(obj: any) {
         return new Login(
-            obj.email,
+            obj.username,
             obj.password
         );
     }
 
     constructor(
-        public email: string,
+        public username: string,
         public password: string
     ) { }
 }
