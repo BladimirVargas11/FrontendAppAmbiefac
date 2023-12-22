@@ -2,37 +2,37 @@
     <form [formGroup]="miFormulario" class="w-full grid grid-cols-1  md:grid-cols-2 lg:grid-cols-2 gap-2 items-center">
         <div class="m-2 w-[80%]">
             <label for="nombre-curso" class="block mb-2 text-sm font-medium text-gray-900">Nombres</label>
-            <input type="text" id="nombreCurso" formControlName="nombreCurso"
+            <input type="text" id="nombre" formControlName="nombre"
                 class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                 placeholder="Bladimir Junior" required>
-            <div *ngIf="miFormulario.get('nombreCurso')?.invalid && miFormulario.get('nombreCurso')?.touched">
+            <div *ngIf="miFormulario.get('nombre')?.invalid && miFormulario.get('nombre')?.touched">
                 <span class="text-red-500 text-sm mt-1">Por favor, introduce el nombre valido.</span>
             </div>
         </div>
         <div class="m-2 w-[80%]">
-            <label for="imagen" class="block mb-2 text-sm font-medium text-gray-900">Apellidos</label>
-            <input type="text" id="imagen" placeholder="Vargas Rios" formControlName="imagen"
+            <label for="apellido" class="block mb-2 text-sm font-medium text-gray-900">Apellidos</label>
+            <input type="text" id="apellido" placeholder="Vargas Rios" formControlName="apellido"
                 class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                 required>
-            <div *ngIf="miFormulario.get('imagen')?.invalid && miFormulario.get('imagen')?.touched">
+            <div *ngIf="miFormulario.get('apellido')?.invalid && miFormulario.get('apellido')?.touched">
                 <span class="text-red-500 text-sm mt-1">Por favor, introduce el apellidos valido.</span>
             </div>
         </div>
         <div class="m-2 w-[80%]">
-            <label for="tiempo" class="block mb-2 text-sm font-medium text-gray-900">Correo</label>
-            <input type="email" id="tiempo" placeholder="ejemplo@gmail.com" formControlName="tiempo"
+            <label for="correo" class="block mb-2 text-sm font-medium text-gray-900">Correo</label>
+            <input type="email" id="correo" placeholder="ejemplo@gmail.com" formControlName="correo"
                 class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                 required>
-            <div *ngIf="miFormulario.get('tiempo')?.invalid && miFormulario.get('tiempo')?.touched">
+            <div *ngIf="miFormulario.get('correo')?.invalid && miFormulario.get('correo')?.touched">
                 <span class="text-red-500 text-sm mt-1">Por favor, introduce un correo valido.</span>
             </div>
         </div>
         <div class="m-2 w-[80%]">
-            <label for="tiempo" class="block mb-2 text-sm font-medium text-gray-900">Telefono</label>
-            <input type="number" id="tiempo" placeholder="+57 300 000 0000" formControlName="tiempo"
+            <label for="telefono" class="block mb-2 text-sm font-medium text-gray-900">Telefono</label>
+            <input type="number" id="telefono" placeholder="+57 300 000 0000" formControlName="telefono"
                 class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                 required>
-            <div *ngIf="miFormulario.get('tiempo')?.invalid && miFormulario.get('tiempo')?.touched">
+            <div *ngIf="miFormulario.get('telefono')?.invalid && miFormulario.get('telefono')?.touched">
                 <span class="text-red-500 text-sm mt-1">Por favor, digite un numero valido.</span>
             </div>
         </div>

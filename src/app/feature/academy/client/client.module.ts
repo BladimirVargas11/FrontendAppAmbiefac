@@ -11,6 +11,10 @@ import { RouterModule } from '@angular/router';
 import { PageClientComponent } from './components/page-client/page-client.component';
 import { TabsClientComponent } from './components/tabs-client/tabs-client.component';
 import { SharedModule } from 'src/app/Shared/shared.module';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { HttpErrorInterceptor } from 'src/app/Core/http/http-error.interceptor';
+import { HttpResponseInterceptor } from 'src/app/Core/http/http-response.interceptor';
+import { BrowserModule } from '@angular/platform-browser';
 
 
 @NgModule({
@@ -24,10 +28,14 @@ import { SharedModule } from 'src/app/Shared/shared.module';
   ],
   imports: [
     CommonModule,
+    HttpClientModule,
     ClientRoutingModule,
     ComponentsModule,
     RouterModule,
     SharedModule
+  ],
+  providers:[
+    
   ]
 })
 export class ClientModule { }

@@ -8,6 +8,7 @@ import {
 } from '@angular/common/http';
 import { Observable, catchError, throwError } from 'rxjs';
 import { errores } from '../Models/errors';
+import Swal from 'sweetalert2';
 
 @Injectable()
 export class HttpErrorInterceptor implements HttpInterceptor {
@@ -17,19 +18,26 @@ export class HttpErrorInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     return next.handle(request).pipe(
       catchError((error: HttpErrorResponse) => {
-        // Handle HTTP errors (e.g., log, show error messages)
-        console.error('HTTP Error:', error);
+        let errorMessage = 'An unexpected error occurred';
 
-        // Buscar el error en la lista
-        const errorItem = errores.find(item => item.status === error.status);
-        
-        // Redirigir a la página de error específica si el error está en la lista
-        if (errorItem) {
-          // Redirigir a una página específica (por ejemplo, 'error/:status/:message')
-          // en este caso seria components errors
+        if (error.error instanceof ErrorEvent) {
+          errorMessage = `Client error: ${error.error.message}`;
+        } else if (error.status === 404) {
+          errorMessage = 'Resource not found';
+        } else if (error.status === 403) {
+          errorMessage = 'Access denied';
+        } else if (error.status === 500) {
+          errorMessage = 'Server error';
         }
 
-        return throwError(error);
+        Swal.fire({
+          title: 'Error!',
+          icon: 'error',
+          text: errorMessage,
+          timer: 1500
+        });
+
+        return throwError(errorMessage);
       })
     );
   }

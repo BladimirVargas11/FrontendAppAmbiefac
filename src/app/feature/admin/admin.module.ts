@@ -18,6 +18,9 @@ import { ConsultarExamenComponent } from './manag-exams/components/consultar-exa
 import { FormsModule } from '@angular/forms';
 import { AgregarPreguntasComponent } from './manag-exams/components/agregar-preguntas/agregar-preguntas.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpErrorInterceptor } from 'src/app/Core/http/http-error.interceptor';
+import { HttpResponseInterceptor } from 'src/app/Core/http/http-response.interceptor';
 
 
 @NgModule({
@@ -41,6 +44,19 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     DragDropModule,
     CoreModule,
     FormsModule
+  ], 
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpErrorInterceptor,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpResponseInterceptor,
+      multi: true,
+      useValue: 1
+    }
   ]
 })
 export class AdminModule { }

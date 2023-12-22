@@ -2,6 +2,10 @@ import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CursoService } from 'src/app/feature/admin/cursos/shared/services/curso.service';
+import { ProfileService } from '../../shared/services/profile.service';
+import { AuthenticationService } from 'src/app/Core/authentication/authentication.service';
+import { data } from 'jquery';
+import { ProfileModel } from '../../shared/models/profileModel';
 
 @Component({
   selector: 'app-perfil',
@@ -9,37 +13,22 @@ import { CursoService } from 'src/app/feature/admin/cursos/shared/services/curso
   styleUrls: ['./perfil.component.scss']
 })
 export class PerfilComponent {
-  titulo: string = 'Agregar curso';
-  OnSave: boolean = false;
   rutaId: string | null = null;
   miFormulario!: FormGroup;
   constructor(
-    private router: Router,
     private route: ActivatedRoute,
     private formBuilder: FormBuilder,
-    private cursoService: CursoService) { }
+    private profileService: ProfileService, 
+    private authService:AuthenticationService) { }
 
   AddCurso = () => {
-    console.log('si cambia', this.OnSave);
     if (this.miFormulario.invalid) {
       this.hasEmptyFields();
       return;
     }
     console.log(this.miFormulario.value)
-    this.cursoService.addData(this.miFormulario.value)
-    this.OnSave = true
   }
 
-
-
-  addContent = () => {
-    // Resto de tu lógica para guardar el curso.
-    console.log('si cambia', this.OnSave);
-    let idCurso = 'f47ac10b-58cc-4372-a567-0e02b2c3d479'
-    let nameTema = 'Gestión Sostenible de Residuos';
-    this.router.navigate([`admin/temas-cruso/${idCurso}/${nameTema}`])
-
-  }
 
   private hasEmptyFields() {
     const firstInvalidControl = Object.keys(this.miFormulario.controls).find(
@@ -56,15 +45,25 @@ export class PerfilComponent {
   ngOnInit(): void {
     this.getParams();
     this.formBuilders();
+    this.getProfile();
+  }
+  getProfile() {
+   this.profileService.get('1').subscribe(
+    (data)=> this.setValues(data)
+   )
+  }
+  setValues(data: ProfileModel): void {
+    console.log(data);
+    
   }
 
   private formBuilders() {
     this.miFormulario = this.formBuilder.group({
       id:[],
-      nombreCurso: ['', Validators.required],
-      imagen: ['', Validators.required],
-      tiempo: ['', Validators.required],
-      descripcion: ['', Validators.required],
+      nombre: ['', Validators.required],
+      apellido: ['', Validators.required],
+      correo: ['', Validators.required],
+      telefono: ['', Validators.required],
     });
   }
 

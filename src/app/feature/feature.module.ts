@@ -4,6 +4,9 @@ import { FeatureRoutingModule } from './feature-routing.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { HttpService } from '../Core/services/http.service';
+import { SharedModule } from '../Shared/shared.module';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -17,9 +20,12 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     FeatureRoutingModule,
     FontAwesomeModule,
     ReactiveFormsModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    SharedModule,
+    HttpClientModule
     
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  providers:[HttpService]
 })
 export class FeatureModule { }

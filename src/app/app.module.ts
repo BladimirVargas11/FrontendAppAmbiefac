@@ -11,6 +11,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { CoreModule } from './Core/core.module';
 
 
 
@@ -25,18 +26,9 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     BrowserAnimationsModule,
     FontAwesomeModule,
     NgbModule,
-    NgxSpinnerModule.forRoot()
+    NgxSpinnerModule.forRoot(),
+    CoreModule
   ],
-  providers: [ {
-    provide: HTTP_INTERCEPTORS,
-    useClass: HttpErrorInterceptor,
-    multi: true
-  },
-  {
-    provide: HTTP_INTERCEPTORS,
-    useClass: HttpResponseInterceptor,
-    multi: true
-  }],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent]
 })
