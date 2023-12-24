@@ -10,14 +10,14 @@ export const informacionTemaData: InformacionTema = {
     {
       type: 'text',
       title: 'TEXTO',
-      InfoContent: 'DESCRIPCION DE UN TEXTO',
+      content: 'DESCRIPCION DE UN TEXTO',
       position: 1,
       id: 101,
     },
     {
       type: 'image',
       title: 'IMAGEN',
-      InfoContent:
+      content:
         'https://media.gq.com.mx/photos/5f6ce732bc946e88f6c96320/16:9/w_2560%2Cc_limit/goky%2520ultra%2520instinto.jpg',
       position: 2,
       id: 102,
@@ -25,7 +25,7 @@ export const informacionTemaData: InformacionTema = {
     {
       type: 'video',
       title: 'UN VIDEO DE YOUTUBE',
-      InfoContent: 'https://www.youtube.com/embed/A0oD0dl48IM?si=pJC3cp5baobdeW7_',
+      content: 'https://www.youtube.com/embed/A0oD0dl48IM?si=pJC3cp5baobdeW7_',
       position: 3,
       id: 103,
     },

@@ -29,14 +29,9 @@ export class HttpService<T> {
     let token = this.getToken();
     let headers = new HttpHeaders({
       'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
     });
-
-    if (showToken) {
-      headers = headers.set('Authorization', `Bearer ${token}`);
-    }
-    
     return  headers ;
-    
   }
   private handleResponse<T>(observable: Observable<T>, showMessage: boolean, title?: string, message?: string): Observable<T> {
     return observable.pipe(
@@ -49,23 +44,22 @@ export class HttpService<T> {
       )
     );
   }
-  get<T>(url: string, showMessage: boolean = true, title?: string, message?: string): Observable<T> {
+  get<T>(url: string, showMessage: boolean = false, title?: string, message?: string): Observable<T> {
     const requestOptions = this.getRequestOptions();
-    debugger
-    const observable = this.http.get<T>(url, {headers: requestOptions});
+    const observable = this.http.get<T>(url);
     return this.handleResponse(observable, showMessage,  title, message);
   }
-  post<T>(url: string, body: any, showMessage: boolean = true, title?: string, message?: string): Observable<T> {
+  post<T>(url: string, body: any, showMessage: boolean = false, title?: string, message?: string): Observable<T> {
     const observable = this.http.post<T>(url, body);
     return this.handleResponse(observable, showMessage, title, message);
   }
 
-  put<T>(url: string, body: any, showMessage: boolean = true, title?: string, message?: string): Observable<T> {
+  put<T>(url: string, body: any, showMessage: boolean = false, title?: string, message?: string): Observable<T> {
     const observable = this.http.put<T>(url, body);
     return this.handleResponse(observable, showMessage, title, message);
   }
 
-  delete<T>(url: string, showMessage: boolean = true, title?: string, message?: string): Observable<T> {
+  delete<T>(url: string, showMessage: boolean = false, title?: string, message?: string): Observable<T> {
     const observable = this.http.delete<T>(url);
     return this.handleResponse(observable, showMessage, title, message);
   }

@@ -7,6 +7,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { SubtemasService } from '../../shared/services/subtemas.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SubTema } from '../../shared/models/subtemas';
+import { SubTopicModel } from '../../shared/models/subTopicModel';
 
 @Component({
   selector: 'app-subtemas-curso',
@@ -18,7 +19,7 @@ export class SubtemasCursoComponent {
   titulo: string = "";
   currentPage = 1;
   pageSize = 5;
-  listSubtemas = subtemas
+  listSubtemas!:SubTopicModel[];
   @ViewChild('modalContent', { static: true }) modalContent!: TemplateRef<any>;
   private _name: string | null = null;
   miFormulario!: FormGroup;
@@ -66,8 +67,13 @@ export class SubtemasCursoComponent {
     });
   }
   private getData() {
-    let contenido = this.service.getById(this.rutaId).Subtemas;
-    this.listSubtemas = (contenido) ? contenido : [];
+    this.service.getSubTopicById(this.rutaId).subscribe( (contenido:any) =>{
+      this.listSubtemas = (contenido.data) ? contenido.data : []}
+    );
+    setTimeout(() => {
+      console.clear();
+      console.log(this.listSubtemas);
+    }, 1000);
   }
 
   hiden(){
@@ -78,10 +84,8 @@ export class SubtemasCursoComponent {
 
   private formBuilders() {
     this.miFormulario = this.formBuilder.group({
-      id:[],// quitar cuando integren con api
-      nombreSubtema: ['', Validators.required],
-      tema: [],
-      contenido: []
+      idTopic: this.rutaId,// quitar cuando integren con api
+      name: ['', Validators.required],
     });
   }
 
@@ -90,10 +94,10 @@ export class SubtemasCursoComponent {
     this.currentPage = newPage;
   }
   addTemas = ()=>{
-    this.miFormulario.get('id')?.setValue(this.listSubtemas.length+1);
-    let subtema = SubTema.SubTemaDesdeObject(this.miFormulario.value) || null;
-    this.service.add(this.rutaId, subtema);
-    this.getData();
+    let subtema = this.miFormulario.value
+    debugger
+    this.service.postSubtopic(subtema).subscribe(_=> this.getData());
+    
   }
-  redirecToUpdateTema = (id:number) => this.router.navigate([`admin/informacion-tema/${id}/${this.rutaId}`])
+  redirecToUpdateTema = (id:number) => this.router.navigate([`admin/informacion-tema/${id}`])
 }

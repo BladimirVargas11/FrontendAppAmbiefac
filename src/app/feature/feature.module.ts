@@ -26,6 +26,6 @@ import { HttpClientModule } from '@angular/common/http';
     
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  providers:[HttpService]
+  providers:[]
 })
 export class FeatureModule { }

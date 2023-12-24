@@ -9,6 +9,7 @@ import { InformacionTemaComponent } from './contenido-curso/components/informaci
 import { SubtemasCursoComponent } from './contenido-curso/components/subtemas-curso/subtemas-curso.component';
 import { AgregarExamenComponent } from './manag-exams/components/agregar-examen/agregar-examen.component';
 import { AgregarPreguntasComponent } from './manag-exams/components/agregar-preguntas/agregar-preguntas.component';
+import { ConsultarExamenComponent } from './manag-exams/components/consultar-examen/consultar-examen.component';
 
 const routes: Routes = [
   {path: '',
@@ -19,9 +20,9 @@ const routes: Routes = [
     {path:'actualizar-curso/:id', component: ActualizarCrusoComponent},
     {path:'consultar-curso', component: ConsultarCursosComponent},
     {path:'temas-cruso/:id/:name', component: SubtemasCursoComponent},
-    {path:'informacion-tema/:id/:idCurso', component: InformacionTemaComponent},
+    {path:'informacion-tema/:id', component: InformacionTemaComponent},
     {path:'agregar-preguntas/:id', component: AgregarPreguntasComponent},
-    {path:'agregar-examen/:id', component: AgregarExamenComponent},
+    {path:'agregar-examen', component: ConsultarExamenComponent},
   ]
   }
 ];

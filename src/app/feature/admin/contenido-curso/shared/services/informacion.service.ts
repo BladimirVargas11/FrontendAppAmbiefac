@@ -5,29 +5,34 @@ import { ContenidoItem } from '../models/contenido';
 import { LocalService } from 'src/app/Core/services/local.service';
 import { GenericLocalService } from 'src/app/Core/services/generic-local.service';
 import { CursoForm, cursos } from '../../../cursos/shared/models/cursosModels';
+import { HttpService } from 'src/app/Core/services/http.service';
+import { environment } from 'src/environments/environment.development';
 
 @Injectable({
   providedIn: 'root'
 })
 export class InformacionService {
   entidad = 'contenido';
-  constructor(private localService: LocalService<ContenidoItem>,
-    private repository: GenericLocalService<CursoForm>) {
+  url: string = environment.apiUrl;
+  constructor(
+    private localService: LocalService<ContenidoItem>,
+    private repository: GenericLocalService<CursoForm>,
+    private http:HttpService<any>) {
     repository.localStorageKey = "cursos"
   }
 
-  add(idCurso: number = 0, idSub: number = 0, data: any) {
-    debugger;
-    const curso = this.repository.getItemById(idCurso);
-    if (curso) {
-      const index = curso.Subtemas.findIndex((tema) => tema.id === idSub);
-      if (index !== -1) {
-        const dataExisting = curso.Subtemas[index].contenido || [];
-        curso.Subtemas[index].contenido = [...dataExisting, ...data];
-        this.repository.updateItem(curso);
-      }
-    }
+  postInformation(information:any):Observable<string>{
+    return this.http.post(`${this.url}information/save`, information, true);
   }
+
+  getInformation(id:number):Observable<ContenidoItem[]>{
+    return this.http.get(`${this.url}information/bySubtopic/${id}`);
+  }
+  putInformation(information:any):Observable<string>{
+    debugger
+    return this.http.put(`${this.url}information/update`, information, true);
+  }
+
   update(idCurso: number, idSub: number, data: any) {
     debugger;
     const curso = this.repository.getItemById(idCurso);

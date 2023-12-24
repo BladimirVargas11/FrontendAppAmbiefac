@@ -23,26 +23,29 @@ export class AgregarCrusoComponent implements OnInit {
     private cursoService: CursoService) { }
 
   AddCurso = () => {
-    console.log('si cambia', this.OnSave);
     if (this.miFormulario.invalid) {
       this.hasEmptyFields();
       return;
     }
-    console.log(this.miFormulario.value)
-    let curso = Curso.CursoDesdeObject(this.miFormulario.value)
-    this.cursoService.addData(curso).subscribe(id => this.myIdCurso = id)
-    this.OnSave = true
+    let curso = this.miFormulario.value
+    this.cursoService.postTopic(curso).subscribe(id => {
+      this.changeValues(id);
+    })
+
   }
 
 
 
   addContent = () => {
-    // Resto de tu lógica para guardar el curso.
-    console.log('si cambia', this.OnSave);
-    let nameTema = 'Gestión Sostenible de Residuos';
-    debugger
-    this.router.navigate([`admin/temas-cruso/${this.myIdCurso}/${this.miFormulario.value.nombreCurso}`])
+    this.router.navigate([`admin/temas-cruso/${this.myIdCurso}/${this.miFormulario.value.name}`])
+  }
 
+  private changeValues(id: any) {
+    debugger
+    this.titulo = "Detalle del curso"
+    this.myIdCurso = id.data.topicId;
+    this.OnSave = true;
+    this.miFormulario.disable();
   }
 
   private hasEmptyFields() {
@@ -64,11 +67,11 @@ export class AgregarCrusoComponent implements OnInit {
 
   private formBuilders() {
     this.miFormulario = this.formBuilder.group({
-      id:[],
-      nombreCurso: ['', Validators.required],
-      imagen: ['', Validators.required],
-      tiempo: ['', Validators.required],
-      descripcion: ['', Validators.required],
+      id: [],
+      name: ['', Validators.required],
+      linkImage: ['', Validators.required],
+      time: ['', Validators.required],
+      description: ['', Validators.required],
     });
   }
 

@@ -1,4 +1,6 @@
 import { Component, EventEmitter, Output } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthenticationService } from 'src/app/Core/authentication/authentication.service';
 interface SidebarLink {
   label: string;
   route: string;
@@ -14,11 +16,18 @@ export class SidenavAdminComponent {
   @Output() enviarTitulo = new EventEmitter<string>()
   selectedLink: string | null = null;
   isSidebarOpen = false;
+  /**
+   *
+   */
+  constructor(private router:Router, private auth: AuthenticationService) {
+    
+    
+  }
 
   sidebarLinks: SidebarLink[] = [
-    { label: 'Dashboard', route: '#', selected: false , title: 'Cursos'},
-    { label: 'Categories', route: '#', selected: false, title: '' },
-    { label: 'Reports', route: '#', selected: false , title: ''},
+    { label: 'Gestionar Temas', route: 'admin/consultar-curso', selected: false , title: 'Cursos'},
+    { label: 'Gestionar Examen', route: 'admin/agregar-examen', selected: false, title: '' },
+    // { label: 'Reports', route: '#', selected: false , title: ''},
   ];
   toggleSidebar() {
     this.isSidebarOpen = !this.isSidebarOpen;
@@ -27,5 +36,12 @@ export class SidenavAdminComponent {
     this.sidebarLinks.forEach(link => link.selected = false);
     this.enviarTitulo.emit(selectedLink.title);
     selectedLink.selected = true;
+  }
+  navigateTo(link:string){
+    this.router.navigate([link]);
+  }
+  logOut(){
+    this.auth.logOut();
+    this.navigateTo("auth/")
   }
 }

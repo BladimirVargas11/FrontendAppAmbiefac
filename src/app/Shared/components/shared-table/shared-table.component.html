@@ -21,17 +21,17 @@
       <td
         class=" text-center text-dark font-medium text-base py-2 px-2 bg-[#F3F6FF] border-b border-l border-[#E8E8E8]">
         <div class=" flex items-center">
-          <img [src]="curso.imagen" alt="Imagen del curso" class="w-12 h-12 object-cover rounded-full mr-4">
-          {{ curso.nombreCurso }}
+          <img [src]="curso.linkImage" alt="Imagen del curso" class="w-12 h-12 object-cover rounded-full mr-4">
+          {{ curso.name }}
         </div>
       </td>
       <td class="text-center text-dark font-medium text-base py-2 px-2 bg-white border-b border-[#E8E8E8]">
-        {{ curso.tiempo }}
+        {{ curso.time }}
       </td>
       <td
         class="col-span-4 max-h-20 text-center text-dark font-medium text-base py-2 px-2 bg-[#F3F6FF] border-b border-[#E8E8E8] overflow-hidden">
         <div class="line-clamp-4">
-          {{ curso.descripcion }}
+          {{ curso.description }}
         </div>
       </td>
       <td class="text-center text-dark font-medium text-base py-2 px-2 bg-white border-b border-[#E8E8E8]">
@@ -41,7 +41,7 @@
         </span>
         <!-- Icono de Eliminar con Tooltip -->
         <span *ngIf="hasActionUpdate" ngbTooltip="Eliminar" class="mr-4 cursor-pointer">
-          <i class="fas fa-trash " (click)="OnDelete(curso)"></i>
+          <i class="fas fa-trash " (click)="OnDelete(curso.id)"></i>
         </span>
         <span *ngIf="hasActionView" ngbTooltip="Ver Contenido" class="mr-4 cursor-pointer">
           <i class="fas fa-eye " (click)="ViewContent(curso.id)"></i>

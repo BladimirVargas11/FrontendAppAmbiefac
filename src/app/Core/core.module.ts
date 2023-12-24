@@ -21,16 +21,16 @@ import { HttpResponseInterceptor } from './http/http-response.interceptor';
     LocalService,
     HttpService,
     AuthenticationService,
-    // {
-    //   provide: HTTP_INTERCEPTORS,
-    //   useClass: HttpResponseInterceptor,
-    //   multi: true
-    // },
-    // {
-    //   provide: HTTP_INTERCEPTORS,
-    //   useClass: HttpErrorInterceptor,
-    //   multi: true
-    // },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpResponseInterceptor,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpErrorInterceptor,
+      multi: true
+    },
   ]
 })
 export class CoreModule { }

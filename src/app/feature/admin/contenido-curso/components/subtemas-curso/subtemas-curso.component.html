@@ -9,8 +9,8 @@
     </ngx-spinner>
   <div class="flex flex-col border mb-4" *ngFor="let subtema of listSubtemas | pagination:currentPage:pageSize">
     <div class="flex flex-row justify-start items-center mb-2">
-      <img [src]="subtema.imageUrl" alt="Foto del subtema" class="w-16 h-16 rounded-md mx-4">
-      <h3 class="text-lg text-black font-semibold">{{ subtema.nombreSubtema }}</h3>
+      <img [src]="subtema.imageUrl ||'https://icones.pro/wp-content/uploads/2021/08/icone-photo-grise.png' " alt="Foto del subtema" class="w-16 h-16 rounded-md mx-4">
+      <h3 class="text-lg text-black font-semibold w-full cursor-pointer m-0 h-[40px]">{{ subtema.name }}</h3>
       <div class="flex items-center justify-end ml-auto cursor-pointer" (click)="redirecToUpdateTema(subtema.id)">
         <svg xmlns="http://www.w3.org/2000/svg" height="16" width="10" class="mx-5" 
         viewBox="0 0 320 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.-->
@@ -30,10 +30,10 @@
   <form [formGroup]="miFormulario" class="w-full flex flex-col items-center">
     <div class="m-2 w-[100%]">
       <label for="nombre-curso" class="block mb-2 text-sm font-medium text-gray-900">Nombre del subtema</label>
-      <input type="text" id="nombreCurso" formControlName="nombreSubtema"
+      <input type="text" id="nombreCurso" formControlName="name"
         class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
         placeholder="Ejemplo: Gestión Sostenible de Residuos" required>
-        <div  *ngIf="miFormulario.get('nombreSubtema')?.invalid && miFormulario.get('nombreSubtema')?.touched">
+        <div  *ngIf="miFormulario.get('name')?.invalid && miFormulario.get('name')?.touched">
         <span  class="text-red-500 text-sm mt-1">Por favor, introduce el nombre del subtema.</span>
         </div>
     </div>

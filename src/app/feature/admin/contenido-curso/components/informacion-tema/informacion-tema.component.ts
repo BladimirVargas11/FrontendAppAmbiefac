@@ -37,6 +37,7 @@ export class InformacionTemaComponent implements OnInit {
     this.contentForm = this.fb.group({
       contentArray: this.contentArray,
     });
+    this.getParameters();
   }
 
   drop(event: CdkDragDrop<any[]>) {
@@ -90,42 +91,40 @@ export class InformacionTemaComponent implements OnInit {
       id: [data?.id],
       type: [item],
       title: [data?.title || ''],
-      InfoContent: [data?.InfoContent || '', Validators.required],
+      content: [data?.content || '', Validators.required],
       position: [data?.position || position],
     });
   }
 
   viewImage(index: number) {
     const imageFormGroup = this.contentArray.at(index) as FormGroup;
-    return imageFormGroup.controls['InfoContent'].value
+    return imageFormGroup.controls['content'].value
   }
 
   viewVideo(index: number) {
     const imageFormGroup = this.contentArray.at(index) as FormGroup;
-    const videoLink = imageFormGroup.controls['InfoContent'].value;
+    const videoLink = imageFormGroup.controls['content'].value;
     return (videoLink) ? this.sanitizer.bypassSecurityTrustResourceUrl(videoLink) : false;
   }
 
   ngOnInit(): void {
-    this.getParameters();
     this.getContent();
     console.log(this.done)
   }
 
-  saveElemts = () => {
+  saveElemts = async () => {
     if (this.validFrom()) {
       let newElements = this.hesNewElementsData()
       let updateElements = this.checkModifiedElements();
-      debugger
-      let modificado = newElements.map((value, index = this.informacion.length +1) => {value.id = index;return value;});
-      debugger
+      
       if (newElements.length > 0)
-        this.informacionService.add(this.idCurso, this.rutaId, modificado);
-      if (updateElements.length > 0)
-        this.informacionService.update(this.idCurso, this.rutaId, updateElements);
+         this.informacionService.postInformation({idSubtopic: this.rutaId, listInformation: newElements}).subscribe();
+      if(updateElements.length > 0)
+        this.informacionService.putInformation({listInformation: updateElements}).subscribe();
 
-      console.log('Nuevos: ', newElements);
-      console.log('Modificados: ', updateElements);
+        setTimeout(() => {
+          this.getContent();
+        }, 1000);
     }
   }
 
@@ -159,8 +158,11 @@ export class InformacionTemaComponent implements OnInit {
   hesNewElementsData(): any[] {
     const contentArray = this.contentForm.get('contentArray') as FormArray;
     return contentArray.controls
-      .filter((control) => !control.get('id')?.value)
-      .map((control) => control.value);
+    .filter((control) => !control.get('id')?.value)
+    .map((control) => {
+      const { id, ...newElement } = control.value;
+      return newElement;
+    });
   }
 
   checkModifiedElements(): any[] {
@@ -179,9 +181,9 @@ export class InformacionTemaComponent implements OnInit {
   }
 
   private getContent() {
-    this.informacionService.get(this.idCurso, this.rutaId).subscribe(
-      (data) => {
-        this.informacion = data;
+    this.informacionService.getInformation(this.rutaId).subscribe(
+      (data:any) => {
+        this.informacion = data.data.sort((a:any, b:any) => a.position - b.position);
         while (this.contentArray.length !== 0) {
           this.contentArray.removeAt(0);
         }
@@ -201,8 +203,7 @@ export class InformacionTemaComponent implements OnInit {
   private getParameters() {
     this.route.paramMap.subscribe(params => {
       this.rutaId = parseInt(params.get('id') ?? '0', 10);
-      this.idCurso = parseInt(params.get('idCurso') ?? '0', 10);
-      this.return = `admin/temas-cruso/${this.idCurso}/hola`
+      this.return = `admin/temas-cruso/${this.rutaId}/hola`
       if (!isNaN(this.rutaId)) {
         console.log('ID de la ruta:', this.rutaId);
       }

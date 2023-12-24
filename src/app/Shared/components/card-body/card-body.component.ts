@@ -21,6 +21,6 @@ export class CardBodyComponent {
 constructor(private router: Router) {
 }
 
-navigateToSave(){this.ButtonRigth()}
+navigateToSave= ()=> {this.ButtonRigth()}
 navigateToBack= ()=>{this.router.navigate([this.linkBack])}
 }

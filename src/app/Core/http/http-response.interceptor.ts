@@ -15,8 +15,6 @@ export class HttpResponseInterceptor implements HttpInterceptor {
   constructor(private authService: AuthenticationService) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    debugger
-    // this.authService.logOut();
     if (this.authService.isAuthenticated) {
       const token = this.authService.getToken();
       if (token) {

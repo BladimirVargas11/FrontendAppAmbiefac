@@ -3,41 +3,27 @@ import { Curso, CursoForm, cursos } from '../models/cursosModels';
 import { LocalService } from 'src/app/Core/services/local.service';
 import { Observable, of } from 'rxjs';
 import { GenericLocalService } from 'src/app/Core/services/generic-local.service';
+import { HttpService } from 'src/app/Core/services/http.service';
+import { TopicModel } from '../models/topicModel';
+import { environment } from 'src/environments/environment.development';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CursoService {
-  entidad = 'cursos';
-  constructor(private localService: LocalService<CursoForm>,
-    private repository: GenericLocalService<CursoForm>) {
-    repository.localStorageKey = "cursos"
+  url: string = environment.apiUrl;
+  constructor( private http:HttpService<any>) {}
+
+  getAllTopic():Observable<TopicModel[]>{
+    return this.http.get(`${this.url}topic/all`, false)
   }
-  builderSucessMessage(message?: string): void {
+  postTopic(topic:any):Observable<any>{
+    return this.http.post(`${this.url}topic/save`, topic, true)
   }
   
-
-  addData(data: Curso): Observable<number> {
-    // return this.localService.addData( data, this.entidad);
-    return this.repository.saveItem(data);
+    deletTopic(id:number):Observable<any>{
+    return  this.http.delete(`${this.url}topic/delete/${id}`)
   }
 
-  getData(id: number = 0): Observable<CursoForm[]> {
-    return this.localService.getData(id, this.entidad);
-  }
-  getById(id: number = 0): Observable<CursoForm|null> {
-    return this.localService.getDataById(id, this.entidad);
-  }
-
-  updateDataArray(id: number, updatedItems: CursoForm): Observable<string> {
-    return this.localService.updateDataItem(id, updatedItems, this.entidad);
-  }
-
-  updateDataObject(id: number = 0, updatedItem: CursoForm): Observable<string> {
-    return this.localService.updateDataObject(id, updatedItem, this.entidad);
-  }
-
-  deleteData(id: number, dataId: number): Observable<string> {
-    return this.localService.deleteData(id, dataId, this.entidad);
-  }
+ 
 }

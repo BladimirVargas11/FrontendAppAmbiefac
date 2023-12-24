@@ -6,6 +6,7 @@ import { environment } from 'src/environments/environment.development';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { LoginResponse } from '../interfaces/Login.auth';
 import { HttpService } from '../services/http.service';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,7 @@ export class AuthenticationService {
   public isAuthenticated$: Observable<string>;
   url: string = environment.apiUrl;
 
-  constructor(private http: HttpService<LoginResponse>) {
+  constructor(private http: HttpService<LoginResponse>,private route: Router) {
     const initialToken = localStorage.getItem("token") || '';
     this.isAuthenticatedSubject = new BehaviorSubject<string>(initialToken);
     this.isAuthenticated$ = this.isAuthenticatedSubject.asObservable();
@@ -36,15 +37,30 @@ export class AuthenticationService {
     const user = this.http.post<LoginResponse>(`${this.url}auth/login`, body, true, titulo); 
     user.subscribe(
       (data) => {
-        debugger
         localStorage.setItem("token", data.jwt);
         localStorage.setItem("id", data.id.toString());
         this.setAuthenticated(data.jwt);
+        this.redirectToRoleView(data.role.name);
       }
     )
     return user;
   }
-
+  private redirectToRoleView(role:string): void {
+    if (this.isAuthenticated) {
+      switch (role) {
+        case 'ADMIN':
+          this.route.navigate(['admin/']);
+          break;
+        case 'CLIENT':
+          this.route.navigate(['academy/']);
+          break;
+        default:
+          // Redirigir a una vista predeterminada si el rol no es admin ni client
+          this.route.navigate(['/default']);
+          break;
+      }
+    }
+  }
   logOut(): void {
     localStorage.removeItem("token");
     localStorage.removeItem("id");

@@ -19,7 +19,6 @@ export class HttpErrorInterceptor implements HttpInterceptor {
     return next.handle(request).pipe(
       catchError((error: HttpErrorResponse) => {
         let errorMessage = 'An unexpected error occurred';
-
         if (error.error instanceof ErrorEvent) {
           errorMessage = `Client error: ${error.error.message}`;
         } else if (error.status === 404) {
@@ -29,14 +28,13 @@ export class HttpErrorInterceptor implements HttpInterceptor {
         } else if (error.status === 500) {
           errorMessage = 'Server error';
         }
-
-        Swal.fire({
-          title: 'Error!',
-          icon: 'error',
-          text: errorMessage,
-          timer: 1500
-        });
-
+          Swal.fire({
+            title: 'Error!',
+            icon: 'error',
+            text: errorMessage,
+            timer: 1500
+          });
+       
         return throwError(errorMessage);
       })
     );

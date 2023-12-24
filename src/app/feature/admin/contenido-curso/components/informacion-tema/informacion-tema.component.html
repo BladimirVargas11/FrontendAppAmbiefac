@@ -64,8 +64,8 @@
                       <textarea id="Descripcion"
                         placeholder="Ejemplo: Aprende las mejores prácticas para la gestión sostenible de residuos....... "
                         class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                        formControlName="InfoContent" required></textarea>
-                        <div *ngIf="contentArray.controls[i].get('InfoContent')?.invalid && contentArray.controls[i].get('title')?.touched">
+                        formControlName="content" required></textarea>
+                        <div *ngIf="contentArray.controls[i].get('content')?.invalid && contentArray.controls[i].get('title')?.touched">
                           Campo obligatorio. Por favor, proporciona una descripción.
                         </div>
                     </div>
@@ -84,8 +84,8 @@
                       <label for="videoFile" class="block mb-2 text-sm font-medium text-gray-900">Link Video</label>
                       <input type="text" id="videoFile"
                         class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                        formControlName="InfoContent" required>
-                        <div *ngIf="contentArray.controls[i].get('InfoContent')?.invalid && contentArray.controls[i].get('title')?.touched">
+                        formControlName="content" required>
+                        <div *ngIf="contentArray.controls[i].get('content')?.invalid && contentArray.controls[i].get('title')?.touched">
                           Por favor, proporciona un enlace de video válido.
                         </div>
                       <div class="mt-[10px] flex flex-row jumbotron w-100 justify-center" *ngIf="viewVideo(i)">
@@ -110,8 +110,8 @@
                     <label for="imageFile" class="block mb-2 text-sm font-medium text-gray-900">Subir Imagen</label>
                     <input type="text" id="imageFile"
                       class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                      formControlName="InfoContent" required>
-                      <div *ngIf="contentArray.controls[i].get('InfoContent')?.invalid && contentArray.controls[i].get('title')?.touched">
+                      formControlName="content" required>
+                      <div *ngIf="contentArray.controls[i].get('content')?.invalid && contentArray.controls[i].get('title')?.touched">
                         Por favor, proporciona un enlace o carga una imagen válida.
                       </div>
                     </div>

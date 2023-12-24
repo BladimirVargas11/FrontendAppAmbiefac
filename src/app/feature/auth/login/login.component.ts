@@ -37,15 +37,7 @@ export class LoginComponent implements OnInit {
   logIn(){
     if (this.formGroup?.valid) {
       let logInModel = Login.DesdeObject(this.formGroup?.value);
-      this.service.logIn(logInModel).subscribe(
-        data=>{
-          console.log(data);
-          this.router.navigate(['/academy/my-learning'])
-        },
-        error=>{
-          console.log(error);
-        }
-      );
+      this.service.logIn(logInModel).subscribe();
     }
   }
 }

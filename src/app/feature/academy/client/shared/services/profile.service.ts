@@ -13,8 +13,8 @@ export class ProfileService {
   url: string = environment.apiUrl
   constructor(private http: HttpService<ProfileModel>) { }
 
-  get(id:string):Observable<ProfileModel>{
+  get(id:number):Observable<ProfileModel>{
     const fullUrl = `${this.url}${this.endpoint}${id}`;
-    return this.http.get<ProfileModel>(fullUrl);
+    return this.http.get<ProfileModel>(fullUrl, false);
   }
 }

@@ -1,1 +1,35 @@
-<p>consultar-examen works!</p>
+<!-- En tu componente.html -->
+<app-card-body [Titulo]='titulo' [linkBack]="'admin/consultar-curso'"  [hideIcon]="false"
+  [tooltip]="'Nuevo contenido'" [tooltipBack]="'Volver'">
+  <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)"size = "medium"color = "#fff"type = "square-jelly-box"[fullScreen]="false">
+    <div class=" flex flex-col items-center">
+      <div class="spinner-border" role="status">
+      </div>
+      <span class="text-white">Loading...</span>
+    </div>
+    </ngx-spinner>
+  <div class="w-full  text-black flex flex-col items-center">
+    <div class="w-[100%] mx-[14px] " style="max-height: 427px; overflow-y: auto; ">
+      <div class="w-full p-4 flex flex-col  items-center bg-white rounded mt-2" style="border-bottom: 1px solid #00000029; ">
+        <div class="flex border rounded overflow-hidden shadow-md m-4 p-4 w-full" *ngFor="let tema of lisdata">
+            <img [src]="tema.linkImage || 'https://icones.pro/wp-content/uploads/2021/08/icone-photo-grise.png' " alt="Imagen del tema" class="w-24 h-auto mr-4" />
+            <div class="flex-grow">
+              <h2 class="text-lg font-semibold">{{ tema.name }}</h2>
+              <p class="text-gray-600">{{ tema.description }}</p>
+            </div>
+            <div class="flex items-center">
+              <button class="bg-[#22c55e] text-white px-4 py-2 rounded"*ngIf="tema.exam_id" (click)="openExamen(tema.id, tema.exam_id)">
+                Editar Examen
+              </button>
+              <button class="bg-[#22c55e] text-white px-4 py-2 rounded" *ngIf="!tema.exam_id" (click)="openExamen(tema.id, tema.exam_id)">
+                Agregar Examen
+              </button>
+            </div>
+          </div>
+
+      </div>
+    </div>
+  </div>
+
+</app-card-body>
+  

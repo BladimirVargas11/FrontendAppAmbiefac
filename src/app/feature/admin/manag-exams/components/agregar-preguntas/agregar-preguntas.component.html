@@ -1,6 +1,13 @@
-<app-card-body [Titulo]='titulo' [linkBack]="'admin/consultar-curso'" [ButtonRigth]="addSubTema" [isSave]="true"
+<app-card-body [Titulo]='titulo' [linkBack]="'admin/agregar-examen'" [ButtonRigth]="addSubTema" [isSave]="true"
   [tooltip]="'Nuevo contenido'" [tooltipBack]="'Volver'">
   <div class="w-full  text-black flex flex-col items-center">
+    <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)"size = "medium"color = "#fff"type = "square-jelly-box"[fullScreen]="false">
+      <div class=" flex flex-col items-center">
+        <div class="spinner-border" role="status">
+        </div>
+        <span class="text-white">Loading...</span>
+      </div>
+      </ngx-spinner>
     <div class="w-[40%] mb-2 ">
       <button type="submit " (click)="agregarPregunta()"
         class="flex w-full justify-center rounded-md bg-[#22c55e] px-3 py-1.5 text-white font-semibold leading-6 text-white shadow-sm hover:bg-[#22c55eb8] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
@@ -9,29 +16,30 @@
     <div class="w-[100%] mx-[14px] " style="max-height: 427px; overflow-y: auto; ">
       <div class="w-full p-4 flex flex-col  items-center bg-white rounded mt-2" style="border-bottom: 1px solid #00000029; ">
         <form [formGroup]="formulario" class="w-[80%]">
-          <div formArrayName="preguntas">
+          <div formArrayName="questions">
             <div *ngFor="let pregunta of preguntas?.controls; let i = index" [formGroupName]="i">
+              
               <!-- Pregunta -->
               <div class="w-full flex flex-row justify-end mx-2"><i class="fa-regular fa-trash-can cursor-pointer" (click)="eliminarPregunta(i)"></i></div>
               <div class="mb-4">
                 <label class="block text-gray-700 text-sm font-bold mb-2">Pregunta {{i+1}}:</label>
-                <input type="text" class="w-full px-3 py-2 border rounded-5" formControlName="pregunta" required>
-                <div *ngIf="pregunta.get('pregunta')?.invalid && pregunta.get('pregunta')?.touched">
-                  <span class="text-red-500 text-sm mt-1">Por favor, ingrese la pregunta.</span>
+                <input type="text" class="w-full px-3 py-2 border rounded-5" formControlName="questionStatement" required>
+                <div *ngIf="pregunta.get('questionStatement')?.invalid && pregunta.get('questionStatement')?.touched">
+                  <span class="text-red-500 text-sm mt-1">Por favor, ingrese la pregunta o seleccione una respuesta correcta al menos.</span>
                 </div>
               </div>
 
               <!-- Respuestas -->
-              <div formArrayName="respuestas">
+              <div formArrayName="answers">
                 <div *ngFor="let respuesta of respuestaLog(pregunta).controls; let j = index" [formGroupName]="j">
                   <label class="block text-gray-700 text-sm font-bold mb-2">Respuesta {{ j + 1 }}:</label>
                   <div class="flex items-center mb-2">
                     <input type="checkbox" class="form-checkbox checkbox-redondo  h-5 w-5 text-indigo-600 mr-2"
-                      formControlName="correcta">
-                    <input type="text" class="w-full px-3 py-2 border rounded-5 mr-2" formControlName="texto" required>
+                      formControlName="isCorrect">
+                    <input type="text" class="w-full px-3 py-2 border rounded-5 mr-2" formControlName="answerText" required>
                     <i class="fa-regular fa-trash-can cursor-pointer" (click)="eliminarRespuesta(i, j)"></i>
                   </div>
-                  <div *ngIf="respuesta.get('texto')?.invalid && respuesta.get('texto')?.touched">
+                  <div *ngIf="respuesta.get('answerText')?.invalid && respuesta.get('answerText')?.touched">
                     <span class="text-red-500 text-sm mt-1">Por favor, ingrese la respuesta.</span>
                   </div>
                 </div>

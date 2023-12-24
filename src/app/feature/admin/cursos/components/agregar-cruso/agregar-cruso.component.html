@@ -1,40 +1,40 @@
-<app-card-body [Titulo]='titulo' [linkBack]="'admin/consultar-curso'" [ButtonRigth]="AddCurso" [isSave]="true"
+<app-card-body [Titulo]='titulo' [linkBack]="'admin/consultar-curso'" [ButtonRigth]="AddCurso" [isSave]="true" [hideIcon]="!OnSave"
   [tooltip]="'Agregar'" [tooltipBack]="'Volver'">
   <form [formGroup]="miFormulario" class="w-full flex flex-col items-center">
     <div class="m-2 w-[50%]">
       <label for="nombre-curso" class="block mb-2 text-sm font-medium text-gray-900">Nombre del curso</label>
-      <input type="text" id="nombreCurso" formControlName="nombreCurso"
+      <input type="text" id="name" formControlName="name"
         class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
         placeholder="Ejemplo: Gestión Sostenible de Residuos" required>
-        <div  *ngIf="miFormulario.get('nombreCurso')?.invalid && miFormulario.get('nombreCurso')?.touched">
+        <div  *ngIf="miFormulario.get('name')?.invalid && miFormulario.get('name')?.touched">
         <span  class="text-red-500 text-sm mt-1">Por favor, introduce el nombre del curso.</span>
         </div>
     </div>
     <div class="m-2 w-[50%]">
-      <label for="imagen" class="block mb-2 text-sm font-medium text-gray-900">Imagen</label>
-      <input type="text" id="imagen" placeholder="https://ejemplo.com/imagen.jpg" formControlName="imagen"
+      <label for="linkImage" class="block mb-2 text-sm font-medium text-gray-900">linkImage</label>
+      <input type="text" id="linkImage" placeholder="https://ejemplo.com/linkImage.jpg" formControlName="linkImage"
         class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
         required>
-        <div  *ngIf="miFormulario.get('imagen')?.invalid && miFormulario.get('imagen')?.touched">
-          <span  class="text-red-500 text-sm mt-1">Por favor, proporciona una URL válida para la imagen.</span>
+        <div  *ngIf="miFormulario.get('linkImage')?.invalid && miFormulario.get('linkImage')?.touched">
+          <span  class="text-red-500 text-sm mt-1">Por favor, proporciona una URL válida para la linkImage.</span>
           </div>
     </div>
     <div class="m-2 w-[50%]">
-      <label for="tiempo" class="block mb-2 text-sm font-medium text-gray-900">Tiempo</label>
-      <input type="text" id="tiempo" placeholder="Ejemplo: 30 hr" formControlName="tiempo"
+      <label for="time" class="block mb-2 text-sm font-medium text-gray-900">time</label>
+      <input type="text" id="time" placeholder="Ejemplo: 30 hr" formControlName="time"
         class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
         required>
-        <div  *ngIf="miFormulario.get('tiempo')?.invalid && miFormulario.get('tiempo')?.touched">
-          <span  class="text-red-500 text-sm mt-1">Por favor, especifica el tiempo del curso.</span>
+        <div  *ngIf="miFormulario.get('time')?.invalid && miFormulario.get('time')?.touched">
+          <span  class="text-red-500 text-sm mt-1">Por favor, especifica el time del curso.</span>
           </div>
     </div>
     <div class="m-2 w-[50%]">
-      <label for="descripcion" class="block mb-2 text-sm font-medium text-gray-900">Descripcion</label>
-      <textarea id="descripcion" formControlName="descripcion"
+      <label for="description" class="block mb-2 text-sm font-medium text-gray-900">description</label>
+      <textarea id="description" formControlName="description"
         placeholder="Ejemplo: Aprende las mejores prácticas para la gestión sostenible de residuos....... "
         class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
         required></textarea>
-        <div  *ngIf="miFormulario.get('descripcion')?.invalid && miFormulario.get('descripcion')?.touched">
+        <div  *ngIf="miFormulario.get('description')?.invalid && miFormulario.get('description')?.touched">
           <span  class="text-red-500 text-sm mt-1">Por favor, agrega una descripción para el curso.</span>
           </div>
     </div>

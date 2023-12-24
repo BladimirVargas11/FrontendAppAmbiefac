@@ -1,8 +1,7 @@
 export interface ContenidoItem {
-    type: string;
-    title: string;
-    InfoContent: string;
-    position: number;
-    id: number;
-  }
-  
+  type: string;
+  title: string;
+  content: string;
+  position: number;
+  id: number;
+}

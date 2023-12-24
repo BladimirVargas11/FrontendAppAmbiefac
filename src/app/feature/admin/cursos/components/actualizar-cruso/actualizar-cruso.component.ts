@@ -28,11 +28,11 @@ export class ActualizarCrusoComponent {
       return;
     }
     console.log(this.miFormulario.value)
-    this.cursoService.updateDataObject(this.rutaId || 0,this.miFormulario.value).subscribe(()=> {
-      this.hide = false
-      this.titulo = 'Detalle del curso'
-      this.miFormulario.disable();
-    })
+    // this.cursoService.updateDataObject(this.rutaId || 0,this.miFormulario.value).subscribe(()=> {
+    //   this.hide = false
+    //   this.titulo = 'Detalle del curso'
+    //   this.miFormulario.disable();
+    // })
   }
 
   private hasEmptyFields() {
@@ -62,12 +62,12 @@ export class ActualizarCrusoComponent {
     });
   }
   getCurso(id:number){
-    this.cursoService.getById(id).subscribe(
-      (data)=> {
-      this.setFormValues(data)
-      this.hiden();
-    },
-    (error:any)=> this.hiden())
+    // this.cursoService.getById(id).subscribe(
+    //   (data)=> {
+    //   this.setFormValues(data)
+    //   this.hiden();
+    // },
+    // (error:any)=> this.hiden())
   }
   setFormValues(valores: any) {
     this.miFormulario.setValue({

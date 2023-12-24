@@ -45,18 +45,6 @@ import { HttpResponseInterceptor } from 'src/app/Core/http/http-response.interce
     CoreModule,
     FormsModule
   ], 
-  providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: HttpErrorInterceptor,
-      multi: true
-    },
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: HttpResponseInterceptor,
-      multi: true,
-      useValue: 1
-    }
-  ]
+  providers: []
 })
 export class AdminModule { }

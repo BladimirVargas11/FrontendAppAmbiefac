@@ -6,6 +6,8 @@ import { ProfileService } from '../../shared/services/profile.service';
 import { AuthenticationService } from 'src/app/Core/authentication/authentication.service';
 import { data } from 'jquery';
 import { ProfileModel } from '../../shared/models/profileModel';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-perfil',
@@ -13,13 +15,14 @@ import { ProfileModel } from '../../shared/models/profileModel';
   styleUrls: ['./perfil.component.scss']
 })
 export class PerfilComponent {
-  rutaId: string | null = null;
+  rutaId: number = 0;
   miFormulario!: FormGroup;
   constructor(
     private route: ActivatedRoute,
     private formBuilder: FormBuilder,
     private profileService: ProfileService, 
-    private authService:AuthenticationService) { }
+    private authService:AuthenticationService,
+    private http:HttpClient) { }
 
   AddCurso = () => {
     if (this.miFormulario.invalid) {
@@ -45,16 +48,35 @@ export class PerfilComponent {
   ngOnInit(): void {
     this.getParams();
     this.formBuilders();
-    this.getProfile();
+    this. getProfile();
+    
   }
+  getDatosConToken() {
+    const token = localStorage.getItem("token") || '';
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    });
+     this.http.get<any>(`http://localhost:8080/client/1`, { headers }).subscribe(data=>console.log(data))
+  }
+
   getProfile() {
-   this.profileService.get('1').subscribe(
-    (data)=> this.setValues(data)
+    const id = localStorage.getItem("id") || '';
+   this.profileService.get(parseInt(id ?? '0')).subscribe(
+    (data:any)=> {
+      this.setValues(data.data)
+    }
    )
   }
   setValues(data: ProfileModel): void {
-    console.log(data);
-    
+   this.miFormulario.setValue({
+    id: data.id,
+    nombre: data.fullName.split(" ")[0],
+    apellido: data.fullName.split(" ")[1], 
+    correo: data.credentials.email,
+    telefono: ""
+   })
+   this.miFormulario.disable();
   }
 
   private formBuilders() {
@@ -69,7 +91,7 @@ export class PerfilComponent {
 
   private getParams() {
     this.route.paramMap.subscribe(params => {
-      this.rutaId = params.get('id');
+      this.rutaId = parseInt(params.get('id') ?? '0');
       if (this.rutaId) {
         console.log('ID de la ruta:', this.rutaId);
       }
