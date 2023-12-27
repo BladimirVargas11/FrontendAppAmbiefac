@@ -11,7 +11,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 })
 export class ActualizarCrusoComponent {
   titulo: string = 'Agregar curso';
-  rutaId: number | null = null;
+  rutaId: number = 0;
   hide:boolean = true;
   showImagePreview: boolean = false;
   miFormulario!: FormGroup;
@@ -27,12 +27,13 @@ export class ActualizarCrusoComponent {
       this.hasEmptyFields();
       return;
     }
-    console.log(this.miFormulario.value)
-    // this.cursoService.updateDataObject(this.rutaId || 0,this.miFormulario.value).subscribe(()=> {
-    //   this.hide = false
-    //   this.titulo = 'Detalle del curso'
-    //   this.miFormulario.disable();
-    // })
+    const topic = this.miFormulario.value;
+    console.log(topic)
+    this.cursoService.putTopic(topic).subscribe(()=> {
+      this.hide = false
+      this.titulo = 'Detalle del curso'
+      this.miFormulario.disable();
+    })
   }
 
   private hasEmptyFields() {
@@ -55,27 +56,27 @@ export class ActualizarCrusoComponent {
   private formBuilders() {
     this.miFormulario = this.formBuilder.group({
       id:[],
-      nombreCurso: ['', Validators.required],
-      imagen: ['', Validators.required],
-      tiempo: ['', Validators.required],
-      descripcion: ['', Validators.required],
+      name: ['', Validators.required],
+      linkImage: ['', Validators.required],
+      time: ['', Validators.required],
+      description: ['', Validators.required],
     });
   }
   getCurso(id:number){
-    // this.cursoService.getById(id).subscribe(
-    //   (data)=> {
-    //   this.setFormValues(data)
-    //   this.hiden();
-    // },
-    // (error:any)=> this.hiden())
+    this.cursoService.getTopicById(this.rutaId).subscribe(
+      (data)=> {
+      this.setFormValues(data.data)
+      this.hiden();
+    },
+    (error:any)=> this.hiden())
   }
   setFormValues(valores: any) {
     this.miFormulario.setValue({
       id: valores.id,
-      nombreCurso: valores.nombreCurso,
-      imagen: valores.imagen,
-      tiempo: valores.tiempo,
-      descripcion: valores.descripcion
+      name: valores.name,
+      linkImage: valores.linkImage,
+      time: valores.time,
+      description: valores.name
     });
   }
   hiden(){

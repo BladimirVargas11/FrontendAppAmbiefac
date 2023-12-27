@@ -18,7 +18,7 @@ export class AgregarPreguntasComponent implements OnInit {
   preguntaConRespuestaCorrecta: boolean[] = [];
   formulario!: FormGroup;
   rutaId: number = 0;
-  exm_id: number | null = null;
+  exm_id: number = 0;
   private originalData: any;
 
   get preguntas(): FormArray {
@@ -66,9 +66,9 @@ export class AgregarPreguntasComponent implements OnInit {
       });
       for (const respuesta of pregunta.answers) {
         const nuevaRespuesta = this.fb.group({
-          id: respuesta.id | index++, // quitar el numero uno cuando el back ya este actualizado y mande el id de la respuesta
+          id: respuesta.id,
           answerText: [respuesta.answerText, Validators.required],
-          isCorrect: respuesta.correct,
+          correct: respuesta.correct,
         });
         (nuevaPregunta.get('answers') as FormArray).push(nuevaRespuesta);
       }
@@ -101,7 +101,7 @@ export class AgregarPreguntasComponent implements OnInit {
       if (formArray instanceof FormArray) {
         const preguntaConRespuestaCorrecta: boolean[] = formArray.controls.map((control: AbstractControl) =>
           (control instanceof FormGroup) &&
-          control.get('answers')?.value.some((answer: any) => answer.isCorrect)
+          control.get('answers')?.value.some((answer: any) => answer.correct)
         );
 
         const hasCorrectAnswer = preguntaConRespuestaCorrecta.every(hasCorrect => hasCorrect);
@@ -129,7 +129,7 @@ export class AgregarPreguntasComponent implements OnInit {
     return this.fb.group({
       id: [],
       answerText: ['', Validators.required],
-      isCorrect: false,
+      correct: false,
     });
   }
 
@@ -158,7 +158,7 @@ export class AgregarPreguntasComponent implements OnInit {
   getPreguntasSinRespuestaCorrecta(): number[] {
     const preguntasSinRespuestaCorrecta: number[] = [];
     this.preguntas.controls.forEach((pregunta: AbstractControl, index: number) => {
-      const respuestasCorrectas = pregunta.get('answers')?.value.filter((answer: any) => answer.isCorrect);
+      const respuestasCorrectas = pregunta.get('answers')?.value.filter((answer: any) => answer.correct);
       if (!respuestasCorrectas || respuestasCorrectas.length === 0) {
         preguntasSinRespuestaCorrecta.push(index);
       }
@@ -207,31 +207,43 @@ export class AgregarPreguntasComponent implements OnInit {
   }
 
   addSubTema = () => {
-    const PreguntasModificadas = this.getPreguntasModificadas();
-    let nuevasPreguntas = this.getNuevasPreguntasConNuevasRespuestas();
-    let nuevasRespuestas = this.getNuevasRespuestas();
-    console.log("Pregunts modificadas",JSON.stringify( PreguntasModificadas));
-    console.log("Nuevas preguntas",JSON.stringify( nuevasPreguntas));
-    console.log("Nuevas respuestas",JSON.stringify( nuevasRespuestas));
-    
-    
-    
-    // console.log(JSON.stringify(nuevasPreguntas))
-    // if (!this.exm_id)
-    //   this.addNewExam();
+    this.validForm();
+    if(this.formulario.valid){
+      (this.exm_id === 0)?this.addNewExam():this.updateExam();
+      this.obtenerPreguntasDesdeEndpoint();
+    }
   };
 
+  private updateExam() {
+    const PreguntasModificadas = this.getPreguntasModificadas();
+    const nuevasPreguntas = this.getNuevasPreguntasConNuevasRespuestas();
+    const nuevasRespuestas = this.getNuevasRespuestas();
+    const respuestasModificadas= this.getRespuestasModificadas();
+
+    console.log("Respuestas Modificadas", JSON.stringify(respuestasModificadas));
+    if(respuestasModificadas.length>0)
+      this.service.putAnsawer(respuestasModificadas).subscribe();
+    // console.log("Nuevas respuestas", JSON.stringify(nuevasRespuestas));
+
+    console.log("Pregunts modificadas", JSON.stringify(PreguntasModificadas));
+    if(PreguntasModificadas.length>0)
+      this.service.putQuestion(PreguntasModificadas).subscribe();
+    console.log("Nuevas preguntas", JSON.stringify(nuevasPreguntas));
+    if(nuevasPreguntas.length>0)
+          this.service.postNewQuestion(nuevasPreguntas,this.exm_id).subscribe();
+  }
+
   private addNewExam() {
+    this.service.postExamen(this.formulario.value).subscribe();
+  
+  }
+  private validForm(){
     this.formulario.markAllAsTouched();
     this.validReponseTrue();
-    if (this.formulario.valid) {
-      this.service.postExamen(this.formulario.value).subscribe();
-    } else {
       const invalidControl = this.findInvalidControl(this.formulario);
       if (invalidControl && 'focus' in invalidControl) {
         (invalidControl as any).focus();
       }
-    }
   }
 
   private validReponseTrue() {
@@ -249,7 +261,7 @@ export class AgregarPreguntasComponent implements OnInit {
   }
 
   tieneRespuestaCorrecta(pregunta: AbstractControl): boolean {
-    const respuestasCorrectas = pregunta.get('answers')?.value.filter((answer: any) => answer.isCorrect);
+    const respuestasCorrectas = pregunta.get('answers')?.value.filter((answer: any) => answer.correct);
     return !!respuestasCorrectas && respuestasCorrectas.length > 0;
   }
 
@@ -259,12 +271,11 @@ export class AgregarPreguntasComponent implements OnInit {
       const questionId = pregunta.get('questionsId')?.value;
       if (!questionId) {
         nuevasPreguntas.push({
-          idExam: this.exm_id,
           questionStatement: pregunta.get('questionStatement')?.value,
           answers: pregunta.get('answers')?.value.map((respuesta: any) => ({
             id: null,
             answerText: respuesta.answerText,
-            isCorrect: respuesta.isCorrect,
+            correct: respuesta.correct,
           })),
         });
       }
@@ -290,7 +301,7 @@ export class AgregarPreguntasComponent implements OnInit {
               questionsId: questionId,
               id: null,
               answerText: respuesta.answerText,
-              isCorrect: respuesta.isCorrect,
+              correct: respuesta.correct,
             });
           }
         });
@@ -310,7 +321,7 @@ export class AgregarPreguntasComponent implements OnInit {
       // Verificar si la pregunta ha sido modificada
       if (originalPregunta && !this.preguntasSonIguales(pregunta.value, originalPregunta)) {
         preguntasModificadas.push({
-          questionsId: questionId,
+          id: questionId,
           questionStatement: pregunta.get('questionStatement')?.value,
         });
       }
@@ -324,22 +335,20 @@ export class AgregarPreguntasComponent implements OnInit {
   // Arreglar 
   private getRespuestasModificadas(): any[] {
     const respuestasModificadas: any[] = [];
-
     // Comparar las respuestas actuales con las originales
     this.preguntas.controls.forEach((pregunta: AbstractControl) => {
       pregunta.get('answers')?.value.forEach((respuesta: any) => {
-        debugger
         const answerId = respuesta.id;
         const originalRespuesta = this.originalData.questions
-          .find((originalPregunta: any) => originalPregunta.questionsId === pregunta.get('questionsId')?.value)
-          ?.answers.find((originalRespuesta: any) => originalRespuesta.id === answerId);
-
+        .find((originalPregunta: any) => originalPregunta.questionsId === pregunta.get('questionsId')?.value)
+        ?.answers.find((originalRespuesta: any) => originalRespuesta.id === answerId);
+        
         // Verificar si la respuesta ha sido modificada
         if (originalRespuesta && !this.areRespuestasIguales(respuesta, originalRespuesta)) {
           respuestasModificadas.push({
             id: answerId,
             answerText: respuesta.answerText,
-            isCorrect: respuesta.isCorrect,
+            correct: respuesta.correct,
           });
         }
       });
@@ -351,7 +360,7 @@ export class AgregarPreguntasComponent implements OnInit {
     // Comparar las propiedades relevantes de las respuestas
     return (
       respuestaA.answerText === respuestaB.answerText &&
-      respuestaA.isCorrect === respuestaB.isCorrect
+      respuestaA.correct === respuestaB.correct
     );
   }
 }

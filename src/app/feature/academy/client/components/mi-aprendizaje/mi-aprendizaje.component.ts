@@ -29,7 +29,7 @@ export class MiAprendizajeComponent implements OnInit {
     )
     
   }
-  selectedTab: string = 'perfil';
+  selectedTab: string = 'cursos';
   onTabSelected(tab: string): void {
     this.selectedTab = tab;
   }

@@ -22,5 +22,18 @@ export class ExamenService {
   postExamen(examen:any):Observable<any>{
     return this.http.post(`${this.url}exam/save`, examen, true);
   }
+
+  postNewQuestion(questions:any, id:number):Observable<any>{
+    return this.http.post(`${this.url}exam/new-questions/${id}`, questions, true);
+  }
+  putQuestion(questions:any):Observable<any>{
+    return this.http.put(`${this.url}exam/update-questions`, {questions:questions}, true);
+  }
+  putAnsawer(answers:any):Observable<any>{
+    return this.http.put(`${this.url}exam/update-answers`, {answers:answers}, true);
+  }
+  // postNewAnswers(answers:any, id:number):Observable<any>{
+  //   return this.http.post(`${this.url}exam/new-answers/${id}`, answers, true);
+  // }
   
 }

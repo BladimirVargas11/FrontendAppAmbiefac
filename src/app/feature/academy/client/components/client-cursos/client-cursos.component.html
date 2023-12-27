@@ -1,19 +1,23 @@
 <div class="w-full mt-4 indent-2">
     <label class="text-[1.5rem]">Mis cursos</label>
 </div>
-<div class="w-full flex flex-wrap justify-around h-[900px] ">
+<div class="w-full flex flex-wrap justify-around">
     <div *ngFor="let curso of cursos"
-        class="w-[30%] shadow-md rounded-md h-[300px] border flex flex-col gap-3 indent-3 mb-4">
-        <div class="w-full flex items-center justify-center h-[45%] border image-container">
-            <img [src]="(verifyImage(curso.topicName))?curso.topicName: 'https://icones.pro/wp-content/uploads/2021/08/icone-photo-grise.png'"
-                alt="" width="100" height="100">
+        class="w-full sm:w-[48%] md:w-[48%] lg:w-[30%] xl:w-[30%] shadow-md rounded-md h-[300px] border flex flex-col gap-3 indent-3 mb-4">
+        <div class="w-full h-[440px] border overflow-hidden">
+            <img [src]="(verifyImage(curso.linkImage)) ? curso.linkImage : 'https://icones.pro/wp-content/uploads/2021/08/icone-photo-grise.png'"
+                 alt="" class="w-full h-full object-cover" />
         </div>
         
-        <label class="w-100 h-[50px] flex justify-center m-0"><p class="w-50 !mx-[20px]  !mb-0 !text-center text-[15px]">{{curso.topicName}}</p></label>
-        <div class="w-100 flex flex-col items-center justify-around h-100">
+        <label class="w-full h-[50px] flex justify-center m-0">
+            <p class="w-50 !mx-[20px]  !mb-0 !text-center text-[15px]">{{curso.topicName}}</p>
+        </label>
+        
+        <div class="w-full flex flex-col items-center justify-around h-80">
             <button type="button" (click)="seleccionarCurso(curso)"
                 class="flex w-50 h-[35px] justify-center rounded-md bg-[#22c55e] px-3 py-1.5 text-white font-semibold leading-6 text-white shadow-sm hover:bg-[#22c55eb8] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
-                Comenzar</button>
+                Comenzar
+            </button>
         </div>
     </div>
 </div>

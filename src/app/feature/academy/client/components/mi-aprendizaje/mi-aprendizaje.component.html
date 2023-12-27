@@ -52,7 +52,7 @@ fondo2 flex flex-col items-center justify-center text-white">
 
 </section>
 <section class="w-full flex flex-col lg:flex-row justify-center  gap-2 my-4 h-screm">
-  <section class="w-full lg:w-[60%] border flex flex-col gap-4" *ngIf="response.success">
+  <section class="w-full lg:w-[90%] border flex flex-col gap-4" *ngIf="response.success">
     <div class="container mx-auto p-4  scrollContent">
       <app-tabs-client [tabs]="tabs" (tabSelected)="onTabSelected($event)">
         <div *ngIf="selectedTab === 'perfil'"><app-perfil [data]="response.data"></app-perfil></div>

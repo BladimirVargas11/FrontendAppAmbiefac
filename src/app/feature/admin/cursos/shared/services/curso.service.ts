@@ -14,6 +14,7 @@ export class CursoService {
   getAllTopic():Observable<TopicModel[]>{
     return this.http.get(`${this.url}topic/all`, false)
   }
+  
   postTopic(topic:any):Observable<any>{
     return this.http.post(`${this.url}topic/save`, topic, true)
   }
@@ -22,5 +23,11 @@ export class CursoService {
     return  this.http.delete(`${this.url}topic/delete/${id}`)
   }
 
+  getTopicById(id: number): Observable<any> {
+    return this.http.get(`${this.url}topic/${id}`)
+  }
+  putTopic(topic:any):Observable<any>{
+    return this.http.put(`${this.url}topic/update/${topic.id}`, topic, true);
+  }
  
 }
