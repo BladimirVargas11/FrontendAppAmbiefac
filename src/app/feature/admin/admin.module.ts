@@ -42,7 +42,7 @@ import { HttpResponseInterceptor } from 'src/app/Core/http/http-response.interce
     SharedModule,
     NgbTooltipModule,
     DragDropModule,
-    CoreModule,
+    // CoreModule,
     FormsModule
   ], 
   providers: []

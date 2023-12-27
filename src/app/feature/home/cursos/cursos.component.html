@@ -19,12 +19,10 @@
     <h2>Nuestros cursos</h2>
     <div class="crusos-body-colum">
         <div class="cursos-row"*ngFor="let row of curosos">
-            <img class="cursos-image" src="../../../../assets/galeria-de-imagenes.png" alt="">
+            <img class="cursos-image" [src]="(verifyImage(row.linkImage))?row.linkImage: 'https://icones.pro/wp-content/uploads/2021/08/icone-photo-grise.png'" alt="">
             <div class="cursos-info">
-                <h2>{{row.title}}</h2>
-                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Recusandae nihil perspiciatis vero sequi
-                    sed! Nemo voluptatibus aperiam magni odio sit. Qui, exercitationem fuga! Optio porro enim ab
-                    molestiae et facilis.</p>
+                <h2>{{row.name}}</h2>
+                <p>{{row.description}}</p>
                 <div class="level-curso">Intermedio</div>
             </div>
             <button class="mas-information-curso" (click)="navegarAInformacion(row.id)">Mas informacion</button>

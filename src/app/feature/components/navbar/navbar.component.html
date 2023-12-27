@@ -1,31 +1,32 @@
 <nav class="nav_bar">
-    <div class="logo" (click)="redirecToHome()"></div>
-    <ul class="nav-list_" [class.show]="showMenu">
-      <li (click)="redirecToCursos()"><a>Cursos</a></li>
-      <!-- <li><a href="#">Mas</a></li>
-      <li><a href="#">Apoyo</a></li> -->
-      <li><a href="#">Sobre nosotros</a></li>
-      <li class="dropdown" (click)="toggleDropdown()">
-        <a>Login</a>
-        <div class="dropdown-content"  *ngIf="showDropdown">
-            <ul>
-              <li (click)="redirecToLogin()">Iniciar sesion</li>
-              <li (click)="redirecToRegister()" >Resgistrarme</li>
-            </ul>
+  <div class="logo" (click)="redirecToHome()"></div>
+  <ul class="nav-list_ " [class.show]="showMenu">
+    <li (click)="redirecToCursos()"><a>Cursos</a></li>
 
-        </div>
+    <li><a href="#">Sobre nosotros</a></li>
+    <li class="dropdown" (click)="toggleDropdown()">
+      <a>LogIn <i class="fa-solid fa-chevron-down ml-2"></i></a>
     </li>
-    </ul>
-    <div class="search-bar">
-        <input type="text" placeholder="Buscar...">
-        <div class="button-search"></div>
+    <div class="dropdown-content" *ngIf="showDropdown">
+      <ul>
+        <li (click)="redirecToLogin()">Iniciar sesion</li>
+        <li (click)="redirecToRegister()">Resgistrarme</li>
+      </ul>
+
     </div>
-    <div class="login-button" >
-      <a (click)="redirecToLogin()" >Iniciar sesion</a>
-      <div class="dropdown-content">
-        <a (click)="redirecToRegister()">Registrarme</a>
+  </ul>
+  <div class="search-bar">
+    <input type="text" placeholder="Buscar...">
+    <div class="button-search"></div>
+  </div>
+  <div class="login-button w-[15%]">
+    <a *ngIf="!response">
+      <div (click)="redirecToLogin()" class="mx-2">Iniciar sesion</div>/<div class="mx-2" (click)="redirecToRegister()">Registrarme</div>
+    </a>
+    <div class="flex flex-col justify-center items-center" (click)="redirecToClient()">
+      <i class="fa-solid fa-user text-[25px] "></i>
+      <p class="m-0">{{response.data.fullName}}</p>
     </div>
-    </div>
-    <div class="burger-menu" (click)="toggleMenu()">&#9776;</div>
-  </nav>
-  
+  </div>
+  <div class="burger-menu" (click)="toggleMenu()">&#9776;</div>
+</nav>

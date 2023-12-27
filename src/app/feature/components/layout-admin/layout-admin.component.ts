@@ -6,5 +6,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./layout-admin.component.scss']
 })
 export class LayoutAdminComponent {
-
+  titulo: string = '';
+  recibirTitulo(titulo: string) {
+    this.titulo = titulo;
+  }
 }

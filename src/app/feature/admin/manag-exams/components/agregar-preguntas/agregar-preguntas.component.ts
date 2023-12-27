@@ -207,9 +207,16 @@ export class AgregarPreguntasComponent implements OnInit {
   }
 
   addSubTema = () => {
-    const nuevasPreguntas = this.getPreguntasModificadas();
+    const PreguntasModificadas = this.getPreguntasModificadas();
+    let nuevasPreguntas = this.getNuevasPreguntasConNuevasRespuestas();
+    let nuevasRespuestas = this.getNuevasRespuestas();
+    console.log("Pregunts modificadas",JSON.stringify( PreguntasModificadas));
+    console.log("Nuevas preguntas",JSON.stringify( nuevasPreguntas));
+    console.log("Nuevas respuestas",JSON.stringify( nuevasRespuestas));
     
-    console.log(JSON.stringify(nuevasPreguntas))
+    
+    
+    // console.log(JSON.stringify(nuevasPreguntas))
     // if (!this.exm_id)
     //   this.addNewExam();
   };

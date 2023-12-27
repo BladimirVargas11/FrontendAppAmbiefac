@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SharedModule } from '../Shared/shared.module';
-import { LocalService } from './services/local.service';
 import { HttpService } from './services/http.service';
 import { AuthenticationService } from './authentication/authentication.service';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { HttpErrorInterceptor } from './http/http-error.interceptor';
 import { HttpResponseInterceptor } from './http/http-response.interceptor';
+import { ErrorServiceService } from './services/error-service.service';
 
 
 
@@ -18,9 +18,8 @@ import { HttpResponseInterceptor } from './http/http-response.interceptor';
     HttpClientModule
   ],
   providers:[
-    LocalService,
     HttpService,
-    AuthenticationService,
+    // AuthenticationService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: HttpResponseInterceptor,

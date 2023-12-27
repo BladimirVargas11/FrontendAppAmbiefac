@@ -12,6 +12,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { CoreModule } from './Core/core.module';
+import { ErrorServiceService } from './Core/services/error-service.service';
+import { AuthenticationService } from './Core/authentication/authentication.service';
 
 
 
@@ -30,6 +32,7 @@ import { CoreModule } from './Core/core.module';
     CoreModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  providers:[ErrorServiceService, AuthenticationService]
 })
 export class AppModule { }

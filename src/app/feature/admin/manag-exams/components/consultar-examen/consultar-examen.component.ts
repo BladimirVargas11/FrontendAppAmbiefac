@@ -37,4 +37,5 @@ export class ConsultarExamenComponent implements OnInit {
   openExamen(id:any, idExamen:any) {
     this.route.navigate([`admin/agregar-preguntas/${id}`,{ examen: idExamen | 3 }])
   }
+  verifyImage = (link:string):boolean => (link.startsWith('http://') ||link.startsWith('https://'))
 }

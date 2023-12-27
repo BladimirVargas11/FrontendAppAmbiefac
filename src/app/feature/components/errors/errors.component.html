@@ -1,1 +1,6 @@
-<p>errors works!</p>
+<div class="error-container">
+  <img [src]="typeCode" alt="" width="500" height="500">
+    <h2>Error</h2>
+    <p>{{ error.message }}</p>
+    <a (click)="navigateTo()" class="cursor-pointer">Ir a inicio</a>
+  </div>

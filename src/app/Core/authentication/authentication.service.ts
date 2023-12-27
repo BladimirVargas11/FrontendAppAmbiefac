@@ -3,10 +3,11 @@ import { rolesMapping } from '../Models/roles-mapping';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Login } from '../Models/Login-models';
 import { environment } from 'src/environments/environment.development';
-import { BehaviorSubject, Observable, tap } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, tap } from 'rxjs';
 import { LoginResponse } from '../interfaces/Login.auth';
 import { HttpService } from '../services/http.service';
 import { Router } from '@angular/router';
+import { data } from 'jquery';
 
 @Injectable({
   providedIn: 'root'
@@ -15,12 +16,17 @@ export class AuthenticationService {
 
   private isAuthenticatedSubject: BehaviorSubject<string>;
   public isAuthenticated$: Observable<string>;
+
+  private userLoggedInSubject: Subject<any> = new Subject<string>();; 
+  public userLoggedIn$: Observable<any> = this.userLoggedInSubject.asObservable();
+
   url: string = environment.apiUrl;
 
   constructor(private http: HttpService<LoginResponse>,private route: Router) {
     const initialToken = localStorage.getItem("token") || '';
     this.isAuthenticatedSubject = new BehaviorSubject<string>(initialToken);
     this.isAuthenticated$ = this.isAuthenticatedSubject.asObservable();
+    // this.getClient()
   }
 
   get isAuthenticated(): string {
@@ -56,7 +62,7 @@ export class AuthenticationService {
           break;
         default:
           // Redirigir a una vista predeterminada si el rol no es admin ni client
-          this.route.navigate(['/default']);
+          this.route.navigate(['/']);
           break;
       }
     }
@@ -74,5 +80,10 @@ export class AuthenticationService {
   getUserId(): number | null {
     const idString = localStorage.getItem("id");
     return idString ? parseInt(idString, 10) : null;
+  }
+
+  getClient(){
+    let id = this.getUserId();
+    return this.http.get(`${this.url}client/${id}`).subscribe((data:any)=>this.userLoggedInSubject.next(data));
   }
 }

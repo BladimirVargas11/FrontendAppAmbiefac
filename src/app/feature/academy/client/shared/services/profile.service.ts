@@ -17,4 +17,8 @@ export class ProfileService {
     const fullUrl = `${this.url}${this.endpoint}${id}`;
     return this.http.get<ProfileModel>(fullUrl, false);
   }
+
+  getClientCourse(id:number):Observable<any>{
+    return this.http.get(`${this.url}client-topic/courses/${id}`)
+  }
 }

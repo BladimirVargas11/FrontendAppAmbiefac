@@ -1,3 +1,9 @@
-<app-sidenav-admin (enviarTitulo)="recibirTitulo($event)">
-    <router-outlet></router-outlet>
-</app-sidenav-admin>
+<div *ngIf="!error">
+    <app-sidenav-admin (enviarTitulo)="recibirTitulo($event)">
+        <router-outlet></router-outlet>
+    </app-sidenav-admin>
+</div>
+<div class="w-screm flex flex-column items-center">
+    <!-- Other components and content -->
+    <app-errors *ngIf="error" [error]="error"></app-errors>
+</div>

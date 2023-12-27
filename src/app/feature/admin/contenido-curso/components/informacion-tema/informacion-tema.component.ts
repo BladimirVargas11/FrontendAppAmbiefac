@@ -82,7 +82,6 @@ export class InformacionTemaComponent implements OnInit {
 
   deleteItem(index: number) {
 
-    this.informacionService.deleteData(this.rutaId ?? 0, this.done[index].id);
     this.done.splice(index, 1);
     this.contentArray.removeAt(index);
   }

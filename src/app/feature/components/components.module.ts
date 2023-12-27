@@ -36,6 +36,7 @@ import { NavbarLearningComponent } from './navbar-learning/navbar-learning.compo
     
   ],
   exports: [
+    ErrorsComponent,
     LayoutComponent,
     LayoutAdminComponent,
     LayoutClienteComponent,
