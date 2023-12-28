@@ -6,9 +6,51 @@ body {
 
 section {
     background-color: #f8f9fa;
-    margin: 10% 0;
-    /* Set a background color for the section */
+    margin: 6% 0;
+}
 
+button:hover {
+  animation: sacudida 0.5s ease-in-out;
+}
+
+/* Definición de la animación de sacudida */
+@keyframes sacudida {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-5px);
+  }
+  50% {
+    transform: translateX(5px);
+  }
+  75% {
+    transform: translateX(-5px);
+  }
+}
+
+img{
+  max-width: 95%; 
+  height: 100%; 
+  object-fit: cover;
+}
+
+h1 {
+  font-size: 3rem;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+h2 {
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  font-weight: normal;
+}
+
+p {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+  line-height: 1.5;
 }
 
 .home-content-header {
