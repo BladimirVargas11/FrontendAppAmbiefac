@@ -13,6 +13,7 @@ import { SidenavAdminComponent } from './sidenav-admin/sidenav-admin.component';
 import { LayoutLearningComponent } from './layout-learning/layout-learning.component';
 import { SidenavLearningComponent } from './sidenav-learning/sidenav-learning.component';
 import { NavbarLearningComponent } from './navbar-learning/navbar-learning.component';
+import { SidebarLearningComponent } from './sidebar-learning/sidebar-learning.component';
 
 
 
@@ -29,6 +30,7 @@ import { NavbarLearningComponent } from './navbar-learning/navbar-learning.compo
     LayoutLearningComponent,
     SidenavLearningComponent,
     NavbarLearningComponent,
+    SidebarLearningComponent,
   ],
   imports: [
     CommonModule,
@@ -36,6 +38,7 @@ import { NavbarLearningComponent } from './navbar-learning/navbar-learning.compo
     
   ],
   exports: [
+    SidebarLearningComponent,
     ErrorsComponent,
     LayoutComponent,
     LayoutAdminComponent,

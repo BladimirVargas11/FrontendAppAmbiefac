@@ -8,10 +8,10 @@ import { CursoServiceService } from '../../academy/shared/services/curso.service
 })
 export class NavbarLearningComponent {
 
-  title?:string;
+  title?:string = 'Hola';
 
   constructor(private cursoService:CursoServiceService){
-    this.title = this.cursoService.getCurso().titleCourse;
+    // this.title = this.cursoService.getCurso().titleCourse;
   }
 
 }

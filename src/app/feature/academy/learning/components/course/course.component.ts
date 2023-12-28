@@ -7,17 +7,5 @@ import { CursoServiceService } from '../../../shared/services/curso.service.serv
   styleUrls: ['./course.component.scss']
 })
 export class CourseComponent {
-
-  curso:any;
-  subtopics?:any[];
-  informations:any;
-
-  constructor(private cursoService:CursoServiceService){
-    this.curso = cursoService.getCurso();
-  }
-
-  ngOnInit(): void {
-    console.log(this.informations);
-  }
-
+  
 }
