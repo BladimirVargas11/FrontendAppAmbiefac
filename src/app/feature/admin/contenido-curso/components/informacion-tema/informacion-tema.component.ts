@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnInit, Renderer2 } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { AbstractControl, FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -27,10 +27,13 @@ export class InformacionTemaComponent implements OnInit {
   contentArray: FormArray;
   informacion: ContenidoItem[] = [];
   idCurso: number = 0;
+  pathPrevious:string = '';
+
   constructor(
     private route: ActivatedRoute,
     private fb: FormBuilder,
     private sanitizer: DomSanitizer,
+    private router:Router,
     private informacionService: InformacionService,
     private el: ElementRef,) {
     this.contentArray = this.fb.array([]);
@@ -63,6 +66,17 @@ export class InformacionTemaComponent implements OnInit {
 
   get array() {
     return this.contentForm.get('contentArray')?.value
+  }
+
+  getUrlPrevious(){
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        // Obtén la ruta anterior usando el historial de navegación
+        const previousUrl = this.router.url;
+        console.log('Ruta anterior:', previousUrl);
+      this.pathPrevious = previousUrl;
+      }
+    });
   }
 
   noReturnPredicate = () => false;
@@ -109,6 +123,7 @@ export class InformacionTemaComponent implements OnInit {
   ngOnInit(): void {
     this.getContent();
     console.log(this.done)
+    this.getUrlPrevious();
   }
 
   saveElemts = async () => {
@@ -202,6 +217,7 @@ export class InformacionTemaComponent implements OnInit {
   private getParameters() {
     this.route.paramMap.subscribe(params => {
       this.rutaId = parseInt(params.get('id') ?? '0', 10);
+      console.log(this.router.routerState.snapshot.url);
       this.return = `admin/temas-cruso/${this.rutaId}/hola`
       if (!isNaN(this.rutaId)) {
         console.log('ID de la ruta:', this.rutaId);

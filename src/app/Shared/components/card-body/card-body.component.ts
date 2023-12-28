@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-card-body',
@@ -18,9 +19,13 @@ export class CardBodyComponent {
 
 
 
-constructor(private router: Router) {
+constructor(private router: Router, private location:Location) {
 }
 
 navigateToSave= ()=> {this.ButtonRigth()}
-navigateToBack= ()=>{this.router.navigate([this.linkBack])}
+navigateToBack= ()=>{ if (this.linkBack) {
+  this.router.navigate([this.linkBack]);
+} else {
+  this.location.back();
+}}
 }
