@@ -1,4 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Router } from '@angular/router';
+import { Subtopic, Topìc, emptyTopic } from '../models/topic';
+import { data } from 'jquery';
 
 @Component({
   selector: 'app-sidebar-learning',
@@ -6,35 +9,71 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
   styleUrls: ['./sidebar-learning.component.scss']
 })
 export class SidebarLearningComponent implements OnInit {
+  @Input() lastSelectionIndex: number | undefined;
+  @Input() dataTopic: Topìc = emptyTopic;
+  @Output() selectionChanged = new EventEmitter<number>();
+  title?: string = 'Hola';
+  showSidebar = true;
+  menuItems: Subtopic[] = [];
+  constructor(private router: Router) { }
   ngOnInit(): void {
+    setTimeout(() => {
+      this.getData();
+      // console.log(grupo);
+      // console.log(this.dataTopic.subtopic);
+
+    }, 100);
+  }
+  private getData() {
+    this.dataTopic.subtopic = this.dataTopic.subtopic.map(subtopic => ({ ...subtopic, showSubMenu: false }));
+    // console.log(JSON.stringify(this.dataTopic.subtopic));
+    const grupo = this.groupDataBySubtopic(this.dataTopic.subtopic);
+    this.menuItems = grupo;
+
     if (this.lastSelectionIndex !== undefined && this.lastSelectionIndex < this.menuItems.length) {
       this.menuItems[this.lastSelectionIndex].showSubMenu = true;
+      console.log(this.menuItems);
     }
   }
-  @Input() lastSelectionIndex: number | undefined;
-  @Output() selectionChanged = new EventEmitter<number>();
 
-  title?:string = 'Hola';
-  showSidebar = true;
-  menuItems = [
-    {
-      label: 'Menu 1',
-      subMenu: [
-        { label: 'Submenu 1.1', route: '/submenu1' },
-        { label: 'Submenu 1.2', route: '/submenu2' }
-      ],
-      showSubMenu: false
-    },
-    {
-      label: 'Menu 2',
-      subMenu: [
-        { label: 'Submenu 2.1', route: '/submenu3' },
-        { label: 'Submenu 2.2', route: '/submenu4' }
-      ],
-      showSubMenu: false
-    }
-    // Agrega más elementos según tu necesidad
-  ];
+  public groupDataBySubtopic(data: any): Subtopic[] {
+    const groupedData: Subtopic[] = [];
+    data.forEach((item: any) => {
+      const existingSubtopic = groupedData.find(
+        (subtopic) => subtopic.subtopic_id === item.subtopic_id
+      );
+
+      if (existingSubtopic) {
+        existingSubtopic.information.push({
+          information_id: item.information[0].information_id,
+          content: item.information[0].content,
+          title: item.information[0].title,
+          type: item.information[0].type,
+          position: item.information[0].position,
+        });
+      } else {
+        groupedData.push({
+          subtopic_id: item.subtopic_id,
+          subtopic_name: item.subtopic_name,
+          information: [
+            {
+              information_id: item.information[0].information_id,
+              content: item.information[0].content,
+              title: item.information[0].title,
+              type: item.information[0].type,
+              position: item.information[0].position,
+            },
+          ],
+          showSubMenu: false
+        });
+      }
+    });
+
+    return groupedData;
+  }
+
+
+
   toggleSidebar(): void {
     this.showSidebar = !this.showSidebar;
   }
@@ -54,7 +93,8 @@ export class SidebarLearningComponent implements OnInit {
     this.selectionChanged.emit(index);
   }
 
-  navigateToContent(subMenuItem: any): void {
-    console.log(`Navigating to ${subMenuItem.route}`);
+  navigateToContent(subMenuItem: any, index: number = 0): void {
+    this.router.navigate([`academy/learning/${this.dataTopic.id}/subtopic/${subMenuItem.subtopic_id}`, { queryParams:  index.toString() }])
+
   }
 }

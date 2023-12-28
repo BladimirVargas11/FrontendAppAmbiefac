@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CursoServiceService } from '../../academy/shared/services/curso.service.service';
 
 @Component({
@@ -7,8 +7,8 @@ import { CursoServiceService } from '../../academy/shared/services/curso.service
   styleUrls: ['./navbar-learning.component.scss']
 })
 export class NavbarLearningComponent {
-
-  title?:string = 'Hola';
+  @Input() title:string = ''
+  // title?:string = 'Hola';
 
   constructor(private cursoService:CursoServiceService){
     // this.title = this.cursoService.getCurso().titleCourse;
