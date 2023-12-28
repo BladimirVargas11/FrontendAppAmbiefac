@@ -1,0 +1,9 @@
+.scrollable-main {
+    overflow-y: auto;
+    max-height: calc(98vh - 4rem); 
+}
+
+.scrollable-sidebar {
+    overflow-y: auto;
+    max-height: calc(100vh - 4rem);
+}

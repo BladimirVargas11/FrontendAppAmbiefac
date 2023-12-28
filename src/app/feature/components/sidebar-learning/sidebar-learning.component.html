@@ -1,21 +1,21 @@
 <ul class="w-full   border-r-2 py-6 flex flex-col justify-between items-center">
-  <li *ngFor="let menuItem of menuItems; let i = index" class="mb-4 w-full  border-b-2 "
+  <li *ngFor="let menuItem of menuItems; let i = index" class=" w-full  border-b-2 "
     [ngClass]="{'bg-[#edfff3]': menuItem.showSubMenu}">
     <div class="flex flex-row justify-between m-2 h-[40px]" (click)="toggleSubMenu(menuItem, i)">
-      <div class="cursor-pointer text-gray-800">
-        {{ menuItem.label }}
+      <div class="cursor-pointer text-gray-800 font-bold">
+        {{ menuItem.subtopic_name }}
       </div>
-      <div *ngIf="menuItem.subMenu" class="ml-2 ">
+      <div *ngIf="menuItem.information" class="ml-2  ">
         <i class="fas fa-chevron-down"
           [ngClass]="{'fa-chevron-down': !menuItem.showSubMenu, 'fa-chevron-up': menuItem.showSubMenu}"
           (click)="toggleSubMenu(menuItem, i)"></i>
       </div>
     </div>
 
-    <ul *ngIf="menuItem.subMenu && menuItem.showSubMenu" class="mb-4">
-      <li *ngFor="let subMenuItem of menuItem.subMenu" class="text-gray-500 border-l-4 ml-4 border-dashed">
-        <div class="cursor-pointer ml-4 h-[40px]" (click)="navigateToContent(subMenuItem)">
-          {{ subMenuItem.label }}
+    <ul *ngIf="menuItem.information && menuItem.showSubMenu" class="mb-4">
+      <li *ngFor="let subMenuItem of menuItem.information; let j = index" class="text-gray-500 border-l-4 ml-4 border-dashed">
+        <div class="cursor-pointer ml-4 m-4 h-[40px]" (click)="navigateToContent(menuItem, j)">
+          {{ subMenuItem.title }}
         </div>
       </li>
     </ul>

@@ -6,12 +6,14 @@ import { CourseComponent } from './components/course/course.component';
 import { ComponentsModule } from '../../components/components.module';
 import { AppRoutingModule } from 'src/app/app-routing.module';
 import { CourseContentComponent } from './components/course-content/course-content.component';
+import { PageLearningComponent } from './components/page-learning/page-learning.component';
 
 
 @NgModule({
   declarations: [
     CourseComponent,
-    CourseContentComponent
+    CourseContentComponent,
+    PageLearningComponent
   ],
   imports: [
     CommonModule,
