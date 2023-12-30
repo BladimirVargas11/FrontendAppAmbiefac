@@ -1,10 +1,10 @@
-<app-card-body [Titulo]='titulo' [ButtonRigth]="saveElemts"
+<app-card-body [Titulo]='titulo' [ButtonRigth]="saveElemts" 
   [tooltip]="'Nuevo contenido'" [tooltipBack]="'Volver'" >
   <section cdkDropListGroup class="layout">
     <div class="sidebar">
       <div class="example-container">
         <h2 class="text-black"> Elementos</h2>
-        <div cdkDropList [cdkDropListData]="todo" class="border-1 grid grid-cols-3 gap-4 h-[50vh] "
+        <div cdkDropList [cdkDropListData]="todo" class="border-1  grid-cols-3 gap-4 h-[50vh] "
           (cdkDropListDropped)="drop($event)" [cdkDropListEnterPredicate]="noReturnPredicate">
           <div class="text-black py-[20px]" *ngFor="let item of todo" cdkDrag>
             <ng-container [ngSwitch]="item.type">
@@ -63,7 +63,7 @@
                       <label for="Descripcion" class="block mb-2 text-sm font-medium text-gray-900">Descripcion</label>
                       <textarea id="Descripcion"
                         placeholder="Ejemplo: Aprende las mejores prácticas para la gestión sostenible de residuos....... "
-                        class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                        class="shadow-sm bg-gray-50 h-[175px] border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                         formControlName="content" required></textarea>
                         <div *ngIf="contentArray.controls[i].get('content')?.invalid && contentArray.controls[i].get('title')?.touched">
                           Campo obligatorio. Por favor, proporciona una descripción.

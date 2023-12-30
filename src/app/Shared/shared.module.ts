@@ -11,6 +11,7 @@ import { SharedTableComponent } from './components/shared-table/shared-table.com
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ConfirmationDialogComponent } from './components/confirmation-dialog/confirmation-dialog.component';
+import { NavigationHistoryService } from './services/navigation-history.service';
 
 
 
@@ -41,6 +42,9 @@ import { ConfirmationDialogComponent } from './components/confirmation-dialog/co
     NgbDatepickerModule,
     NgxSpinnerModule
 
+  ],
+  providers:[
+    NavigationHistoryService
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

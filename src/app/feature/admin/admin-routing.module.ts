@@ -20,7 +20,7 @@ const routes: Routes = [
     {path:'actualizar-curso/:id', component: ActualizarCrusoComponent},
     {path:'consultar-curso', component: ConsultarCursosComponent},
     {path:'temas-cruso/:id/:name', component: SubtemasCursoComponent},
-    {path:'informacion-tema/:id', component: InformacionTemaComponent},
+    {path:'informacion-tema/:id/:name', component: InformacionTemaComponent},
     {path:'agregar-preguntas/:id', component: AgregarPreguntasComponent},
     {path:'agregar-examen', component: ConsultarExamenComponent},
   ]

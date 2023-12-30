@@ -27,13 +27,13 @@ export class InformacionTemaComponent implements OnInit {
   contentArray: FormArray;
   informacion: ContenidoItem[] = [];
   idCurso: number = 0;
-  pathPrevious:string = '';
+  pathPrevious: string = '';
 
   constructor(
     private route: ActivatedRoute,
     private fb: FormBuilder,
     private sanitizer: DomSanitizer,
-    private router:Router,
+    private router: Router,
     private informacionService: InformacionService,
     private el: ElementRef,) {
     this.contentArray = this.fb.array([]);
@@ -42,6 +42,8 @@ export class InformacionTemaComponent implements OnInit {
     });
     this.getParameters();
   }
+
+
 
   drop(event: CdkDragDrop<any[]>) {
 
@@ -68,17 +70,6 @@ export class InformacionTemaComponent implements OnInit {
     return this.contentForm.get('contentArray')?.value
   }
 
-  getUrlPrevious(){
-    this.router.events.subscribe((event) => {
-      if (event instanceof NavigationEnd) {
-        // Obtén la ruta anterior usando el historial de navegación
-        const previousUrl = this.router.url;
-        console.log('Ruta anterior:', previousUrl);
-      this.pathPrevious = previousUrl;
-      }
-    });
-  }
-
   noReturnPredicate = () => false;
 
   private updatePositions() {
@@ -92,7 +83,6 @@ export class InformacionTemaComponent implements OnInit {
       this.contentArray.setControl(newPosition, this.addFormContol(type, newPosition));
     }
   }
-
 
   deleteItem(index: number) {
 
@@ -123,22 +113,22 @@ export class InformacionTemaComponent implements OnInit {
   ngOnInit(): void {
     this.getContent();
     console.log(this.done)
-    this.getUrlPrevious();
   }
+ 
 
   saveElemts = async () => {
     if (this.validFrom()) {
       let newElements = this.hesNewElementsData()
       let updateElements = this.checkModifiedElements();
-      
-      if (newElements.length > 0)
-         this.informacionService.postInformation({idSubtopic: this.rutaId, listInformation: newElements}).subscribe();
-      if(updateElements.length > 0)
-        this.informacionService.putInformation({listInformation: updateElements}).subscribe();
 
-        setTimeout(() => {
-          this.getContent();
-        }, 1000);
+      if (newElements.length > 0)
+        this.informacionService.postInformation({ idSubtopic: this.rutaId, listInformation: newElements }).subscribe();
+      if (updateElements.length > 0)
+        this.informacionService.putInformation({ listInformation: updateElements }).subscribe();
+
+      setTimeout(() => {
+        this.getContent();
+      }, 1000);
     }
   }
 
@@ -172,11 +162,11 @@ export class InformacionTemaComponent implements OnInit {
   hesNewElementsData(): any[] {
     const contentArray = this.contentForm.get('contentArray') as FormArray;
     return contentArray.controls
-    .filter((control) => !control.get('id')?.value)
-    .map((control) => {
-      const { id, ...newElement } = control.value;
-      return newElement;
-    });
+      .filter((control) => !control.get('id')?.value)
+      .map((control) => {
+        const { id, ...newElement } = control.value;
+        return newElement;
+      });
   }
 
   checkModifiedElements(): any[] {
@@ -196,8 +186,8 @@ export class InformacionTemaComponent implements OnInit {
 
   private getContent() {
     this.informacionService.getInformation(this.rutaId).subscribe(
-      (data:any) => {
-        this.informacion = data.data.sort((a:any, b:any) => a.position - b.position);
+      (data: any) => {
+        this.informacion = data.data.sort((a: any, b: any) => a.position - b.position);
         while (this.contentArray.length !== 0) {
           this.contentArray.removeAt(0);
         }
@@ -217,6 +207,8 @@ export class InformacionTemaComponent implements OnInit {
   private getParameters() {
     this.route.paramMap.subscribe(params => {
       this.rutaId = parseInt(params.get('id') ?? '0', 10);
+      this.titulo = `Contenido de ${params.get('name')?.toLocaleLowerCase() ?? '0'}`
+
       console.log(this.router.routerState.snapshot.url);
       this.return = `admin/temas-cruso/${this.rutaId}/hola`
       if (!isNaN(this.rutaId)) {

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthenticationService } from '../Core/authentication/authentication.service';
 
 const routes: Routes = [
   {path: '', loadChildren: ()=> import('./home/home.module').then(m=> m.HomeModule)},
@@ -12,6 +13,9 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers:[
+    // AuthenticationService
+  ]
 })
 export class FeatureRoutingModule { }

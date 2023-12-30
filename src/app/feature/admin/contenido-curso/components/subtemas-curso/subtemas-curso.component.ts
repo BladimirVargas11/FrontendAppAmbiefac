@@ -99,5 +99,5 @@ export class SubtemasCursoComponent {
     this.service.postSubtopic(subtema).subscribe(_=> this.getData());
     
   }
-  redirecToUpdateTema = (id:number) => this.router.navigate([`admin/informacion-tema/${id}`])
+  redirecToUpdateTema = (id:number, name:string) => this.router.navigate([`admin/informacion-tema/${id}/${name}`])
 }

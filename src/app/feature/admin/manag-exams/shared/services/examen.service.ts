@@ -32,8 +32,8 @@ export class ExamenService {
   putAnsawer(answers:any):Observable<any>{
     return this.http.put(`${this.url}exam/update-answers`, {answers:answers}, true);
   }
-  // postNewAnswers(answers:any, id:number):Observable<any>{
-  //   return this.http.post(`${this.url}exam/new-answers/${id}`, answers, true);
-  // }
+  postNewAnswers(answers:any):Observable<any>{
+    return this.http.post(`${this.url}exam/new-answers`, answers, true);
+  }
   
 }

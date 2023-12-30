@@ -15,21 +15,17 @@ export class SidebarLearningComponent implements OnInit {
   title?: string = 'Hola';
   showSidebar = true;
   menuItems: Subtopic[] = [];
+
   constructor(private router: Router) { }
+
   ngOnInit(): void {
     setTimeout(() => {
       this.getData();
-      // console.log(grupo);
-      // console.log(this.dataTopic.subtopic);
-
     }, 100);
   }
   private getData() {
     this.dataTopic.subtopic = this.dataTopic.subtopic.map(subtopic => ({ ...subtopic, showSubMenu: false }));
-    // console.log(JSON.stringify(this.dataTopic.subtopic));
-    const grupo = this.groupDataBySubtopic(this.dataTopic.subtopic);
-    this.menuItems = grupo;
-
+    this.menuItems = this.dataTopic.subtopic;
     if (this.lastSelectionIndex !== undefined && this.lastSelectionIndex < this.menuItems.length) {
       this.menuItems[this.lastSelectionIndex].showSubMenu = true;
       console.log(this.menuItems);
@@ -72,11 +68,10 @@ export class SidebarLearningComponent implements OnInit {
     return groupedData;
   }
 
-
-
   toggleSidebar(): void {
     this.showSidebar = !this.showSidebar;
   }
+
   toggleSubMenu(menuItem: any, index: number): void {
     menuItem.showSubMenu = !menuItem.showSubMenu;
     this.menuItems.forEach((item, i) => {
@@ -84,8 +79,6 @@ export class SidebarLearningComponent implements OnInit {
         item.showSubMenu = false;
       }
     });
-
-    // Emitir el índice del elemento seleccionado al padre
     this.selectionChanged.emit(index);
   }
 
@@ -94,7 +87,10 @@ export class SidebarLearningComponent implements OnInit {
   }
 
   navigateToContent(subMenuItem: any, index: number = 0): void {
-    this.router.navigate([`academy/learning/${this.dataTopic.id}/subtopic/${subMenuItem.subtopic_id}`, { queryParams:  index.toString() }])
+    this.router.navigate([`academy/learning/${this.dataTopic.id}/subtopic/${subMenuItem.subtopic_id}`, { queryParams: index.toString() }])
+  }
 
+  navigateToExam(): void {
+    this.router.navigate([`academy/learning/${this.dataTopic.id}/exam/${this.dataTopic.exam_id}`])
   }
 }

@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
+import { NavigationHistoryService } from '../../services/navigation-history.service';
 
 @Component({
   selector: 'app-card-body',
@@ -19,13 +20,14 @@ export class CardBodyComponent {
 
 
 
-constructor(private router: Router, private location:Location) {
+constructor(private router: Router, private location:Location,  private navigationHistoryService: NavigationHistoryService) {
 }
 
 navigateToSave= ()=> {this.ButtonRigth()}
-navigateToBack= ()=>{ if (this.linkBack) {
+navigateToBack= ()=>{ 
+  if (this.linkBack) {
   this.router.navigate([this.linkBack]);
 } else {
-  this.location.back();
+  this.navigationHistoryService.navigateBack();
 }}
 }

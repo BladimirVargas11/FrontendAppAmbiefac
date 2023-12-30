@@ -12,24 +12,25 @@ import { data } from 'jquery';
   styleUrls: ['./client-cursos.component.scss']
 })
 export class ClientCursosComponent implements OnInit {
-  
+
   cursos: any[] = [];
   cursoSelecionado: any;
 
-  constructor(private service:ProfileService, private auth: AuthenticationService, private router:Router){}
-  
+  constructor(private service: ProfileService, private auth: AuthenticationService, private router: Router) { }
+
   ngOnInit(): void {
     this.getCursos();
   }
   getCursos() {
     let id = this.auth.getUserId();
-    this.service.getClientCourse(id || 0).subscribe((data:any)=> this.cursos = data.data);
+    this.service.getClientCourse(id || 0).subscribe((data: any) => this.cursos = data.data);
   }
 
-  verifyImage = (link:string):boolean => (link.startsWith('http://') ||link.startsWith('https://'))
+  verifyImage = (link: string): boolean => (link.startsWith('http://') || link.startsWith('https://'))
 
 
-  seleccionarCurso(curso:any){
-   this.router.navigate(['/academy/learning/course'])
+  seleccionarCurso(curso: any) {
+    console.log(curso);
+    this.router.navigate([`/academy/learning/${curso.topicId}/subtopic/0`])
   }
 }

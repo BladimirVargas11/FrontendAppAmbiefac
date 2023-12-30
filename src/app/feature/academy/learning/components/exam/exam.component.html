@@ -1,0 +1,21 @@
+<div class="scrollable-main">
+    <div class="flex flex-col items-center w-full px-[6%]">
+        <form [formGroup]="examForm" >
+            <div *ngFor="let question of questions; let i = index" class="w-full m-4">
+                <p class="font-bold my-4">{{i+1 +". "+ question.questionStatement }}</p>
+                <div *ngFor="let answer of question.answers" class="m-2 border-1 bg-[#fbfbfb]">
+                    <label class="flex flex-row items-center m-4">
+                        <input type="radio" class="mx-4 form-checkbox checkbox-redondo text-[20px]" [formControlName]="'question' + question.questionsId" [value]="answer.id" />
+                        {{answer.answerText }}
+                    </label>
+                </div>
+                <div *ngIf="isQuestionUnanswered('question' + question.questionsId)">
+                    <p style="color: red;">Debes responder esta pregunta</p>
+                </div>
+            </div>
+            <div class="w-full justify-center flex flex-row my-[10%]">
+                <button class="bg-[#01a01e] w-[100px] h-[40px] border-1 text-white rounded-lg shadow-lg" type="submit" (click)="onSubmit()">Enviar</button>
+            </div>
+        </form>
+    </div>
+</div>

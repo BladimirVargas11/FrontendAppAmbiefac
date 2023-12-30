@@ -11,12 +11,20 @@ import { environment } from 'src/environments/environment.development';
 export class LearningService {
   url = environment.apiUrl;
 
-  constructor(private http:HttpService<any>) { }
+  constructor(private http: HttpService<any>) { }
 
-  getSubTopic(id:number):Observable<Response<any>>{
+  getSubTopic(id: number): Observable<Response<any>> {
     return this.http.get(`${this.url}information/bySubtopic/${id}`)
   }
-  getTopic(id:number):Observable<Response<Topìc>>{
+  getTopic(id: number): Observable<Response<Topìc>> {
     return this.http.get(`${this.url}topic/${id}`)
+  }
+  getExam(id: number): Observable<Response<Topìc>> {
+    return this.http.get(`${this.url}exam/questions/${id}`)
+  }
+  postExam(body: any): Observable<any> {
+    console.log("Respuesta",JSON.stringify({ answersIds: body }));
+    // return this.http.get('');
+    return this.http.post(`http://localhost:8080/exam/valid-answers`, { answersIds: body }, true);
   }
 }

@@ -20,5 +20,11 @@
       </li>
     </ul>
   </li>
-  <li class="mb-4 w-full  border-b-2">Examen</li>
+  <li class="mb-4 w-full  border-b-2 " *ngIf="dataTopic.exam_id">
+    <div class="flex flex-row justify-between m-2 h-[40px]">
+      <p class="cursor-pointer text-gray-800 font-bold" (click)="navigateToExam()">
+        Examen
+      </p>
+    </div>
+  </li>
 </ul>

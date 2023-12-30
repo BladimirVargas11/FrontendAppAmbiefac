@@ -40,21 +40,28 @@ export class AgregarPreguntasComponent implements OnInit {
     this.getParams();
     this.inicializarFormulario();
     this.obtenerPreguntasDesdeEndpoint();
+    this.hiden();
   }
 
-  obtenerPreguntasDesdeEndpoint(): void {
+  obtenerPreguntasDesdeEndpoint(showSpinner: boolean = true): void {
     if (this.exm_id) {
-      this.spinner.show();
-      this.service.obtenerPreguntasDesdeEndpoint(this.exm_id || 3).subscribe(
+      if (showSpinner)
+        this.spinner.show();
+
+      this.service.obtenerPreguntasDesdeEndpoint(this.exm_id).subscribe(
         (data: any) => {
           this.actualizarFormularioConDatos(data.data);
           this.originalData = data.data;
-          console.log(data.data.questions)
         }
       );
+
     }
   }
-
+  hiden = () => {
+    setTimeout(() => {
+      this.spinner.hide();
+    }, 1000);
+  }
   actualizarFormularioConDatos(data: any): void {
     this.preguntas.clear();
     let index = 1
@@ -90,10 +97,6 @@ export class AgregarPreguntasComponent implements OnInit {
       questions: this.fb.array([], this.validateAtLeastOneCorrectAnswer()),
     });
     // Agregar una pregunta inicial
-    this.spinner.show();
-    setTimeout(() => {
-      this.spinner.hide();
-    }, 1000);
     this.agregarPregunta();
   }
   validateAtLeastOneCorrectAnswer(): ValidatorFn {
@@ -208,9 +211,11 @@ export class AgregarPreguntasComponent implements OnInit {
 
   addSubTema = () => {
     this.validForm();
-    if(this.formulario.valid){
-      (this.exm_id === 0)?this.addNewExam():this.updateExam();
-      this.obtenerPreguntasDesdeEndpoint();
+    if (this.formulario.valid) {
+      (this.exm_id === 0) ? this.addNewExam() : this.updateExam();
+      setTimeout(() => {
+        this.obtenerPreguntasDesdeEndpoint();
+      }, 1000);
     }
   };
 
@@ -218,32 +223,35 @@ export class AgregarPreguntasComponent implements OnInit {
     const PreguntasModificadas = this.getPreguntasModificadas();
     const nuevasPreguntas = this.getNuevasPreguntasConNuevasRespuestas();
     const nuevasRespuestas = this.getNuevasRespuestas();
-    const respuestasModificadas= this.getRespuestasModificadas();
+    const respuestasModificadas = this.getRespuestasModificadas();
 
-    console.log("Respuestas Modificadas", JSON.stringify(respuestasModificadas));
-    if(respuestasModificadas.length>0)
+    // console.log("Respuestas Modificadas", JSON.stringify(respuestasModificadas));
+    if (respuestasModificadas.length > 0)
       this.service.putAnsawer(respuestasModificadas).subscribe();
-    // console.log("Nuevas respuestas", JSON.stringify(nuevasRespuestas));
 
-    console.log("Pregunts modificadas", JSON.stringify(PreguntasModificadas));
-    if(PreguntasModificadas.length>0)
+    console.log("Nuevas respuestas", JSON.stringify(nuevasRespuestas));
+    if (nuevasRespuestas.length > 0)
+      this.service.postNewAnswers(nuevasRespuestas).subscribe();
+
+    // console.log("Pregunts modificadas", JSON.stringify(PreguntasModificadas));
+    if (PreguntasModificadas.length > 0)
       this.service.putQuestion(PreguntasModificadas).subscribe();
-    console.log("Nuevas preguntas", JSON.stringify(nuevasPreguntas));
-    if(nuevasPreguntas.length>0)
-          this.service.postNewQuestion(nuevasPreguntas,this.exm_id).subscribe();
+    // console.log("Nuevas preguntas", JSON.stringify(nuevasPreguntas));
+    if (nuevasPreguntas.length > 0)
+      this.service.postNewQuestion(nuevasPreguntas, this.exm_id).subscribe();
   }
 
   private addNewExam() {
     this.service.postExamen(this.formulario.value).subscribe();
-  
+
   }
-  private validForm(){
+  private validForm() {
     this.formulario.markAllAsTouched();
     this.validReponseTrue();
-      const invalidControl = this.findInvalidControl(this.formulario);
-      if (invalidControl && 'focus' in invalidControl) {
-        (invalidControl as any).focus();
-      }
+    const invalidControl = this.findInvalidControl(this.formulario);
+    if (invalidControl && 'focus' in invalidControl) {
+      (invalidControl as any).focus();
+    }
   }
 
   private validReponseTrue() {
@@ -298,10 +306,9 @@ export class AgregarPreguntasComponent implements OnInit {
           // Verificar si es una nueva respuesta (no tiene id)
           if (!answerId) {
             nuevasRespuestas.push({
-              questionsId: questionId,
-              id: null,
+              questionID: questionId,
               answerText: respuesta.answerText,
-              correct: respuesta.correct,
+              isCorrect: respuesta.correct,
             });
           }
         });
@@ -340,9 +347,9 @@ export class AgregarPreguntasComponent implements OnInit {
       pregunta.get('answers')?.value.forEach((respuesta: any) => {
         const answerId = respuesta.id;
         const originalRespuesta = this.originalData.questions
-        .find((originalPregunta: any) => originalPregunta.questionsId === pregunta.get('questionsId')?.value)
-        ?.answers.find((originalRespuesta: any) => originalRespuesta.id === answerId);
-        
+          .find((originalPregunta: any) => originalPregunta.questionsId === pregunta.get('questionsId')?.value)
+          ?.answers.find((originalRespuesta: any) => originalRespuesta.id === answerId);
+
         // Verificar si la respuesta ha sido modificada
         if (originalRespuesta && !this.areRespuestasIguales(respuesta, originalRespuesta)) {
           respuestasModificadas.push({
