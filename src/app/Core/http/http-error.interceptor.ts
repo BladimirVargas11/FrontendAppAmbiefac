@@ -28,7 +28,6 @@ export class HttpErrorInterceptor implements HttpInterceptor {
         let showMessage = false;
         switch (error.status) {
           case 400:
-            debugger
             errorMessage = error.error.data.message;
             showMessage = true
             break;

@@ -11,7 +11,7 @@ import { data } from 'jquery';
 export class SidebarLearningComponent implements OnInit {
   @Input() lastSelectionIndex: number | undefined;
   @Input() dataTopic: Topìc = emptyTopic;
-  @Output() selectionChanged = new EventEmitter<number>();
+  @Output() selectionChanged = new EventEmitter<{ mainIndex: number, subIndex: number }>();
   title?: string = 'Hola';
   showSidebar = true;
   menuItems: Subtopic[] = [];
@@ -79,15 +79,15 @@ export class SidebarLearningComponent implements OnInit {
         item.showSubMenu = false;
       }
     });
-    this.selectionChanged.emit(index);
+    this.selectionChanged.emit({ mainIndex:index, subIndex: -1 });
   }
 
-  changeIndex(index: number): void {
-    this.selectionChanged.emit(index);
+  changeIndex(mainIndex: number, subIndex: number): void {
+    this.selectionChanged.emit({ mainIndex, subIndex });
   }
 
   navigateToContent(subMenuItem: any, index: number = 0): void {
-    this.router.navigate([`academy/learning/${this.dataTopic.id}/subtopic/${subMenuItem.subtopic_id}`, { queryParams: index.toString() }])
+    this.router.navigate([`academy/learning/${this.dataTopic.id}/subtopic/${subMenuItem.subtopic_id}`,  { parentId: this.dataTopic.id, queryParams: index.toString() }])
   }
 
   navigateToExam(): void {

@@ -9,6 +9,7 @@ const routes: Routes = [
     path: ':parentId',
     component:PageLearningComponent,
     children:[
+      {path:'', component:CourseComponent},
       {path:'subtopic/:id', component:CourseComponent},
       {path:'exam/:id', component:ExamComponent}
     ]

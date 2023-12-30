@@ -1,5 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Topìc, emptyTopic } from '../models/topic';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-layout-learning',
@@ -8,21 +9,20 @@ import { Topìc, emptyTopic } from '../models/topic';
 })
 export class LayoutLearningComponent implements OnInit {
 
-  @Input() topicId:number= 0;
-  @Input() data:Topìc = emptyTopic;
+  @Input() topicId: number = 0;
+  @Input() data: Topìc = emptyTopic;
+  @Output() selectionChange: EventEmitter<any> = new EventEmitter<any>();
   showSidebar: boolean = true;
   lastSelectionIndex: number | undefined;
+  constructor() { }
   ngOnInit(): void {
-  // setTimeout(() => {
-  //   console.log(this.data);
-  // }, 2000);    
   }
   toggleSidebar(): void {
-    // debugger
     this.showSidebar = !this.showSidebar;
-    this.lastSelectionIndex
   }
-  handleSelectionChange(index: number): void {
-    this.lastSelectionIndex = index;
+
+  handleSelectionChange(index: any): void {
+    this.lastSelectionIndex = index.mainIndex;
+    this.selectionChange.emit(index); 
   }
 }

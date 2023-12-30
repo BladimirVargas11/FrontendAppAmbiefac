@@ -31,6 +31,7 @@ export class ClientCursosComponent implements OnInit {
 
   seleccionarCurso(curso: any) {
     console.log(curso);
-    this.router.navigate([`/academy/learning/${curso.topicId}/subtopic/0`])
+    // this.router.navigate([`/academy/learning/${curso.topicId}/subtopic/0`])
+    this.router.navigate([`academy/learning/${curso.topicId}/subtopic/0`, { parentId: curso.topicId, queryParams: 0 }])
   }
 }

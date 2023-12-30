@@ -2,10 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { HomeService } from '../shared/services/home.service';
-import { data } from 'jquery';
+import { data, error } from 'jquery';
 import { Tema } from '../shared/models/tema';
 import { ConfirmationService } from 'src/app/Core/services/confirmation.service';
 import { AuthenticationService } from 'src/app/Core/authentication/authentication.service';
+import { catchError } from 'rxjs';
 
 @Component({
   selector: 'app-temas-inscripcion',
@@ -14,6 +15,7 @@ import { AuthenticationService } from 'src/app/Core/authentication/authenticatio
 })
 export class TemasInscripcionComponent implements OnInit {
   cursoId: string = "";
+  isEnrolled : boolean = false;
   tema: Tema = {
     id: 0,
     name: "",
@@ -36,7 +38,7 @@ export class TemasInscripcionComponent implements OnInit {
   }
   ngOnInit(): void {
     this.getTema();
-   
+
   }
   getTema() {
     this.service.getTemasById(this.cursoId).subscribe((data: any) => this.tema = data.data)
@@ -46,7 +48,12 @@ export class TemasInscripcionComponent implements OnInit {
 
   }
   navegarAInformacion() {
-    this.confirmAction();
+    if(this.auth.getUserId()){
+      this.confirmAction();
+    }
+    else{
+      this.router.navigate(['auth/login'])
+    }
   }
 
   verifyImage = (link: string): boolean => (link.startsWith('http://') || link.startsWith('https://'));
@@ -55,7 +62,14 @@ export class TemasInscripcionComponent implements OnInit {
     const message = '¿Estás seguro de que deseas inscribirte en este tema?';
     this.confirmationService.openConfirmationModal(message).then((confirmed: boolean) => {
       if (confirmed) {
-       this.service.postIncribirte({idClient:this.auth.getUserId(), idTopic: this.cursoId}).subscribe()
+        this.service.postIncribirte({ idClient: this.auth.getUserId(), idTopic: this.cursoId }).subscribe(
+          () => {
+
+          },
+        (error) => {
+
+          }
+        )
         console.log('Acción confirmada');
       } else {
         console.log('Acción cancelada');
