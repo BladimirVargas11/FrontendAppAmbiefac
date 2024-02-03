@@ -14,7 +14,8 @@ import { NgxSpinnerService } from 'ngx-spinner';
 })
 export class CourseComponent implements OnInit {
   rutaId: number = 0;
-  @Input() data: any[] = [];
+  @Input() index = {mainIndex: 0, subIndex:0};
+  @Input() data: any ={};
   parentId: number = 0;
   topic: any;
   loading: boolean = true;
@@ -25,8 +26,7 @@ export class CourseComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private service: LearningService,
-    private sanitizer: DomSanitizer,
-    private spinner: NgxSpinnerService) {
+    private sanitizer: DomSanitizer,) {
 
 
   }
@@ -37,19 +37,23 @@ export class CourseComponent implements OnInit {
   hiden() {
     setTimeout(() => {
       this.loading = false;
+      console.log(this.data);
     }, 1000);
   }
   private getParameters() {
+
     this.route.paramMap.subscribe(params => {
       this.rutaId = parseInt(params.get('id') ?? '0', 10);
       this.parentId = parseInt(params.get('parentId') ?? '0', 10);
       const parameter = params.get('queryParams') ?? '0';
 
       if (!isNaN(this.rutaId)) {
-        this.getSubtopic();
-        this.getTopic();
+        // this.getSubtopic();
+        // this.getTopic();
       }
-      this.scrollToSection(parameter);
+      this.hiden()
+      console.log("desde curso:",this.index);
+      
     });
   }
   private getSubtopic() {

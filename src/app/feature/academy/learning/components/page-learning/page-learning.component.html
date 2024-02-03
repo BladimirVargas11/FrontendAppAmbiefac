@@ -1,3 +1,18 @@
 <app-layout-learning [topicId]="rutaId" [data]="data" (selectionChange)="handleSelection($event)">
-    <router-outlet></router-outlet>
+    <ng-container *ngIf="loading">
+        <div class="w-full h-[100%]  flex justify-center items-center flex-col" >
+            <img src="../../../../../../assets/AMBIEFAC_LOGO.png" alt="" height="100" class="!h-[177px]">
+            <div class="spinner-container ">
+                <div class="spinner"></div>
+            </div>
+        </div>
+    </ng-container>
+    <ng-container *ngIf="!loading">
+        <ng-container *ngIf="selectedIndex.mainIndex > -2" >
+            <app-course [data]="data" [index]="selectedIndex"></app-course>
+        </ng-container>
+        <ng-container *ngIf="selectedIndex.mainIndex == -2">
+            <app-exam *ngIf="selectedIndex.mainIndex" [rutaId]="data.exam_id" [registrationId]="registration.registrationId"></app-exam>
+        </ng-container>
+    </ng-container>
 </app-layout-learning>

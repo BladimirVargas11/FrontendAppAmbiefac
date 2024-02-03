@@ -3,6 +3,7 @@ import { FormGroup, FormArray, FormBuilder, Validators, AbstractControl, Validat
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ExamenService } from '../../shared/services/examen.service';
+import { ConfirmationService } from 'src/app/Core/services/confirmation.service';
 
 
 @Component({
@@ -32,6 +33,7 @@ export class AgregarPreguntasComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private spinner: NgxSpinnerService,
+    private confirmationService: ConfirmationService,
     private route: ActivatedRoute,
     private cd: ChangeDetectorRef,
     private service: ExamenService) { }
@@ -150,12 +152,65 @@ export class AgregarPreguntasComponent implements OnInit {
   }
 
   eliminarRespuesta(preguntaIndex: number, respuestaIndex: number): void {
-    const respuestas = this.preguntas.at(preguntaIndex).get('answers') as FormArray;
-    respuestas.removeAt(respuestaIndex);
-    this.formulario.updateValueAndValidity();
+    this.confirmAction().then((confirmation: boolean) => {
+      if (confirmation) {
+        const respuestas = this.preguntas.at(preguntaIndex).get('answers') as FormArray;
+  
+        // Almacena el objeto completo de la respuesta antes de eliminarlo
+        const respuestaAntes = respuestas.at(respuestaIndex).value;
+  
+        // Elimina la respuesta del formulario
+        respuestas.removeAt(respuestaIndex);
+  
+        console.log("Respuesta antes de eliminar:", respuestaAntes);
+        console.log(this.originalData);
+  
+        const questionId = this.preguntas.at(preguntaIndex).get('questionsId')?.value;
+        const originalPregunta = this.originalData.questions.find((originalPregunta: any) => originalPregunta.questionsId === questionId);
+  
+        if (originalPregunta) {
+          // Almacena el objeto completo de la respuesta antes de eliminarlo en originalData
+          const respuestaOriginal = originalPregunta.answers.splice(respuestaIndex, 1)[0];
+          console.log("Respuesta original antes de eliminar:", respuestaOriginal);
+        }
+        
+        this.service.deleteAnswers(respuestaAntes.id || 1).subscribe();
+        console.log(this.originalData);
+        this.formulario.updateValueAndValidity();
+      }
+    });
   }
+  
   eliminarPregunta(preguntaIndex: number): void {
-    this.preguntas.removeAt(preguntaIndex)
+    this.confirmAction().then((confirmation: boolean) => {
+      if (confirmation) {
+        // Almacena el objeto completo de la pregunta antes de eliminarla
+        const preguntaAntes = this.preguntas.at(preguntaIndex).value;
+  
+        // Elimina la pregunta del formulario
+        this.preguntas.removeAt(preguntaIndex);
+  
+        console.log("Pregunta antes de eliminar:", preguntaAntes);
+  
+        const questionId = preguntaAntes.questionsId;
+        const indexEnOriginal = this.originalData.questions.findIndex((originalPregunta: any) => originalPregunta.questionsId === questionId);
+  
+        if (indexEnOriginal !== -1) {
+          // Almacena el objeto completo de la pregunta antes de eliminarla en originalData
+          const preguntaOriginal = this.originalData.questions.splice(indexEnOriginal, 1)[0];
+          console.log("Pregunta original antes de eliminar:", preguntaOriginal);
+        }
+        this.service.deleteQuestion(preguntaAntes.questionsId || 1).subscribe();
+  
+        console.log(this.originalData);
+        this.formulario.updateValueAndValidity();
+      }
+    });
+  }
+  
+  confirmAction(): Promise<boolean> {
+    const message = '¿Estás seguro de que deseas eliminar?';
+    return this.confirmationService.openConfirmationModal(message);
   }
 
   getPreguntasSinRespuestaCorrecta(): number[] {

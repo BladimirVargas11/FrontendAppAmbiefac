@@ -16,7 +16,9 @@ export class SidebarLearningComponent implements OnInit {
   showSidebar = true;
   menuItems: Subtopic[] = [];
 
-  constructor(private router: Router) { }
+  constructor(private router: Router) {
+    this.selectionChanged.emit({ mainIndex: -1, subIndex: -1 });
+   }
 
   ngOnInit(): void {
     setTimeout(() => {
@@ -86,11 +88,14 @@ export class SidebarLearningComponent implements OnInit {
     this.selectionChanged.emit({ mainIndex, subIndex });
   }
 
-  navigateToContent(subMenuItem: any, index: number = 0): void {
-    this.router.navigate([`academy/learning/${this.dataTopic.id}/subtopic/${subMenuItem.subtopic_id}`,  { parentId: this.dataTopic.id, queryParams: index.toString() }])
+  navigateToContent(subMenuItem: any, subIndex: number , mainIndex: number ): void {
+    this.selectionChanged.emit({ mainIndex, subIndex });
+    // this.router.navigate([`academy/learning/${this.dataTopic.id}/subtopic/${subMenuItem.subtopic_id}`,  { parentId: this.dataTopic.id, queryParams: index.toString() }])
   }
 
   navigateToExam(): void {
-    this.router.navigate([`academy/learning/${this.dataTopic.id}/exam/${this.dataTopic.exam_id}`])
+    // this.router.navigate([`academy/learning/${this.dataTopic.id}/exam/${this.dataTopic.exam_id}`])
+    this.selectionChanged.emit({ mainIndex:-2, subIndex:-2 });
+
   }
 }

@@ -8,32 +8,38 @@ import { TopicModel } from '../../../cursos/shared/models/topicModel';
   providedIn: 'root'
 })
 export class ExamenService {
-  obtenerPreguntasDesdeEndpoint(rutaId: number):Observable<any> {
+  obtenerPreguntasDesdeEndpoint(rutaId: number): Observable<any> {
     return this.http.get(`${this.url}exam/questions/${rutaId}`)
   }
 
   url: string = environment.apiUrl;
-  constructor( private http:HttpService<any>) {}
+  constructor(private http: HttpService<any>) { }
 
-  getAllTopic():Observable<any>{
+  getAllTopic(): Observable<any> {
     return this.http.get(`${this.url}topic/all`, false)
   }
 
-  postExamen(examen:any):Observable<any>{
+  postExamen(examen: any): Observable<any> {
     return this.http.post(`${this.url}exam/save`, examen, true);
   }
 
-  postNewQuestion(questions:any, id:number):Observable<any>{
+  postNewQuestion(questions: any, id: number): Observable<any> {
     return this.http.post(`${this.url}exam/new-questions/${id}`, questions, true);
   }
-  putQuestion(questions:any):Observable<any>{
-    return this.http.put(`${this.url}exam/update-questions`, {questions:questions}, true);
+  putQuestion(questions: any): Observable<any> {
+    return this.http.put(`${this.url}exam/update-questions`, { questions: questions }, true);
   }
-  putAnsawer(answers:any):Observable<any>{
-    return this.http.put(`${this.url}exam/update-answers`, {answers:answers}, true);
+  putAnsawer(answers: any): Observable<any> {
+    return this.http.put(`${this.url}exam/update-answers`, { answers: answers }, true);
   }
-  postNewAnswers(answers:any):Observable<any>{
+  postNewAnswers(answers: any): Observable<any> {
     return this.http.post(`${this.url}exam/new-answers`, answers, true);
   }
-  
+
+  deleteAnswers(answers: any): Observable<any> {
+    return this.http.delete(`${this.url}exam/delete-answer/${answers}`, true);
+  }
+  deleteQuestion(question: any): Observable<any> {
+    return this.http.delete(`${this.url}exam/delete-question/${question}`, true);
+  }
 }

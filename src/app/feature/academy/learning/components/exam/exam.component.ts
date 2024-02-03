@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { LearningService } from '../../shared/services/learning.service';
 import { Response } from 'src/app/feature/components/models/response';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Answer, Question } from '../../shared/models/QuestionModels';
+import { AnswerCorrect, AnswerRespon, answers, responseAnswer } from '../../shared/models/answerResponse';
 
 @Component({
   selector: 'app-exam',
@@ -12,12 +13,15 @@ import { Answer, Question } from '../../shared/models/QuestionModels';
   styleUrls: ['./exam.component.scss']
 })
 export class ExamComponent {
-  rutaId: number = 0;
+  @Input() rutaId: number = 0;
+  @Input() registrationId: number = 0;
   data: any;
   examForm: FormGroup;
   questions: Question[] = [];
+  controlErrorDisplay: { [key: string]: boolean } = {};
   selectedAnswers: { [key: string]: Answer } = {};
   submitted: boolean = false;
+  resultAnswer: AnswerCorrect = responseAnswer;
   /**
    *
    */
@@ -29,8 +33,13 @@ export class ExamComponent {
   }
 
   ngOnInit(): void {
-    this.getParameters();
-    this.loadQuestions();
+    console.log("ID REGISTRO:", this.registrationId);
+
+    setTimeout(() => {
+      console.log("examen", this.rutaId);
+      // this.getParameters();
+      this.loadQuestions();
+    }, 1000);
   }
 
   private loadQuestions() {
@@ -49,18 +58,7 @@ export class ExamComponent {
     });
   }
 
-  private getParameters() {
-    this.route.paramMap.subscribe(params => {
-      this.rutaId = parseInt(params.get('id') ?? '0', 10);
-      const parameter = params.get('queryParams') ?? '0';
-      if (!isNaN(this.rutaId)) {
-        console.log('PARAMETRO: ', parameter);
-        this.service.getSubTopic(this.rutaId).subscribe((data: Response<any>) => {
-          this.data = data.data
-        })
-      }
-    });
-  }
+
 
   isQuestionUnanswered(questionControlName: string): boolean {
     const control = this.examForm.get(questionControlName);
@@ -80,20 +78,40 @@ export class ExamComponent {
           (a) => a.id === selectedAnswerId,
           {} as Answer
         );
-          answers.push({id:selectedAnswerId});
+        answers.push({ id: selectedAnswerId });
         this.selectedAnswers[`question${question.questionsId}`] = selectedAnswer;
       }
       console.log('Respuestas Seleccionadas:', this.selectedAnswers);
       console.log(answers);
-      this.service.postExam(answers).subscribe();
+      this.enviarRespuestas(answers);
     } else {
       console.log('Formulario no válido. Asegúrate de responder todas las preguntas.');
     }
-    
+
   }
 
+  private enviarRespuestas(answers: { id: any; }[]) {
+    this.service.postExam(answers, this.registrationId).subscribe((response: any) => {
+      this.resultAnswer = response.data;
+    });
+  }
+
+  getResultAnswers(): any[] {
+    return this.resultAnswer.answers;
+  }
   private findOrDefault<T>(array: T[], predicate: (element: T) => boolean, defaultValue: T): T {
     const foundElement = array.find(predicate);
     return foundElement !== undefined ? foundElement : defaultValue;
+  }
+  retryExam() {
+    this.resultAnswer = responseAnswer;
+    Object.keys(this.examForm.controls).forEach(key => {
+      this.controlErrorDisplay[key] = false;
+    });
+
+    this.examForm.reset();
+  }
+  get getScore(): number {
+    return Math.round(this.resultAnswer.score / 1000) * 10;
   }
 }

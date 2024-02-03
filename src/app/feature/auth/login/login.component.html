@@ -1,13 +1,16 @@
 <div class="login-body">
+    <div class="back-button flex items-center" (click)="navigateToHome()">
+        <i class="fa-solid fa-angle-left mx-2"></i><span>volver</span>
+    </div>
     <article class="login">
         <h3>Bienvenido a</h3>
         <h2>AMBIEFAC</h2>
         <form [formGroup]="formGroup" class="form">
             <div class="input-group">
                 <span class="input-group-addon">
-                    <i class="fa fa-envelope"></i>
+                    <i class="fa fa-user"></i>
                 </span>
-                <input type="email" class="form-control-1" placeholder="Ingrese su correo" formControlName="username">
+                <input type="text" class="form-control-1" placeholder="Nombre de usuario" formControlName="username">
                 <div *ngIf="campoTieneError('email')" placement="top" ngbTooltip="Correo electrónico no válido">
                     <i class="fa fa-exclamation-triangle text-danger"></i>
                 </div>
@@ -25,7 +28,10 @@
             <span>
                 Has olvidado tu contraseña?
             </span>
-             <span> <p>¿No tiene una cuenta? <a routerLink="/login/Register">Regístrese</a></span>
+            <span>
+                <p>¿No tiene una cuenta? <a class="text-blue-500 cursor-pointer"
+                        (click)="navigateToRegister()">Regístrese</a>
+            </span>
         </form>
     </article>
     <article>

@@ -8,41 +8,44 @@
     <title>Tu Página</title>
 </head>
 
-<body class="font-sans bg-gray-100 flex flex-col h-screen overflow-hidden">
+<div *ngIf="data && data.id">
 
-    <!-- Navbar -->
-    <nav class="text-white">
-        <app-navbar-learning [title]="data.name"> </app-navbar-learning>
-    </nav>
+    <body class="font-sans bg-gray-100 flex flex-col h-screen overflow-hidden">
 
-    <!-- Contenedor principal -->
-    <div class="flex flex-1">
+        <!-- Navbar -->
+        <nav class="text-white">
+            <app-navbar-learning [title]="data.name"> </app-navbar-learning>
+        </nav>
 
-        <!-- Sidebar -->
-        <aside class="w-1/4 bg-white scrollable-sidebar " *ngIf="showSidebar">
-            <app-sidebar-learning [dataTopic]="data" [lastSelectionIndex]="lastSelectionIndex"
-                (selectionChanged)="handleSelectionChange($event)"></app-sidebar-learning>
-        </aside>
+        <!-- Contenedor principal -->
+        <div class="flex flex-1">
 
-        <main class="flex-1 py-4  bg-white overflow-hidden">
-            <div class="flex-1 h-full m-2 p-4 shadow-lg rounded-[10px]">
-                <div class="border-b-2 flex flex-row">
-                    <div class="relative p-2">
-                        <button (click)="toggleSidebar()" class="text-black focus:outline-none">
-                            <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M4 6h16M4 12h16m-7 6h7"></path>
-                            </svg>
-                        </button>
+            <!-- Sidebar -->
+            <aside class="w-1/4 bg-white scrollable-sidebar " *ngIf="showSidebar">
+                <app-sidebar-learning [dataTopic]="data" [lastSelectionIndex]="lastSelectionIndex"
+                    (selectionChanged)="handleSelectionChange($event)"></app-sidebar-learning>
+            </aside>
+
+            <main class="flex-1 py-4  bg-white overflow-hidden">
+                <div class="flex-1 h-full m-2 p-4 shadow-lg rounded-[10px]">
+                    <div class="border-b-2 flex flex-row">
+                        <div class="relative p-2">
+                            <button (click)="toggleSidebar()" class="text-black focus:outline-none">
+                                <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M4 6h16M4 12h16m-7 6h7"></path>
+                                </svg>
+                            </button>
+                        </div>
                     </div>
+                    <ng-content></ng-content>
                 </div>
-                <ng-content></ng-content>
-            </div>
-        </main>
+            </main>
 
-    </div>
+        </div>
 
-</body>
+    </body>
+</div>
 
 </html>

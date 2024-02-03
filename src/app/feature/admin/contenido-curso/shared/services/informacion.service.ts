@@ -23,7 +23,12 @@ export class InformacionService {
     return this.http.get(`${this.url}information/bySubtopic/${id}`);
   }
   putInformation(information:any):Observable<string>{
-    debugger
     return this.http.put(`${this.url}information/update`, information, true);
+  }
+  getTopic(id: number): Observable<any> {
+    return this.http.get(`${this.url}topic/${id}`)
+  }
+  deleteInformation(id:any):Observable<string>{
+    return this.http.delete(`${this.url}information/delete/${id}`);
   }
 }

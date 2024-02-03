@@ -15,43 +15,67 @@ import { data } from 'jquery';
 export class AuthenticationService {
 
   private isAuthenticatedSubject: BehaviorSubject<string>;
+  private isAuthObject: BehaviorSubject<any> = new BehaviorSubject<any>({});
+  
   public isAuthenticated$: Observable<string>;
-
-  private userLoggedInSubject: Subject<any> = new Subject<string>();; 
+  private readonly localStorageKey = 'authData';
+  private userLoggedInSubject: Subject<any> = new Subject<string>();;
   public userLoggedIn$: Observable<any> = this.userLoggedInSubject.asObservable();
 
   url: string = environment.apiUrl;
 
-  constructor(private http: HttpService<LoginResponse>,private route: Router) {
+  constructor(private http: HttpService<LoginResponse>, private route: Router) {
     const initialToken = localStorage.getItem("token") || '';
     this.isAuthenticatedSubject = new BehaviorSubject<string>(initialToken);
+    
     this.isAuthenticated$ = this.isAuthenticatedSubject.asObservable();
     // this.getClient()
   }
 
   get isAuthenticated(): string {
-    return this.isAuthenticatedSubject.value;
+    const userData = this.getUserData();
+    return userData ? userData.token : '';
   }
 
   private setAuthenticated(token: string): void {
     this.isAuthenticatedSubject.next(token);
   }
+   getLoggedInUser(): Observable<any> {
+    return this.isAuthObject.asObservable();
+  }
+
+  private setUser(user:any){
+    this.isAuthObject.next(user);
+  }
+  register(UserModel: any): Observable<any> {
+    return this.http.post<LoginResponse>(`${this.url}auth/register`, UserModel, true);
+  }
 
   logIn(logInModel: Login): Observable<LoginResponse> {
     const body = { username: logInModel.username, password: logInModel.password };
-    let titulo = "Bienvenido"
-    const user = this.http.post<LoginResponse>(`${this.url}auth/login`, body, true, titulo); 
+    let titulo = "Bienvenido";
+
+    const user = this.http.post<LoginResponse>(`${this.url}auth/login`, body, true, titulo);
+
     user.subscribe(
       (data) => {
-        localStorage.setItem("token", data.jwt);
-        localStorage.setItem("id", data.id.toString());
-        this.setAuthenticated(data.jwt);
-        this.redirectToRoleView(data.role.name);
+        const userData = {
+          token: data.jwt,
+          id: data.id,
+          role: data.role.name
+        };
+
+        localStorage.setItem("user", JSON.stringify(userData));
+        this.setAuthenticated(userData.token);
+        this.setUser(userData);
+        this.redirectToRoleView(userData.role);
       }
-    )
+    );
+
     return user;
   }
-  private redirectToRoleView(role:string): void {
+
+  private redirectToRoleView(role: string): void {
     if (this.isAuthenticated) {
       switch (role) {
         case 'ADMIN':
@@ -68,22 +92,31 @@ export class AuthenticationService {
     }
   }
   logOut(): void {
-    localStorage.removeItem("token");
-    localStorage.removeItem("id");
+    localStorage.removeItem("user");
     this.setAuthenticated('');
   }
 
   getToken(): string {
-    return localStorage.getItem("token") || '';
+    const userData = this.getUserData();
+    return userData ? userData.token : '';
   }
 
   getUserId(): number | null {
-    const idString = localStorage.getItem("id");
-    return idString ? parseInt(idString, 10) : null;
+    const userData = this.getUserData();
+    return userData ? userData.id : null;
+  }
+  get getRole():string | null {
+    const userData = this.getUserData();
+    return userData ? userData.role : null;
   }
 
-  getClient(){
+  getClient() {
     let id = this.getUserId();
-    return this.http.get(`${this.url}client/${id}`).subscribe((data:any)=>this.userLoggedInSubject.next(data));
+    return this.http.get(`${this.url}client/${id}`).subscribe((data: any) => this.userLoggedInSubject.next(data));
   }
+  private getUserData() {
+    const userDataString = localStorage.getItem("user");
+    return userDataString ? JSON.parse(userDataString) : null;
+  }
+
 }

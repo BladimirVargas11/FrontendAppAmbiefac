@@ -1,12 +1,7 @@
-<div class="w-full h-[100%]  flex justify-center items-center flex-col" *ngIf="loading">
-  <img src="../../../../../../assets/AMBIEFAC_LOGO.png" alt="" height="100" class="!h-[177px]">
-  <div class="spinner-container ">
-    <div class="spinner"></div>
-  </div>
-</div>
+
 <div class="scrollable-main" *ngIf="!loading">
-  <div class="mx-[10%]" *ngIf="rutaId !== 0 && !loading">
-    <div *ngFor="let item of data; let i = index" class="flex flex-col my-[10%] border-b-2 py-[10%] ">
+  <div class="mx-[10%]" *ngIf="!loading && index.mainIndex !== -1">
+    <div *ngFor="let item of data.subtopic[index.mainIndex].information; let i = index" class="flex flex-col my-[10%] border-b-2 py-[10%] animate-fade-up animate-delay-100">
       <ng-container [ngSwitch]="item.type">
         <ng-container *ngSwitchCase="'text'">
           <section [id]="i">
@@ -39,15 +34,15 @@
       </ng-container>
     </div>
   </div>
-  <div *ngIf="rutaId === 0">
-    <div class="parallax-container" [style.backgroundImage]="'url(' + topic.linkImage+ ')'">
+  <div *ngIf="index.mainIndex === -1" class="animate-fade-down">
+    <div class="parallax-container" [style.backgroundImage]="'url(' + data.linkImage+ ')'">
       <div class="content">
-        <h1>{{topic.name}}</h1>
+        <h1>{{data.name}}</h1>
       </div>
     </div>
-    <div class="my-[10%] px-[10%] py-[10%] border-b-2 border-t-2 bg-[#fbfbfb]">
+    <div class="my-[10%] px-[10%] py-[10%] border-b-2 border-t-2 bg-[#fbfbfb] ">
       <h2>Descripcion</h2>
-      <p>{{topic.description}}</p>
+      <p>{{data.description}}</p>
     </div>
   </div>
 </div>

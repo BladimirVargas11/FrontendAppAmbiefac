@@ -56,3 +56,15 @@
 .checkbox-redondo:checked::before {
     opacity: 1; 
 }
+
+.correct-answer {
+    background-color: #aaffaa; /* Fondo verde para respuestas correctas */
+  }
+  
+  .incorrect-answer {
+    background-color: #ffaaaa; /* Fondo rojo para respuestas incorrectas */
+  }
+  
+  
+
+  

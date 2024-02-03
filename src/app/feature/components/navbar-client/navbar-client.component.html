@@ -1,25 +1,56 @@
-<section class="w-full flex justify-around items-center border shadow-md bg-[#fff] text-white">
-  <div class="w-[10%] h-[50px] flex justify-center items-center  my-2">
-   <button (click)="navigateTo()"> <img src="assets/AMBIEFAC_LOGO.png" alt="logo" width="70"></button>
+<section
+  class="w-full flex justify-around items-center border shadow-md bg-[#fff] text-white lg:flex lg:justify-start lg:items-center">
+  <div class="logo flex justify-center items-center lg:my-0 lg:block">
+    <button (click)="navigateTo()"> <img src="assets/AMBIEFAC_LOGO.png" alt="logo" style="max-width: 100%;" width="70">
+    </button>
   </div>
-  <div class="border-r-2  text-black w-[12%]">
-    <button class="border-2 rounded-1 w-[70%] h-[40px] flex flex-row items-center justify-around">
-       <i class="fa-solid fa-braille"></i>
-       <span>Explorar</span>
-       <i class="fa-solid fa-chevron-down"></i>
-       </button>
-  </div>
+  <!-- <div class="border-r-2 text-black explore lg:w-[12%] px-lg-3">
+    <button class="border-2 w-full rounded-1 flex-grow h-[40px] flex flex-row items-center justify-around">
+      <i class="fa-solid fa-braille"></i>
+      <span>Explorar</span>
+      <i class="fa-solid fa-chevron-down"></i>
+    </button>
+  </div> -->
   <div class="w-[75%] h-[50px] flex border-r-2 justify-end items-center ">
-    <div class="mr-4  w-[85px] h-full flex justify-center items-center text-[#808080] hover:text-[#33cc57] "
+    <div
+      class="mr-4 w-[85px] h-full flex justify-center items-center text-[#808080] hover:text-[#33cc57] lg:w-1/4 lg:mr-4"
       [class.my-learning]="isMyLearningRoute">
       <button class="w-full ">Mis cursos</button>
     </div>
   </div>
-  <div class="w-[15%] flex h-[70px] justify-center items-center">
+  <div class=" profile-name flex h-[70px] justify-center items-center lg:flex lg:items-center">
     <button class="flex items-center gap-3 ">
       <!--<img class="mb-1" src="assets/usuario.png" alt="" width="45"> -->
-      <svg fill="#808080" width="50" height="50" viewBox="0 0 256 256" id="Flat" xmlns="http://www.w3.org/2000/svg" stroke="#808080"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M228,128A100,100,0,1,0,60.71,201.90967a3.97048,3.97048,0,0,0,.842.751,99.79378,99.79378,0,0,0,132.8982-.00195,3.96558,3.96558,0,0,0,.83813-.74756A99.76267,99.76267,0,0,0,228,128ZM36,128a92,92,0,1,1,157.17139,64.87207,75.616,75.616,0,0,0-44.50782-34.04053,44,44,0,1,0-41.32714,0,75.61784,75.61784,0,0,0-44.50782,34.04A91.70755,91.70755,0,0,1,36,128Zm92,28a36,36,0,1,1,36-36A36.04061,36.04061,0,0,1,128,156ZM68.86475,198.417a68.01092,68.01092,0,0,1,118.27.00049,91.80393,91.80393,0,0,1-118.27-.00049Z"></path> </g></svg>
+      <svg fill="#808080" width="50" height="50" viewBox="0 0 256 256" id="Flat" xmlns="http://www.w3.org/2000/svg"
+        stroke="#808080">
+        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+        <g id="SVGRepo_iconCarrier">
+          <path
+            d="M228,128A100,100,0,1,0,60.71,201.90967a3.97048,3.97048,0,0,0,.842.751,99.79378,99.79378,0,0,0,132.8982-.00195,3.96558,3.96558,0,0,0,.83813-.74756A99.76267,99.76267,0,0,0,228,128ZM36,128a92,92,0,1,1,157.17139,64.87207,75.616,75.616,0,0,0-44.50782-34.04053,44,44,0,1,0-41.32714,0,75.61784,75.61784,0,0,0-44.50782,34.04A91.70755,91.70755,0,0,1,36,128Zm92,28a36,36,0,1,1,36-36A36.04061,36.04061,0,0,1,128,156ZM68.86475,198.417a68.01092,68.01092,0,0,1,118.27.00049,91.80393,91.80393,0,0,1-118.27-.00049Z">
+          </path>
+        </g>
+      </svg>
       <label class="text-[#808080] hover:text-[#33cc57] cursor-pointer" for="">{{response.data.fullName}}</label>
+      <div class="relative inline-block text-left">
+        <div>
+          <button type="button" (click)="toggleUserDropdown()"
+            class="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 ring-gray-300 hover:bg-gray-50"
+            id="menu-button" aria-expanded="true" aria-haspopup="true">
+            <svg xmlns="http://www.w3.org/2000/svg" height="16" width="4"
+              viewBox="0 0 128 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.-->
+              <path
+                d="M64 360a56 56 0 1 0 0 112 56 56 0 1 0 0-112zm0-160a56 56 0 1 0 0 112 56 56 0 1 0 0-112zM120 96A56 56 0 1 0 8 96a56 56 0 1 0 112 0z" />
+            </svg>
+          </button>
+        </div>
+        <div *ngIf="showUserDropdown" class="absolute right-0 z-10 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
+          <div class="py-1" >
+            <a (click)="logOut()" class="text-gray-700 block px-4 py-2 text-sm cursor-pointer" 
+               id="menu-item-6">Cerrar sesión</a>
+          </div>
+        </div>
+      </div>
     </button>
   </div>
 </section>

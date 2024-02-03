@@ -1,10 +1,10 @@
 <nav class="nav_bar">
   <div class="logo" (click)="redirecToHome()"></div>
   <ul class="nav-list_ " [class.show]="showMenu">
+    <li (click)="scrollToElement('inicio')"><a>Inicio</a></li>
     <li (click)="redirecToCursos()"><a>Cursos</a></li>
-
-    <li><a href="#">Sobre nosotros</a></li>
-    <li class="dropdown" (click)="toggleDropdown()">
+    <li (click)="scrollToElement('sobre-nosotros')"><a>Sobre nosotros</a></li>
+    <li class="dropdown" *ngIf="!response.success" (click)="toggleDropdown()">
       <a>LogIn <i class="fa-solid fa-chevron-down ml-2"></i></a>
     </li>
     <div class="dropdown-content" *ngIf="showDropdown">
@@ -12,21 +12,70 @@
         <li (click)="redirecToLogin()">Iniciar sesion</li>
         <li (click)="redirecToRegister()">Resgistrarme</li>
       </ul>
-
+    </div>
+    <li class="dropdown" *ngIf="response.success" (click)="toggleDropdownuser()">
+      <a>{{response.data.fullName}}<i class="fa-solid fa-chevron-down ml-2"></i></a>
+    </li>
+    <div class="dropdown-content" *ngIf="showUserDropdownUser">
+      <ul>
+        <li (click)="redirecToClient()">Mi perfil</li>
+        <li (click)="logOut()">Cerrar sesión</li>
+      </ul>
     </div>
   </ul>
   <div class="search-bar">
-    <input type="text" placeholder="Buscar...">
-    <div class="button-search"></div>
+    <input type="text" placeholder="Buscar..." [(ngModel)]="terminoBusqueda" (input)="buscarEnTiempoReal()">
+    <div *ngIf="resultadosBusqueda.length > 0 && terminoBusqueda.length > 0"
+      class="bg-white fixed width-30 top-[4rem] focus:outline-none mt-2 origin-top-left ring-1 ring-black ring-opacity-5 rounded-md shadow-lg">
+      <div class="py-1" role="none">
+        <a *ngFor="let resultado of resultadosBusqueda" (click)="redirecToIncription(resultado.id)"
+        class="flex items-center text-gray-700 block px-4 py-2 text-sm cursor-pointer border-b-2"
+          role="menuitem" tabindex="-1" id="menu-item-0">
+          <img [src]="resultado.linkImage" alt="{{ resultado.name }}" class="w-8 h-8 mr-2 object-cover rounded-full">
+          {{ resultado.name }}
+        </a>
+      </div>
+    </div>
+    <button class="button-search"></button>
   </div>
-  <div class="login-button w-[15%]">
-    <a *ngIf="!response.success">
-      <div (click)="redirecToLogin()" class="mx-2">Iniciar sesion</div>/<div class="mx-2" (click)="redirecToRegister()">Registrarme</div>
+  <div *ngIf="mostrarSpinner" class="w-[17%] flex justify-center">
+    <span class="spinner-border spinner-border-sm " role="status" aria-hidden="true"></span>
+  </div>
+
+  <div *ngIf="!mostrarSpinner" class="login-button w-[17%] flex justify-center">
+    <a *ngIf="!response.success" class="border-2 rounded-md font-bold text-[15px] inline-flex">
+      <div (click)="redirecToLogin()" class="mx-2">Iniciar sesion</div>/<div class="mx-2" (click)="redirecToRegister()">
+        Registrarme</div>
     </a>
-    <div *ngIf="response.success" class="flex flex-col justify-center items-center" (click)="redirecToClient()">
-      <i class="fa-solid fa-user text-[25px] "></i>
-      <p class="m-0">{{response.data.fullName}}</p>
+    <div class="relative inline-block text-left">
+      <div *ngIf="response.success">
+        <button type="button" (click)="toggleUserDropdown()"
+          class="inline-flex w-full justify-center items-center gap-x-1.5 bg-white px-3 py-2 text-sm font-semibold text-gray-900  hover:bg-gray-50"
+          id="menu-button" aria-expanded="true" aria-haspopup="true">
+          <div class="dropdown flex flex-col justify-center items-center">
+            <i class="fa-solid fa-user text-[25px] "></i>
+            <p class="m-0">{{response.data.fullName}}</p>
+          </div>
+          <svg class="-mr-1 h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+            <path fill-rule="evenodd"
+              d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+              clip-rule="evenodd" />
+          </svg>
+        </button>
+      </div>
+      <div *ngIf="showUserDropdown"
+        class="absolute left-[-20%] z-10 mt-2 w-56 origin-top-left rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+        role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
+        <div class="py-1" role="none">
+          <a class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-0"
+            (click)="redirecToClient()">Mi perfil</a>
+          <form role="none">
+            <button type="submit" class="text-gray-700 block w-full px-4 py-2 text-left text-sm" role="menuitem"
+              tabindex="-1" id="menu-item-3" (click)="logOut()">Cerrar sesión</button>
+          </form>
+        </div>
+      </div>
     </div>
   </div>
-  <div class="burger-menu" (click)="toggleMenu()">&#9776;</div>
+  <div *ngIf="!mostrarSpinner" class="burger-menu" (click)="toggleMenu()">&#9776;</div>
 </nav>

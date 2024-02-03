@@ -15,6 +15,8 @@ export class NavbarClientComponent {
   response: Response<Client> = initialClient;
 
   isMyLearningRoute: boolean = false;
+  showUserDropdown: boolean = false;
+
 
   constructor(
     private auth: AuthenticationService,
@@ -28,9 +30,11 @@ export class NavbarClientComponent {
       this.isMyLearningRoute = segments.length > 0 && segments[0].path === "my-learning";
     })
   }
+
   navigateTo() {
     this.route.navigate(['/'])
   }
+
   getClient() {
     const id = this.auth.getUserId();
     this.auth.userLoggedIn$.subscribe((data: any) => {
@@ -38,6 +42,11 @@ export class NavbarClientComponent {
     })
   }
 
-
-
+  toggleUserDropdown() {
+    this.showUserDropdown = !this.showUserDropdown;
+  }
+  logOut(){
+    this.auth.logOut();
+    this.route.navigate(['/'])
+  }
 }

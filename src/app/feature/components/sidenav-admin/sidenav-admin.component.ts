@@ -6,6 +6,7 @@ interface SidebarLink {
   route: string;
   selected: boolean;
   title: string;
+  icon: string;
 }
 @Component({
   selector: 'app-sidenav-admin',
@@ -25,9 +26,9 @@ export class SidenavAdminComponent {
   }
 
   sidebarLinks: SidebarLink[] = [
-    { label: 'Gestionar Temas', route: 'admin/consultar-curso', selected: false , title: 'Cursos'},
-    { label: 'Gestionar Examen', route: 'admin/agregar-examen', selected: false, title: '' },
-    // { label: 'Reports', route: '#', selected: false , title: ''},
+    { label: 'Gestionar Temas', route: 'admin/consultar-curso', selected: true, title: 'Cursos', icon: 'fa-book' },
+    { label: 'Gestionar Examen', route: 'admin/agregar-examen', selected: false, title: '', icon: 'fa-file-alt' },
+    // ...
   ];
   toggleSidebar() {
     this.isSidebarOpen = !this.isSidebarOpen;

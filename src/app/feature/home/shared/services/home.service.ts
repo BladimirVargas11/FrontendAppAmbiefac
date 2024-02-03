@@ -23,4 +23,7 @@ export class HomeService {
   getClientById(id:number):Observable<any>{
       return this.http.get(`${this.url}client/${id}`)
   }
+  getSearch(name:string):Observable<any>{
+    return this.http.post(`${this.url}topic/search`,{world: name})
+  }
 }

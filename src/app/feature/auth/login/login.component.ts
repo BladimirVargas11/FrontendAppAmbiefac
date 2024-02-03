@@ -33,6 +33,13 @@ export class LoginComponent implements OnInit {
     const control = this.formGroup.get(campo);
     return control?.invalid && control?.touched || false;
   }
+  navigateToRegister(){
+    this.router.navigate(['auth/register'])
+  }
+
+  navigateToHome(){
+    this.router.navigate(['/'])
+  }
 
   logIn(){
     if (this.formGroup?.valid) {

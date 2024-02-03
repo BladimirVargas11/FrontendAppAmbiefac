@@ -19,6 +19,9 @@ export class ClientCursosComponent implements OnInit {
   constructor(private service: ProfileService, private auth: AuthenticationService, private router: Router) { }
 
   ngOnInit(): void {
+    this.auth.getLoggedInUser().subscribe(user => {
+      console.log(user);
+    });
     this.getCursos();
   }
   getCursos() {
@@ -31,7 +34,7 @@ export class ClientCursosComponent implements OnInit {
 
   seleccionarCurso(curso: any) {
     console.log(curso);
-    // this.router.navigate([`/academy/learning/${curso.topicId}/subtopic/0`])
-    this.router.navigate([`academy/learning/${curso.topicId}/subtopic/0`, { parentId: curso.topicId, queryParams: 0 }])
+    this.router.navigate([`/academy/learning/${curso.topicId}`])
+    // this.router.navigate([`academy/learning/${curso.topicId}/subtopic/0`, { parentId: curso.topicId, queryParams: 0 }])
   }
 }

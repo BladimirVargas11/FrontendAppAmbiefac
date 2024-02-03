@@ -7,6 +7,8 @@ import { InformacionService } from '../../shared/services/informacion.service';
 import { InformacionTema } from '../../shared/models/informacion';
 import { ContenidoItem } from '../../shared/models/contenido';
 import { TodoItem, todo } from '../../shared/models/tipoElements';
+import { data } from 'jquery';
+import { ConfirmationService } from 'src/app/Core/services/confirmation.service';
 
 
 
@@ -21,7 +23,7 @@ export class InformacionTemaComponent implements OnInit {
   done: ContenidoItem[] = [];
   errorMessages: string[] = [];
   titulo: string = 'Elementos de: '
-  return = 'admin/consultar-curso'
+  volver: string = 'admin/consultar-curso'
   imagePreview: any;
   contentForm!: FormGroup;
   contentArray: FormArray;
@@ -30,6 +32,7 @@ export class InformacionTemaComponent implements OnInit {
   pathPrevious: string = '';
 
   constructor(
+    private confirmacion: ConfirmationService,
     private route: ActivatedRoute,
     private fb: FormBuilder,
     private sanitizer: DomSanitizer,
@@ -43,7 +46,10 @@ export class InformacionTemaComponent implements OnInit {
     this.getParameters();
   }
 
-
+  confirmAction(): Promise<boolean> {
+    const message = '¿Estás seguro de que deseas eliminar?';
+    return this.confirmacion.openConfirmationModal(message);
+  }
 
   drop(event: CdkDragDrop<any[]>) {
 
@@ -61,7 +67,7 @@ export class InformacionTemaComponent implements OnInit {
         event.container.data.length
       );
       this.SetControls(event, item.type);
-      this.todo.push(item);
+      this.todo.push({ ...item });
       this.updatePositions();
     }
   }
@@ -85,10 +91,24 @@ export class InformacionTemaComponent implements OnInit {
   }
 
   deleteItem(index: number) {
-
-    this.done.splice(index, 1);
-    this.contentArray.removeAt(index);
+    this.confirmAction().then((confi) => {
+      if (confi) {
+        const deletedItem = this.done.splice(index, 1)[0];
+        this.contentArray.removeAt(index);
+        this.updatePositions();
+        const originalIndex = this.informacion.findIndex((item) => item.id === deletedItem.id);
+        if (originalIndex !== -1) {
+          this.informacion.splice(originalIndex, 1);
+          this.informacionService.deleteInformation(deletedItem.id).subscribe(_ => {
+            let updateElements = this.checkModifiedElements();
+            if (updateElements.length > 0)
+              this.informacionService.putInformation({ listInformation: updateElements }).subscribe();
+          });
+        }
+      }
+    });
   }
+
   addFormContol(item: string, position: number, data?: any): FormGroup {
     return this.fb.group({
       id: [data?.id],
@@ -112,9 +132,8 @@ export class InformacionTemaComponent implements OnInit {
 
   ngOnInit(): void {
     this.getContent();
-    console.log(this.done)
   }
- 
+
 
   saveElemts = async () => {
     if (this.validFrom()) {
@@ -207,13 +226,11 @@ export class InformacionTemaComponent implements OnInit {
   private getParameters() {
     this.route.paramMap.subscribe(params => {
       this.rutaId = parseInt(params.get('id') ?? '0', 10);
+      const topicId = parseInt(params.get('topic') ?? '0', 10);
       this.titulo = `Contenido de ${params.get('name')?.toLocaleLowerCase() ?? '0'}`
-
-      console.log(this.router.routerState.snapshot.url);
-      this.return = `admin/temas-cruso/${this.rutaId}/hola`
-      if (!isNaN(this.rutaId)) {
-        console.log('ID de la ruta:', this.rutaId);
-      }
+      this.informacionService.getTopic(topicId).subscribe((data: any) => {
+        this.volver = `admin/temas-cruso/${topicId}/${data.data.name}`
+      })
     });
   }
 }

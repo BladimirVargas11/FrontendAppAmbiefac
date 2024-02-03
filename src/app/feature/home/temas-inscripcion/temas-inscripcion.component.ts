@@ -32,13 +32,21 @@ export class TemasInscripcionComponent implements OnInit {
     private service: HomeService,
     private confirmationService: ConfirmationService,
     private auth: AuthenticationService) {
-    this.route.params.subscribe(params => {
-      this.cursoId = params['id'];
-    });
+    //   debugger
+    // this.route.params.subscribe(params => {
+    //   this.cursoId = params['id'];
+    // });
   }
   ngOnInit(): void {
-    this.getTema();
+    this.route.params.subscribe(params => {
+      const newCursoId = params['id'];
 
+      // Verifica si el id ha cambiado antes de llamar a getTema
+      if (newCursoId !== this.cursoId) {
+        this.cursoId = newCursoId;
+        this.getTema();
+      }
+    });
   }
   getTema() {
     this.service.getTemasById(this.cursoId).subscribe((data: any) => this.tema = data.data)

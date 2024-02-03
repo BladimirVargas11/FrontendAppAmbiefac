@@ -14,6 +14,7 @@ import { LayoutLearningComponent } from './layout-learning/layout-learning.compo
 import { SidenavLearningComponent } from './sidenav-learning/sidenav-learning.component';
 import { NavbarLearningComponent } from './navbar-learning/navbar-learning.component';
 import { SidebarLearningComponent } from './sidebar-learning/sidebar-learning.component';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -27,18 +28,18 @@ import { SidebarLearningComponent } from './sidebar-learning/sidebar-learning.co
     NavbarComponent,
     NavbarClientComponent,
     SidenavAdminComponent,
+    SidebarLearningComponent,
     LayoutLearningComponent,
     SidenavLearningComponent,
     NavbarLearningComponent,
-    SidebarLearningComponent,
   ],
   imports: [
     CommonModule,
     RouterModule,
+    FormsModule
     
   ],
   exports: [
-    SidebarLearningComponent,
     ErrorsComponent,
     LayoutComponent,
     LayoutAdminComponent,
@@ -46,6 +47,7 @@ import { SidebarLearningComponent } from './sidebar-learning/sidebar-learning.co
     SidenavAdminComponent,
     NavbarClientComponent,
     LayoutLearningComponent,
+    SidebarLearningComponent,
     SidenavLearningComponent
   ]
 })

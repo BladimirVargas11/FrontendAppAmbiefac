@@ -22,9 +22,12 @@ export class LearningService {
   getExam(id: number): Observable<Response<Topìc>> {
     return this.http.get(`${this.url}exam/questions/${id}`)
   }
-  postExam(body: any): Observable<any> {
+  postExam(body: any, id:number): Observable<any> {
     console.log("Respuesta",JSON.stringify({ answersIds: body }));
     // return this.http.get('');
-    return this.http.post(`http://localhost:8080/exam/valid-answers`, { answersIds: body }, true);
+    return this.http.post(`http://localhost:8080/exam/valid-answers/${id}`, { answersIds: body }, true);
+  }
+  getValidInscription(idClient: number, idTopic:number): Observable<Response<any>> {
+    return this.http.get(`${this.url}client-topic/courses/${idClient}/${idTopic}`)
   }
 }

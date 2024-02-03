@@ -1,14 +1,14 @@
-<app-card-body [Titulo]='titulo' [ButtonRigth]="saveElemts" 
-  [tooltip]="'Nuevo contenido'" [tooltipBack]="'Volver'" >
+<app-card-body [Titulo]='titulo' [ButtonRigth]="saveElemts"  [linkBack]="volver"
+  [tooltip]="'Guardar'" [tooltipBack]="'Volver'" >
   <section cdkDropListGroup class="layout">
     <div class="sidebar">
       <div class="example-container">
         <h2 class="text-black"> Elementos</h2>
         <div cdkDropList [cdkDropListData]="todo" class="border-1  grid-cols-3 gap-4 h-[50vh] "
           (cdkDropListDropped)="drop($event)" [cdkDropListEnterPredicate]="noReturnPredicate">
-          <div class="text-black py-[20px]" *ngFor="let item of todo" cdkDrag>
+          <div class="text-black py-[10px]" *ngFor="let item of todo" cdkDrag>
             <ng-container [ngSwitch]="item.type">
-              <div class="flex flex-col items-center">
+              <div class="border-b-2 flex flex-col items-center">
                 <div *ngSwitchCase="'image'">
                   <svg xmlns="http://www.w3.org/2000/svg" height="25" width="25" viewBox="0 0 512 512">
                     <path fill="#969696"

@@ -18,8 +18,8 @@ import { ErrorServiceService } from './services/error-service.service';
     HttpClientModule
   ],
   providers:[
-    HttpService,
-    // AuthenticationService,
+    // HttpService,
+    AuthenticationService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: HttpResponseInterceptor,

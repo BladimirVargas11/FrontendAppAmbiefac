@@ -8,6 +8,7 @@ import { TemasContenidoComponent } from './temas-contenido/temas-contenido.compo
 import { TemasInscripcionComponent } from './temas-inscripcion/temas-inscripcion.component';
 import { InicioComponent } from './inicio/inicio.component';
 import { ComponentsModule } from '../components/components.module';
+import { SlickCarouselModule } from 'ngx-slick-carousel';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { ComponentsModule } from '../components/components.module';
   imports: [
     CommonModule,
     HomeRoutingModule,
-    ComponentsModule
+    ComponentsModule,
+    SlickCarouselModule
 
   ]
 })

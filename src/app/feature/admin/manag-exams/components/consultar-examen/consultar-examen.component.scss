@@ -1,0 +1,7 @@
+.texto-recortado {
+    white-space: nowrap;         /* Evitar que el texto se divida en varias líneas */
+    overflow: hidden;            /* Ocultar el contenido que desborda */
+    text-overflow: ellipsis;     /* Mostrar puntos suspensivos (...) cuando el texto se corta */
+    max-width: 700px;            /* Establecer la anchura máxima deseada antes de recortar el texto */
+    display: inline-block;       /* Garantizar que la propiedad max-width funcione correctamente */
+  }

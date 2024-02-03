@@ -7,6 +7,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { HttpService } from '../Core/services/http.service';
 import { SharedModule } from '../Shared/shared.module';
 import { HttpClientModule } from '@angular/common/http';
+import { AuthenticationService } from '../Core/authentication/authentication.service';
 
 
 
@@ -26,6 +27,6 @@ import { HttpClientModule } from '@angular/common/http';
     
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  providers:[]
+  providers:[AuthenticationService]
 })
 export class FeatureModule { }

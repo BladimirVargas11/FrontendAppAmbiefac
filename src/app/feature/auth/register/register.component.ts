@@ -23,9 +23,10 @@ export class RegisterComponent {
   }
   private formBuilder() {
     this.formGroup = this.fb.group({
+      username: new FormControl('', [Validators.required]),
       email: new FormControl('', [Validators.required, Validators.email]),
-      name: new FormControl('', [Validators.required]),
-      password: new FormControl('', Validators.required)
+      fullName: new FormControl('', [Validators.required]),
+      password: new FormControl('', Validators.required),
     });
   }
 
@@ -33,11 +34,11 @@ export class RegisterComponent {
     const control = this.formGroup.get(campo);
     return control?.invalid && control?.touched || false;
   }
-  logIn(){
+  register(){
     if (this.formGroup?.valid) {
       let logInModel = LoginRegister.DesdeObject(this.formGroup?.value);
       console.log(logInModel)
-    //  this.service.logIn(logInModel);
+     this.service.register(logInModel).subscribe();
       
     }
   }

@@ -1,14 +1,45 @@
 div.my-learning {
   border-bottom: 4px solid #949694;
-  padding-bottom: 10px; 
-font-weight: bold;
+  padding-bottom: 10px;
+  font-weight: bold;
 
 }
 
-div.my-learning:hover{
+div.my-learning:hover {
   border-bottom: 4px solid #33cc57;
 }
 
-.border-right-icon{
+.border-right-icon {
   border-right: 4px solid #949694;
+}
+
+.explore {
+  width: 12%;
+}
+
+.logo {
+  width: 5%;
+  margin: 0 20px;
+}
+
+.profile-name {
+  width: 20%;
+}
+
+@media (min-width: 400px) and (max-width: 900px) {
+  .explore {
+    width: 50%;
+  }
+
+  .logo {
+    width: 40%;
+  }
+
+  .profile-name {
+    width: 100%;
+  }
+
+  .border-r-2 {
+    border-right: none;
+  }
 }

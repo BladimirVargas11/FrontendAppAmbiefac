@@ -17,15 +17,17 @@ export class LoginRegister {
 
     static DesdeObject(obj: any) {
         return new LoginRegister(
+            obj.username,
             obj.email,
             obj.password,
-            obj.name
+            {fullName: obj.fullName}
         );
     }
 
     constructor(
+        public username: string,
         public email: string,
         public password: string,
-        public name: string
+        public client: any
     ) { }
 }

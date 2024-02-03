@@ -14,9 +14,9 @@
         <div class="flex border rounded overflow-hidden shadow-md m-4 p-4 w-full" *ngFor="let tema of lisdata">
             <img [src]=" (verifyImage(tema.linkImage))?tema.linkImage: 'https://icones.pro/wp-content/uploads/2021/08/icone-photo-grise.png' " 
             alt="Imagen del tema" class="w-24 h-auto mr-4" />
-            <div class="flex-grow">
+            <div class="flex-grow w-[50%]">
               <h2 class="text-lg font-semibold">{{ tema.name }}</h2>
-              <p class="text-gray-600">{{ tema.description }}</p>
+              <p class="text-gray-600 texto-recortado">{{ tema.description }}</p>
             </div>
             <div class="flex items-center">
               <button class="bg-[#22c55e] text-white px-4 py-2 rounded"*ngIf="tema.exam_id" (click)="openExamen(tema.id, tema.exam_id)">

@@ -1,119 +1,156 @@
-<section class="w-full flex mt-5 p-0 
-animate__animated animate__fadeInUp animate__fast">
-    <div class="w-[50%] flex flex-col gap-4 justify-center items-center">
-        <div class="flex flex-col items-center gap-1">
-            <h1>AMBIEFAC</h1>
-            <h2>Descubre, Aprende y Transforma Tu Mundo</h2>
-            <p>Descubres, aprendes y transformas tu mundo hacia un futuro más sostenible.</p>
-        </div>
-        <div class="">
-            <button class="w-[16rem] text-[1.3rem] h-[2.7rem] rounded-full border bg-[#33cc57] text-white
-            font-bold shadow-lg
-            ">¡Incribete ahora!</button>
-        </div>
-    </div>
-    <div class="w-[50%] h-[70%] flex justify-center items-center">
-        <img src="../.../../../../../assets/galeria-de-imagenes.png" alt="">
-    </div>
-</section>
-<section class="w-full flex  mt-0 p-0 ">
-    <div class="  w-full  flex">
-        <div class="w-[50%] flex flex-col justify-around items-center ">
-            <div class="w-full flex justify-center items-center">
-                <h2>Titulo seccion II</h2>
+<body>
+    <section id="inicio"
+        class="w-full flex flex-col-reverse md:flex-row !mb-[14%] !m-0 p-0 animate-fade-up parallax-container text-white">
+        <div class="w-full md:w-[50%] flex flex-col gap-4 justify-center items-center">
+            <div class="flex flex-col items-start gap-1">
+                <h1 class="!text-header  md:text-4xl  lg:text-5xl">AMBIEFAC</h1>
+                <h2 class="text-lg md:text-xl lg:text-2xl">Descubre, Aprende y Transforma Tu Mundo</h2>
+                <p class="text-sm md:text-base lg:text-lg">Descubres, aprendes y transformas tu mundo hacia un futuro
+                    más
+                    sostenible.</p>
             </div>
-            <div class="w-[80%] h-[70%]  overflow-hidden">
-                <img class="" src="../.../../../../../assets/galeria-de-imagenes.png" alt="">
+            <div class="mt-4">
+                <button (click)="redirecToRegister()"
+                    class="w-[16rem] md:w-[20rem] text-base md:text-lg h-[2.7rem] md:h-[3rem] rounded-full  bg-[#33cc57] text-white font-bold shadow-lg">
+                    ¡Inscríbete ahora!
+                </button>
             </div>
         </div>
-        <div class="w-[50%] flex flex-col justify-center items-center gap-5
-        bg-[#33CC57] text-white shadow-md">
-            <div class="">
-                <h2 class="font-bold">Titulo sesccion</h2>
-            </div>
-            <div class="w-[90%] text-justify">
-                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Possimus minus autem qui labore! Non sint
-                    dolor ad, repudiandae deserunt eveniet quaerat at accusamus quidem ea vero inventore dignissimos
-                    sunt magnam?</p>
-            </div>
-            <div class=" ">
-                <button class="w-[16rem] text-black text-[1.3rem] h-[2.7rem] rounded-full border bg-white
-                font-bold shadow-md">Button seccion</button>
-            </div>
-        </div>
-    </div>
-</section>
 
-<section>
-    <div class="content-comenzar ">
-        <div class="comenzar-row">
-            <h2>Comience a aprender</h2>
-        </div>
-        <div class="comenzar-row">
-            <Button class="ver-mas">Ver mas</Button>
-        </div>
-    </div>
-</section>
-<section class="w-full ">
-    <div class="w-full flex flex-col gap-4 items-center justify-center">
-        <div class="cursos-row">
-            <h2>Explore nuestros cursos </h2>
-        </div>
-        <div class="w-[90%] flex justify-around ">
-            <div class="w-[31%] border shadow-md flex flex-col
-             justify-around items-center gap-2">
-                <div class="card-imagen">
-                  <img src="../../../../assets/galeria-de-imagenes.png" alt=""></div>
-                <div class="">
-                    <h2 class="font-bold">titulo card</h2>
+    </section>
+
+    <section id="que-es" class="w-full !my-[14%] animate-fade-up animate-normal">
+        <div class="content-que-es">
+            <div class="w-[80%] h-full flex flex-row items-center justify-center m-[20%]">
+                <div class="w-1/2 mx-4  text-5xl">
+                    <h1 class="text-5xl font-bold mb-4">¿Qué es Ambiefac?</h1>
+                    <p class="text-xl">Ambiefac es una plataforma educativa dedicada a la promoción de la conciencia
+                        ambiental y la sostenibilidad. Nos esforzamos por ofrecer una amplia variedad de cursos
+                        diseñados
+                        para empoderar a las personas con el conocimiento necesario para comprender, preservar y mejorar
+                        nuestro entorno.</p>
+                    <p class="text-xl">Desde cursos gratuitos hasta recursos avanzados, nuestro compromiso es brindar
+                        oportunidades de aprendizaje que inspiren a la acción positiva. Únete a nosotros en nuestro
+                        viaje
+                        hacia un futuro más verde y sostenible.</p>
                 </div>
-                <div class="flex items-center w-[90%] text-justify">
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam quis molestiae vel non officiis.
-                        Aliquid, atque fuga? Quidem, nam ipsam. Optio corrupti quibusdam delectus quisquam inventore
-                        exercitationem voluptatum consequuntur est?</p>
-                </div>
-                <div class="button-card">
-                  <button class="w-[14rem] text-[1.3rem] h-[2.5rem] rounded-full border bg-[#33cc57] text-white
-                  font-bold shadow-md mb-3
-                  ">¡Incribete ahora!</button>
-                </div>
-            </div>
-            <div class="w-[31%] border shadow-md flex flex-col
-             justify-around items-center gap-2">
-                <div class="card-imagen">
-                  <img src="../../../../assets/galeria-de-imagenes.png" alt=""></div>
-                <div class="">
-                    <h2 class="font-bold">titulo card</h2>
-                </div>
-                <div class="flex items-center w-[90%] text-justify">
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam quis molestiae vel non officiis.
-                        Aliquid, atque fuga? Quidem, nam ipsam. Optio corrupti quibusdam delectus quisquam inventore
-                        exercitationem voluptatum consequuntur est?</p>
-                </div>
-                <div class="button-card">
-                  <button class="w-[14rem] text-[1.3rem] h-[2.5rem] rounded-full border bg-[#33cc57] text-white
-                  font-bold shadow-md mb-3
-                  ">¡Incribete ahora!</button>
-                </div>
-            </div>
-            <div class="w-[31%] border shadow-md flex flex-col
-             justify-around items-center gap-2">
-                <div class="card-imagen">
-                  <img src="../../../../assets/galeria-de-imagenes.png" alt=""></div>
-                <div class="">
-                    <h2 class="font-bold">titulo card</h2>
-                </div>
-                <div class="flex items-center w-[90%] text-justify">
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam quis molestiae vel non officiis.
-                        Aliquid, atque fuga? Quidem, nam ipsam. Optio corrupti quibusdam delectus quisquam inventore
-                        exercitationem voluptatum consequuntur est?</p>
-                </div>
-                <div class="button-card">
-                  <button class="w-[14rem] text-[1.3rem] h-[2.5rem] rounded-full border bg-[#33cc57] text-white
-                  font-bold shadow-md mb-3
-                  ">¡Incribete ahora!</button>
+                <div class="w-1/2 flex flex-col items-center">
+                    <button (click)=" redirecToCursos()"
+                        class="w-[16rem] md:w-[20rem] text-base md:text-lg h-[2.7rem] md:h-[3rem] rounded-full  bg-[#33cc57] text-white font-bold shadow-lg mt-8">
+                        ¡Explora Nuestros Cursos!
+                    </button>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
+
+
+
+    <section id="cursos-gratis" class="w-full flex flex-col md:flex-row !my-[14%] p-0 animate-fade-up animate-normal">
+        <div class="w-full md:w-1/2 flex flex-col justify-around items-center">
+            <div class="w-full flex overflow-hidden justify-center">
+                <img class="!w-full !h-[500px] !max-w-full object-cover"
+                    src="../.../../../../../assets/personas_aprendiendo.png" alt="">
+            </div>
+        </div>
+        <div
+            class="w-full md:w-1/2 flex flex-col justify-center items-start px-4 bg-[#33CC57] text-white shadow-md gap-5">
+            <div>
+                <h1 class="font-bold text-2xl">Descubre Nuestros Cursos Gratis</h1>
+            </div>
+            <div class="w-full md:w-4/5 text-justify text-3xl">
+                <p>Aprovecha la oportunidad de mejorar tus habilidades con nuestra selección de
+                    cursos gratuitos. Amplía tu conocimiento y avanza en tu carrera sin costo alguno.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="sobre-nosotros"  class="w-full !my-[14%] animate-fade-up animate-normal">
+        <div class="content-sobre-nosotros">
+            <div class="w-[80%] h-full flex flex-row items-center justify-center m-[20%]">
+                <div class="w-1/2 mx-4 text-5xl">
+                    <h1 class="text-5xl font-bold mb-4">Sobre Nosotros</h1>
+                    <p class="text-xl">En Ambiefac, estamos comprometidos con la causa de la conciencia ambiental y la
+                        sostenibilidad. Nuestra misión es proporcionar una plataforma educativa donde las personas
+                        puedan
+                        aprender, inspirarse y tomar medidas para un futuro más ecológico.</p>
+                    <p class="text-xl">Nos esforzamos por ofrecer una amplia gama de cursos, desde conceptos básicos
+                        hasta
+                        avanzados, que abarquen diversas áreas relacionadas con el medio ambiente. Creemos en la
+                        capacitación y empoderamiento de las personas para que se conviertan en defensores activos de
+                        nuestro planeta.</p>
+                    <p class="text-xl">Explora nuestras opciones de aprendizaje, desde cursos gratuitos hasta recursos
+                        premium, y únete a nosotros en la misión de crear un mundo más verde y sostenible. ¡Juntos
+                        podemos marcar la diferencia!</p>
+                </div>
+                <div class="w-1/2 flex flex-col items-center">
+                    <img src="../.../../../../../assets/nuestro_equipo_imagen.png" alt="Nuestro Equipo"
+                        class="rounded-md !h-[310px]">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="acelera-aprendizaje" class="w-full flex flex-col !my-[14%]  animate-fade-up animate-normal">
+        <div class=" w-full  flex items-center bg-white justify-center ">
+            <div class=" w-[80%] h-[350px] bg-[#f5f5f5] p-8 rounded-lg flex">
+                <div class="w-1/2 pr-8 flex flex-col justify-center">
+                    <h1 class="text-4xl mb-4">Acelera Tu Aprendizaje</h1>
+                    <p class="text-gray-700">Aprovecha la oportunidad de impulsar tu aprendizaje con nuestra selección
+                        de
+                        recursos y cursos diseñados para acelerar tu crecimiento. Descubre nuevas habilidades y avanza
+                        rápidamente en tu camino hacia el éxito.</p>
+                </div>
+                <div class="w-1/2">
+                    <img src="../.../../../../../assets/wepik-export-20240102185507bjIA.png" alt="Imagen"
+                        class="rounded-md  !h-[310px]">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="cursos-medio-ambiente" class="w-full !my-[14%] animate-fade-up animate-normal">
+        <div class="w-full flex flex-col gap-4 items-center justify-center">
+            <div class="cursos-row my-4">
+                <h1 class="text-2xl">Explore nuestros cursos sobre el Medio Ambiente</h1>
+            </div>
+            <div class="w-full flex flex-col md:flex-row md:justify-around ">
+                <div *ngFor="let course of courses"
+                    class="w-full md:w-[25%] h-[500px] border shadow-md flex flex-col justify-center items-center gap-2 hover:animate-jump animate-normal">
+
+                    <img [src]="course.image" alt="Imagen del curso" class="!h-[250px] w-full max-w-full">
+
+                    <div class="items-start w-full px-4 mt-2">
+                        <h2 class="font-bold text-md ">{{ course.title }}</h2>
+                    </div>
+                    <div class="flex items-center w-full text-[18px] px-4">
+                        <p>{{ course.description }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="comenzar">
+        <div class="content-comenzar  animate-fade-up animate-normal">
+            <div class="w-[80%] h-full flex flex-row items-center justify-center m-[20%]">
+                <div class="w-1/2 mx-4 text-white text-5xl">
+                    <p class=""> Cuidar el planeta no es solo un deber, es una oportunidad para construir un futuro
+                        sostenible y
+                        próspero para las generaciones venideras.</p>
+                </div>
+                <div class="w-1/2 flex flex-col">
+                    <button (click)="redirecToRegister()"
+                        class="w-[16rem] md:w-[20rem] text-base md:text-lg h-[2.7rem] md:h-[3rem] rounded-full  bg-[#33cc57] text-white font-bold shadow-lg">
+                        ¡Inscríbete ahora!
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- environment-courses.component.html -->
+    <button class="floating-btn" (click)="scrollToTop()">Subir al Inicio</button>
+
+</body>
