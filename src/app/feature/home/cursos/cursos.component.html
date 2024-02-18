@@ -1,25 +1,34 @@
 <div class="header-topic">
     <div class="header-topic-row">
         <div class="header-topic-colum tile-topic">
-            <h1>Cursos</h1>
-            <p>Explora y Aprende: <span> Cursos de Ambiente para un Futuro Sostenible</span> </p>
-            <p>Encontrarás programas educativos centrados en la conservación del medio
-                ambiente. Desde la biodiversidad hasta la gestión sostenible de recursos, energías renovables,
-                ecoturismo responsable, cambio climático y agricultura sostenible, ofrecemos una variedad de cursos para
-                profundizar tu comprensión y habilidades en temas ambientales clave. Explora nuestras opciones
-                educativas y únete a nosotros en el camino hacia un futuro más sostenible.</p>
+            <h1>Temáticas</h1>
+            <div class="text-lg">
+                <div class="text-xl">
+                    <p class="text-2xl">Explora y Aprende: <span class="font-bold text-3xl">Temáticas para un
+                            futuro sostenible</span></p>
+                    <p class="text-lg" style="font-weight: 400;">Encontrarás temáticas centradas en la conservación del medio ambiente.
+                        Desde el Uso racional de Recursos, Manejo integral de los Residuos Sólidos, Calentamiento global, Tráfico ilegal de especies de flora y fauna, ofrecemos una variedad de temáticas para
+                        profundizar tu comprensión y habilidades en temas ambientales clave. Explora nuestras opciones
+                        educativas y únete a nosotros en el camino hacia un futuro más sostenible.</p>
+                </div>
+
+            </div>
+
         </div>
         <div class="header-topic-colum image-topic">
-            <img style="height: 70vh;" src="../../../../assets/person-learning-to-take-care-of-the-environment-upscaled.png" alt="">
+            <img style="height: 70vh;"
+                src="../../../../assets/Tematicas.jpg" alt="">
         </div>
     </div>
 </div>
 
 <div class="cursos-content">
-    <h2>Nuestros cursos</h2>
+    <h2>Nuestras Temáticas</h2>
     <div class="crusos-body-colum">
-        <div class="cursos-row"*ngFor="let row of curosos">
-            <img class="cursos-image" [src]="(verifyImage(row.linkImage))?row.linkImage: 'https://icones.pro/wp-content/uploads/2021/08/icone-photo-grise.png'" alt="">
+        <div class="cursos-row" *ngFor="let row of curosos">
+            <img class="cursos-image"
+                [src]="(verifyImage(row.linkImage))?row.linkImage: 'https://icones.pro/wp-content/uploads/2021/08/icone-photo-grise.png'"
+                alt="">
             <div class="cursos-info">
                 <h2>{{row.name}}</h2>
                 <p>{{row.description}}</p>

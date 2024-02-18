@@ -1,5 +1,5 @@
 <div class="w-full mt-4 indent-2">
-    <label class="text-[1.5rem]">Mis cursos</label>
+    <label class="text-[1.5rem]">Mis temáticas</label>
 </div>
 <div class="w-full flex flex-wrap justify-around">
     <div *ngFor="let curso of cursos"
@@ -19,5 +19,8 @@
                 Comenzar
             </button>
         </div>
+        <label class="w-full h-[20px] flex justify-center m-0">
+            <p class="text-[12px] text-[#22c55e]">{{ curso.score > 0 ? 'Curso completo' : 'Curso no completo' }}</p>
+        </label>
     </div>
 </div>

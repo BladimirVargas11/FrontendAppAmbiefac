@@ -2,7 +2,7 @@
   <div class="logo" (click)="redirecToHome()"></div>
   <ul class="nav-list_ " [class.show]="showMenu">
     <li (click)="scrollToElement('inicio')"><a>Inicio</a></li>
-    <li (click)="redirecToCursos()"><a>Cursos</a></li>
+    <li (click)="redirecToCursos()"><a>Temáticas</a></li>
     <li (click)="scrollToElement('sobre-nosotros')"><a>Sobre nosotros</a></li>
     <li class="dropdown" *ngIf="!response.success" (click)="toggleDropdown()">
       <a>LogIn <i class="fa-solid fa-chevron-down ml-2"></i></a>
@@ -24,7 +24,7 @@
     </div>
   </ul>
   <div class="search-bar">
-    <input type="text" placeholder="Buscar..." [(ngModel)]="terminoBusqueda" (input)="buscarEnTiempoReal()">
+    <input type="text" placeholder="Buscar..." [ngModel]="terminoBusqueda" (input)="buscarEnTiempoReal()">
     <div *ngIf="resultadosBusqueda.length > 0 && terminoBusqueda.length > 0"
       class="bg-white fixed width-30 top-[4rem] focus:outline-none mt-2 origin-top-left ring-1 ring-black ring-opacity-5 rounded-md shadow-lg">
       <div class="py-1" role="none">

@@ -8,18 +8,23 @@ export interface EnvironmentCourse {
 
 export const environmentCourses: EnvironmentCourse[] = [
   {
-    title: "Curso de Sostenibilidad Ambiental",
-    description: "Descubre cómo llevar a cabo prácticas sostenibles para preservar el medio ambiente y promover la responsabilidad ambiental en tu vida diaria.",
-    image: "../../../../assets/sostenibilidad-ambiental.png" // Ruta de la imagen
+    title: "Uso racional de Recursos (Uso del Agua y Uso de la Energía)",
+    description: "Concientización y control son clave en unidades militares para promover uso racional de agua y energía. Campañas educativas y seguimiento de consumo son necesarios para lograrlo.",
+    image: "../../../../assets/conservacion-biodiversidad.png" // Ruta de la imagen
   },
   {
-    title: "Gestión de Residuos y Reciclaje",
-    description: "Aprende las mejores prácticas para la gestión de residuos y el reciclaje, contribuyendo así a la reducción de la huella ambiental y promoviendo un futuro más limpio.",
-    image: "../../../../assets/gestion-residuos-reciclaje.png" // Ruta de la imagen
+    title: "Manejo integral de los Residuos Sólidos Residuos Convencionales Y Residuos Peligrosos",
+    description: "Elaboración de un Plan de Gestión Integral de Residuos Sólidos para reducir generación y mitigar impactos negativos, promoviendo correcta separación y disposición final en la Fuerza Aérea Colombiana.",
+    image: "../../../../assets/conservacion-biodiversidad.png" // Ruta de la imagen
   },
   {
-    title: "Conservación de la Biodiversidad",
-    description: "Explora la importancia de la biodiversidad y aprende estrategias para su conservación, protegiendo así la variedad de especies en nuestro planeta.",
+    title: "Calentamiento global",
+    description: "El cambio climático, vinculado al crecimiento industrial y consumismo, afecta el clima, suelos y supervivencia de especies. Genera residuos, explota recursos y aumenta gases de efecto invernadero.",
+    image: "../../../../assets/conservacion-biodiversidad.png" // Ruta de la imagen
+  },
+  {
+    title: "Tráfico ilegal de especies de flora y fauna",
+    description: "El tráfico ilegal de especies de flora y fauna amenaza la biodiversidad global, impulsado por lucro y demanda insostenible, causando graves daños ecológicos y socioeconómicos.",
     image: "../../../../assets/conservacion-biodiversidad.png" // Ruta de la imagen
   }
 ];

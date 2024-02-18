@@ -7,11 +7,11 @@ export interface TabsModel{
 
 export const tabs: TabsModel[] = [
     {
-        label : 'perfil',
+        label : 'Perfil',
         icon : 'fa-solid fa-user'
     },
     {
-        label : 'cursos',
+        label : 'Tematicas',
         icon : 'fa-solid fa-book-open'
     },
 ]

@@ -10,7 +10,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
   styleUrls: ['./actualizar-cruso.component.scss']
 })
 export class ActualizarCrusoComponent {
-  titulo: string = 'Agregar curso';
+  titulo: string = 'Agregar temática';
   rutaId: number = 0;
   hide:boolean = true;
   showImagePreview: boolean = false;
@@ -76,7 +76,7 @@ export class ActualizarCrusoComponent {
       name: valores.name,
       linkImage: valores.linkImage,
       time: valores.time,
-      description: valores.name
+      description: valores.description
     });
   }
   hiden(){

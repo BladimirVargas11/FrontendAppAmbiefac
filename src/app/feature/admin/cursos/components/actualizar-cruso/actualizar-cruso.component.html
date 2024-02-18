@@ -9,12 +9,12 @@
     </ngx-spinner>
   <form [formGroup]="miFormulario" class="w-full flex flex-col items-center">
     <div class="m-2 w-[50%]">
-      <label for="nombre-curso" class="block mb-2 text-sm font-medium text-gray-900">Nombre del curso</label>
+      <label for="nombre-curso" class="block mb-2 text-sm font-medium text-gray-900">Nombre de la temática</label>
       <input type="text" id="name" formControlName="name"
         class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
         placeholder="Ejemplo: Gestión Sostenible de Residuos" required>
       <div *ngIf="miFormulario.get('name')?.invalid && miFormulario.get('name')?.touched">
-        <span class="text-red-500 text-sm mt-1">Por favor, introduce el nombre del curso.</span>
+        <span class="text-red-500 text-sm mt-1">Por favor, introduce el nombre de la temática.</span>
       </div>
     </div>
     <div class="m-2 w-[50%]">

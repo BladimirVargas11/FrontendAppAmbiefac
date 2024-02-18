@@ -1,72 +1,82 @@
 .rotated {
-    transform: rotate(90deg);
-    transition: transform 0.3s ease; 
-  }
-  .scrollable-main::-webkit-scrollbar {
-    width: 8px; 
+  transform: rotate(90deg);
+  transition: transform 0.3s ease;
+}
+
+.scrollable-main::-webkit-scrollbar {
+  width: 8px;
 }
 
 .scrollable-main::-webkit-scrollbar-thumb {
-    background-color: #8888888c; 
-    border-radius: 6px;
+  background-color: #8888888c;
+  border-radius: 6px;
 }
 
 .scrollable-main::-webkit-scrollbar-thumb:hover {
-    background-color: #555;
+  background-color: #555;
 }
 
 .scrollable-main::-webkit-scrollbar-track {
-    background-color: #f1f1f1;
-}
-  .scrollable-main {
-    overflow-y: auto;
-    max-height: 70vh; 
+  background-color: #f1f1f1;
 }
 
-img{
-    max-width: 70%;
-    height: 450px;
+.scrollable-main {
+  overflow-y: auto;
+  max-height: 70vh;
+}
+
+img {
+  max-width: 70%;
+  height: 450px;
 }
 
 
 body {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-    overflow-x: hidden;
-  }
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  overflow-x: hidden;
+}
 
-  .parallax-container {
-    height: 100vh;
-    overflow: hidden;
-    position: relative;
-    // background-image: url('https://ichef.bbci.co.uk/news/800/cpsprodpb/DA49/production/_114418855_gettyimages-1159320401.jpg');
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed; /* Esto crea el efecto de parallax */
-  }
+.parallax-container {
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+  // background-image: url('https://ichef.bbci.co.uk/news/800/cpsprodpb/DA49/production/_114418855_gettyimages-1159320401.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  /* Esto crea el efecto de parallax */
+}
 
-  .content {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    color: #fff;
-  }
-  h1 {
-    font-size: 2.5em; 
-    font-weight: 500; 
-  }
+.content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: #fff;
+}
+
+h1 {
+  font-size: 2.5em;
+  font-weight: 500;
+}
 
 
-  body {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    margin: 0;
-    background-color: #f4f4f4;
-  }
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin: 0;
+  background-color: #f4f4f4;
+}
 
-  
+.text-with-shadow {
+  text-shadow: 2px 2px 4px rgb(0, 0, 0);
+}
+
+.text-jump {
+  white-space: pre-line;
+}

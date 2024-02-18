@@ -11,7 +11,7 @@ import { data } from 'jquery';
   styleUrls: ['./agregar-cruso.component.scss']
 })
 export class AgregarCrusoComponent implements OnInit {
-  titulo: string = 'Agregar curso';
+  titulo: string = 'Agregar tématica';
   OnSave: boolean = false;
   rutaId: string | null = null;
   miFormulario!: FormGroup;
