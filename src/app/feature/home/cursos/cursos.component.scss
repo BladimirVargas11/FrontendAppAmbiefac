@@ -4,9 +4,29 @@ body {
     padding: 0;
 }
 
+.truncated {
+    margin-bottom: 100px;
+}
+
+.color-blanco {
+    color: white;
+}
+
+.backg {
+
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.103);
+    padding: 10px;
+    box-sizing: border-box;
+    border-radius: 2%;
+
+}
+
+
 .header-topic {
     background-color: #f5f5f5;
-    padding: 65px 0;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
@@ -23,16 +43,16 @@ body {
 }
 
 .tile-topic {
-    background-color: #33cc57;
+    background-image: url('../../../../assets/Tematicas.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
     display: flex;
     flex-direction: column;
-    height: 70vh;
+    height: 80vh;
     justify-content: center;
-    padding: 0 15px; // Añadido para espaciado en los lados en pantallas pequeñas
-
-    p {
-        color: #f6f6f6c4;
-    }
+    padding: 0 15px;
 
     h1 {
         font-size: 24px;
@@ -42,12 +62,6 @@ body {
     }
 }
 
-.image-topic {
-    img {
-        max-width: 100%;
-        height: auto;
-    }
-}
 
 
 @media (max-width: 768px) {

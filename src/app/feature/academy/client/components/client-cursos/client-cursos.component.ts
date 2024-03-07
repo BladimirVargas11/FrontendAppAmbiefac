@@ -24,6 +24,7 @@ export class ClientCursosComponent implements OnInit {
     });
     this.getCursos();
   }
+  
   getCursos() {
     let id = this.auth.getUserId();
     this.service.getClientCourse(id || 0).subscribe((data: any) => this.cursos = data.data);
@@ -33,7 +34,6 @@ export class ClientCursosComponent implements OnInit {
 
 
   seleccionarCurso(curso: any) {
-    console.log(curso);
     this.router.navigate([`/academy/learning/${curso.topicId}`])
     // this.router.navigate([`academy/learning/${curso.topicId}/subtopic/0`, { parentId: curso.topicId, queryParams: 0 }])
   }

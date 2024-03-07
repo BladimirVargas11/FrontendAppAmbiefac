@@ -8,7 +8,7 @@
                     <i class="fa fa-user"></i>
                 </span>
                 <input type="text" class="form-control-1" placeholder="Nombre de usuario" formControlName="username">
-                <div *ngIf="campoTieneError('username')" placement="top" ngbTooltip="Correo electrónico no válido">
+                <div *ngIf="campoTieneError('username')" placement="top" ngbTooltip="Nombre de usuario no válido">
                     <i class="fa fa-exclamation-triangle text-danger"></i>
                 </div>
             </div>
@@ -17,16 +17,7 @@
                     <i class="fa fa-user"></i>
                 </span>
                 <input type="text" class="form-control-1" placeholder="Nombres y apellidos" formControlName="fullName">
-                <div *ngIf="campoTieneError('fullName')" placement="top" ngbTooltip="Correo electrónico no válido">
-                    <i class="fa fa-exclamation-triangle text-danger"></i>
-                </div>
-            </div>
-            <div class="input-group">
-                <span class="input-group-addon">
-                    <i class="fa fa-envelope"></i>
-                </span>
-                <input type="email" class="form-control-1" placeholder="Ingrese su correo" formControlName="email">
-                <div *ngIf="campoTieneError('email')" placement="top" ngbTooltip="Correo electrónico no válido">
+                <div *ngIf="campoTieneError('fullName')" placement="top" ngbTooltip="Nombre o Apellidos no válido">
                     <i class="fa fa-exclamation-triangle text-danger"></i>
                 </div>
             </div>
@@ -46,9 +37,12 @@
         <div class="article-info">
             <h3>AMBIEFAC</h3>
             <div class="content-info">
-                <p>Tu guía eco en una app. Cursos y consejos <br>
-                    para salvar el planeta. Descárgala y haz la diferencia.</p>
-                <button>Leer más</button>
+                <p>Descubre, Aprende y Transforma Tu Mundo</p>
+                <button style="width: 100px;">
+                    <div class="flex items-center" (click)="navigateToHome()" style="font-size: 22px; padding: 0px;">
+                        <i class="fa-solid fa-angle-left mx-2"></i><span> volver </span>
+                    </div>
+                </button>
             </div>
         </div>
         <div class="large-circle"></div>

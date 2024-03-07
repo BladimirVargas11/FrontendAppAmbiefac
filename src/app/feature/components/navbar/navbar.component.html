@@ -4,7 +4,7 @@
     <li (click)="scrollToElement('inicio')"><a>Inicio</a></li>
     <li (click)="redirecToCursos()"><a>Temáticas</a></li>
     <li (click)="scrollToElement('sobre-nosotros')"><a>Sobre nosotros</a></li>
-    <li class="dropdown" *ngIf="!response.success" (click)="toggleDropdown()">
+    <li class="dropdown" *ngIf="response.success" (click)="toggleDropdown()">
       <a>LogIn <i class="fa-solid fa-chevron-down ml-2"></i></a>
     </li>
     <div class="dropdown-content" *ngIf="showDropdown">
@@ -13,7 +13,7 @@
         <li (click)="redirecToRegister()">Resgistrarme</li>
       </ul>
     </div>
-    <li class="dropdown" *ngIf="response.success" (click)="toggleDropdownuser()">
+    <li class="dropdown" *ngIf="!response.success" (click)="toggleDropdownuser()">
       <a>{{response.data.fullName}}<i class="fa-solid fa-chevron-down ml-2"></i></a>
     </li>
     <div class="dropdown-content" *ngIf="showUserDropdownUser">
@@ -44,7 +44,7 @@
 
   <div *ngIf="!mostrarSpinner" class="login-button w-[17%] flex justify-center">
     <a *ngIf="!response.success" class="border-2 rounded-md font-bold text-[15px] inline-flex">
-      <div (click)="redirecToLogin()" class="mx-2">Iniciar sesion</div>/<div class="mx-2" (click)="redirecToRegister()">
+      <div (click)="redirecToLogin()" >Iniciar sesion </div> / <div (click)="redirecToRegister()">
         Registrarme</div>
     </a>
     <div class="relative inline-block text-left">

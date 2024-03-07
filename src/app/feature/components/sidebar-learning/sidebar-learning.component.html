@@ -13,8 +13,8 @@
     </div>
 
     <ul *ngIf="menuItem.information && menuItem.showSubMenu" class="mb-4">
-      <li *ngFor="let subMenuItem of menuItem.information; let j = index" class="text-gray-500 border-l-4 ml-4 border-dashed">
-        <div class="cursor-pointer ml-4 m-4 h-[40px]" (click)="navigateToContent(menuItem, j, i)">
+      <li *ngFor="let subMenuItem of menuItem.information; let j = index" class="text-gray-500 border-l-4 ml-4 border-dashed margin-top margin-down">
+        <div class="cursor-pointer ml-4 m-4 " (click)="navigateToContent(menuItem, j, i)">
           {{ subMenuItem.title }}
         </div>
       </li>

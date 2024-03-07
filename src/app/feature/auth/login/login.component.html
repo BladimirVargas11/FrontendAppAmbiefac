@@ -1,9 +1,6 @@
 <div class="login-body">
-    <div class="back-button flex items-center" (click)="navigateToHome()">
-        <i class="fa-solid fa-angle-left mx-2"></i><span>volver</span>
-    </div>
     <article class="login">
-        <h3>Bienvenido a</h3>
+        <h3 style="color: white;">Bienvenido a</h3>
         <h2>AMBIEFAC</h2>
         <form [formGroup]="formGroup" class="form">
             <div class="input-group">
@@ -26,9 +23,6 @@
             </div>
             <button type="button" (click)="logIn()">Iniciar sesión</button>
             <span>
-                Has olvidado tu contraseña?
-            </span>
-            <span>
                 <p>¿No tiene una cuenta? <a class="text-blue-500 cursor-pointer"
                         (click)="navigateToRegister()">Regístrese</a>
             </span>
@@ -38,9 +32,13 @@
         <div class="article-info">
             <h3>AMBIEFAC</h3>
             <div class="content-info">
-                <p>Tu guía eco en una app. Cursos y consejos <br>
-                    para salvar el planeta. Descárgala y haz la diferencia.</p>
-                <button>Leer más</button>
+                <p>Descubre, Aprende y Transforma Tu Mundo</p>
+                <button style="width: 100px;">
+                    <div class="flex items-center" (click)="navigateToHome()"
+                        style="font-size: 22px; padding: 0px;">
+                        <i class="fa-solid fa-angle-left mx-2"></i><span> volver </span>
+                    </div>
+                </button>
             </div>
         </div>
         <div class="large-circle"></div>

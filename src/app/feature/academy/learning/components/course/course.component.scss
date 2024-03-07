@@ -51,11 +51,16 @@ body {
 
 .content {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  top: 30%;
+  left: 45%;
+  transform: translate(-40%, -50%);
   text-align: center;
   color: #fff;
+  width: 80%;
+  background-color: rgba(0, 0, 0, 0.267);
+  box-sizing: border-box;
+  padding-top: 7px;
+  border-radius: 7px;
 }
 
 h1 {
