@@ -8,8 +8,6 @@
     }
 }
 
-
-
 .login-body {
     display: flex;
     place-items: center;
@@ -47,7 +45,7 @@
     width: 90%;
     padding: 70px 30px 44px;
     border-radius: 1.25rem;
-    background: #33CC57;
+    background: #2cc04f;
     text-align: center;
     transition: width 0.5s ease, height 0.5s ease;
 
@@ -212,7 +210,7 @@
     background-color: #7d504600;
     border-radius: 49%;
     transform: translateX(-50%);
-    border: 1px solid #33CC57;
+    border: 1px solid #2cc04f;
     transition: right 0.5s ease, left 0.5s ease;
 
 }

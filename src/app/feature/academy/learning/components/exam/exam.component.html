@@ -17,7 +17,7 @@
             </div>
             <div class="w-full justify-center flex flex-col my-[10%] text-[30px] items-center" *ngIf="resultAnswer.score !== undefined && resultAnswer.score > 0">
                 <p>Puntuación: </p>
-                <p>{{ getScore }}/{{ questions.length }}</p>
+                <p>{{ getScore }}/100</p>
                 <button class="bg-[#01a01e] ml-4 text-white rounded-lg px-4 py-2" (click)="retryExam()">Volver a intentar</button>
             </div>
             <div class="w-full justify-center flex flex-row my-[10%] " *ngIf="resultAnswer.score === 0">

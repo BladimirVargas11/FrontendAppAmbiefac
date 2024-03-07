@@ -49,6 +49,8 @@ export class NavbarComponent implements OnInit {
       this.response = data
     }
     )
+    console.log("---------------")
+    console.log(this.response.success);
   }
   buscarEnTiempoReal(): void {
     this.resultadosBusqueda = [];
@@ -102,7 +104,7 @@ export class NavbarComponent implements OnInit {
     this.response = initialClient;
     this.showUserDropdown = false;
     this.showSpinner();
-    console.log(this.response.success);
+    
 
   }
 
