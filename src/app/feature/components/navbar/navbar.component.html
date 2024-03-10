@@ -3,7 +3,6 @@
   <ul class="nav-list_ " [class.show]="showMenu">
     <li (click)="scrollToElement('inicio')"><a>Inicio</a></li>
     <li (click)="redirecToCursos()"><a>Temáticas</a></li>
-    <li (click)="scrollToElement('sobre-nosotros')"><a>Sobre nosotros</a></li>
     <li class="dropdown" *ngIf="response.success" (click)="toggleDropdown()">
       <a>LogIn <i class="fa-solid fa-chevron-down ml-2"></i></a>
     </li>
