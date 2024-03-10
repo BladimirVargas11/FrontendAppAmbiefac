@@ -4,19 +4,14 @@
     <button (click)="navigateTo()"> <img src="assets/AMBIEFAC_LOGO.png" alt="logo" style="max-width: 100%;" width="70">
     </button>
   </div>
-  <!-- <div class="border-r-2 text-black explore lg:w-[12%] px-lg-3">
-    <button class="border-2 w-full rounded-1 flex-grow h-[40px] flex flex-row items-center justify-around">
-      <i class="fa-solid fa-braille"></i>
-      <span>Explorar</span>
-      <i class="fa-solid fa-chevron-down"></i>
-    </button>
-  </div> -->
-  <div class="w-[75%] h-[50px] flex border-r-2 justify-end items-center ">
-    <div
-      class="mr-4 w-[85px] h-full flex justify-center items-center text-[#808080] hover:text-[#2cc04f] lg:w-1/4 lg:mr-4"
-      [class.my-learning]="isMyLearningRoute">
-      <button class="w-full ">Mis Temáticas</button>
+  <div class="w-[75%] h-[50px] flex border-r-2 justify-start items-center">
+    <div class="mr-4 w-[85px] h-full flex justify-center items-center text-[#808080]  lg:w-1/4 lg:mr-4">
+      <button (click)="navigateTo()" style="  color: black;">Inicio</button>
     </div>
+    <div class="mr-4 w-[85px] h-full flex justify-center items-center text-[#808080]  lg:w-1/4 lg:mr-4">
+      <button (click)="navigateTo()" style=" color: black;">Temáticas</button>
+    </div>
+    <div class="w-[220%]"></div>
   </div>
   <div class=" profile-name flex h-[70px] justify-center items-center lg:flex lg:items-center">
     <button class="flex items-center gap-3 ">
@@ -44,10 +39,12 @@
             </svg>
           </button>
         </div>
-        <div *ngIf="showUserDropdown" class="absolute right-0 z-10 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
-          <div class="py-1" >
-            <a (click)="logOut()" class="text-gray-700 block px-4 py-2 text-sm cursor-pointer" 
-               id="menu-item-6">Cerrar sesión</a>
+        <div *ngIf="showUserDropdown"
+          class="absolute right-0 z-10 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+          role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
+          <div class="py-1">
+            <a (click)="logOut()" class="text-gray-700 block px-4 py-2 text-sm cursor-pointer" id="menu-item-6">Cerrar
+              sesión</a>
           </div>
         </div>
       </div>
