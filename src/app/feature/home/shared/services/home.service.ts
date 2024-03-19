@@ -24,6 +24,6 @@ export class HomeService {
       return this.http.get(`${this.url}client/${id}`)
   }
   getSearch(name:string):Observable<any>{
-    return this.http.post(`${this.url}topic/search`,{world: name})
+    return this.http.get(`${this.url}topic/search/${name}`)
   }
 }

@@ -6,6 +6,7 @@ import { Response } from 'src/app/feature/components/models/response';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Answer, Question } from '../../shared/models/QuestionModels';
 import { AnswerCorrect, AnswerRespon, answers, responseAnswer } from '../../shared/models/answerResponse';
+import { AuthenticationService } from 'src/app/Core/authentication/authentication.service';
 
 @Component({
   selector: 'app-exam',
@@ -22,13 +23,15 @@ export class ExamComponent {
   selectedAnswers: { [key: string]: Answer } = {};
   submitted: boolean = false;
   resultAnswer: AnswerCorrect = responseAnswer;
+  topicId: any;
   /**
    *
    */
   constructor(
     private route: ActivatedRoute,
     private service: LearningService,
-    private fb: FormBuilder,) {
+    private fb: FormBuilder,
+    private auth: AuthenticationService) {
     this.examForm = this.fb.group({});
   }
 
@@ -37,7 +40,7 @@ export class ExamComponent {
 
     setTimeout(() => {
       console.log("examen", this.rutaId);
-      // this.getParameters();
+      this.getParameters();
       this.loadQuestions();
     }, 1000);
   }
@@ -91,7 +94,7 @@ export class ExamComponent {
   }
 
   private enviarRespuestas(answers: { id: any; }[]) {
-    this.service.postExam(answers, this.registrationId).subscribe((response: any) => {
+    this.service.postExam({ answersIds: answers, idTopic: this.topicId, idClient: this.auth.getUserId() }).subscribe((response: any) => {
       this.resultAnswer = response.data;
     });
   }
@@ -112,6 +115,14 @@ export class ExamComponent {
     this.examForm.reset();
   }
   get getScore(): number {
-    return Math.round(this.resultAnswer.score / 1000) * 10;
+    return Math.round(this.resultAnswer.score / 100) * 100;
+  }
+
+  private getParameters() {
+    this.route.paramMap.subscribe(params => {
+      
+      this.topicId = parseInt(params.get('parentId') ?? '0', 10);
+
+    });
   }
 }
