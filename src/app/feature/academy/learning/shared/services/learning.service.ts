@@ -25,7 +25,7 @@ export class LearningService {
   postExam(body: any, id:number): Observable<any> {
     console.log("Respuesta",JSON.stringify({ answersIds: body }));
     // return this.http.get('');
-    return this.http.post(`http://localhost:8080/exam/valid-answers/${id}`, { answersIds: body }, true);
+    return this.http.post(`${this.url}exam/valid-answers/${id}`, { answersIds: body }, true);
   }
   getValidInscription(idClient: number, idTopic:number): Observable<Response<any>> {
     return this.http.get(`${this.url}client-topic/courses/${idClient}/${idTopic}`)
