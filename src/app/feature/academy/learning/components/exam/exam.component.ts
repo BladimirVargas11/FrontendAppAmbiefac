@@ -115,7 +115,7 @@ export class ExamComponent {
     this.examForm.reset();
   }
   get getScore(): number {
-    return Math.round(this.resultAnswer.score / 100) * 100;
+    return Math.round(this.resultAnswer.score);
   }
 
   private getParameters() {
