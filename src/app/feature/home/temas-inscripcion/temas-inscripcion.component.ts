@@ -58,6 +58,7 @@ export class TemasInscripcionComponent implements OnInit {
   navegarAInformacion() {
     if(this.auth.getUserId()){
       this.confirmAction();
+      
     }
     else{
       this.router.navigate(['auth/login'])
@@ -79,6 +80,7 @@ export class TemasInscripcionComponent implements OnInit {
           }
         )
         console.log('Acción confirmada');
+        this.router.navigate(['academy/my-learning']);
       } else {
         console.log('Acción cancelada');
       }
