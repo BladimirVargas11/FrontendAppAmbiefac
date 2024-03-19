@@ -28,7 +28,7 @@ export class NavbarComponent implements OnInit {
   showDropdown: boolean = false;
   showUserDropdown: boolean = false;
   showUserDropdownUser: boolean = false;
-  resultadosBusqueda: any[] = []; 
+  resultadosBusqueda: any[] = [];
   cursos: any[] = [];
 
 
@@ -36,7 +36,7 @@ export class NavbarComponent implements OnInit {
    *
    */
   constructor(
-    private homeService:HomeService,
+    private homeService: HomeService,
     private el: ElementRef, private renderer: Renderer2,
     private auth: AuthenticationService,
     private router: Router) { }
@@ -44,7 +44,7 @@ export class NavbarComponent implements OnInit {
   ngOnInit(): void {
     this.showSpinner()
     this.auth.getClient();
-    this.homeService.getTemas().subscribe((data)=> this.cursos = data.data);
+    this.homeService.getTemas().subscribe((data) => this.cursos = data.data);
     this.auth.userLoggedIn$.subscribe((data: any) => {
       this.response = data
     }
@@ -54,6 +54,8 @@ export class NavbarComponent implements OnInit {
   }
   buscarEnTiempoReal(): void {
     this.resultadosBusqueda = [];
+    console.log(this.terminoBusqueda);
+
     this.homeService.getSearch(this.terminoBusqueda).subscribe((data:any)=> {
       this.resultadosBusqueda= data.data
       console.log(data.data);
@@ -83,7 +85,7 @@ export class NavbarComponent implements OnInit {
   redirecToClient() {
     this.router.navigate(['academy/my-learning'])
   }
-  redirecToIncription(id:string) {
+  redirecToIncription(id: string) {
     this.terminoBusqueda = '';
     this.router.navigate([`/inscripcion/${id}`])
   }
@@ -104,7 +106,7 @@ export class NavbarComponent implements OnInit {
     this.response = initialClient;
     this.showUserDropdown = false;
     this.showSpinner();
-    
+
 
   }
 
@@ -112,7 +114,7 @@ export class NavbarComponent implements OnInit {
     const element = document.getElementById(`${elementId}`);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest' });
-    }else if(element === null && elementId === "inicio"){
+    } else if (element === null && elementId === "inicio") {
       this.redirecToHome();
     }
   }

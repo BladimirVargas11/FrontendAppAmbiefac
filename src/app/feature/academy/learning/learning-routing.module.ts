@@ -10,7 +10,8 @@ const routes: Routes = [
     component:PageLearningComponent,
     children:[
       {path:'', component:CourseComponent},
-      {path:'exam/:id', component:ExamComponent}
+      {path:'exam/:id', component:ExamComponent},
+      {path:'exam/', component:ExamComponent}
     ]
   },
 ];
