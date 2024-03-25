@@ -8,8 +8,8 @@
     </li>
     <div class="dropdown-content" *ngIf="showDropdown">
       <ul>
-        <li (click)="redirecToLogin()">Iniciar sesion</li>
-        <li (click)="redirecToRegister()">Resgistrarme</li>
+        <li (click)="redirecToClient()">Mi perfil</li>
+        <li (click)="logOut()">Cerrar sesión</li>
       </ul>
     </div>
     <li class="dropdown" *ngIf="!response.success" (click)="toggleDropdownuser()">
@@ -17,8 +17,9 @@
     </li>
     <div class="dropdown-content" *ngIf="showUserDropdownUser">
       <ul>
-        <li (click)="redirecToClient()">Mi perfil</li>
-        <li (click)="logOut()">Cerrar sesión</li>
+        
+        <li (click)="redirecToLogin()">Iniciar sesion</li>
+        <li (click)="redirecToRegister()">Resgistrarme</li>
       </ul>
     </div>
   </ul>
