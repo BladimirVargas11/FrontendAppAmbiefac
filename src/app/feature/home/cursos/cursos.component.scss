@@ -17,7 +17,7 @@ body {
     bottom: 0;
     left: 0;
     width: 100%;
-    background-color: rgba(0, 0, 0, 0.103);
+    background-color: rgba(0, 0, 0, 0.5);
     padding: 10px;
     box-sizing: border-box;
     border-radius: 2%;
@@ -76,7 +76,7 @@ body {
 }
 
 .cursos-content {
-    width: 80%;
+    width: 95%; /* Ajuste el ancho para dispositivos pequeños */
     margin: 24px auto;
     font-family: Arial, sans-serif;
     text-align: center;
@@ -88,24 +88,25 @@ body {
     .cursos-row {
         text-align: start;
         display: flex;
-        flex-direction: row;
-        align-items: flex-start;
+        flex-direction: column; /* Cambie a columna en dispositivos pequeños */
+        align-items: center; /* Centrar elementos en dispositivos pequeños */
 
         border: 1px solid #ddd;
         padding: 15px;
-        margin: 45px 90px;
-        width: 85%;
+        margin: 20px 0px; /* Reduzca el margen para dispositivos pequeños */
+        width: 100%; /* Ancho completo en dispositivos pequeños */
         border-radius: 20px;
         box-shadow: -5px -9px 15px -3px rgba(0, 0, 0, 0.1), 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
 
         .cursos-image {
-            width: 148px;
+            width: 70%; /* Hacer la imagen ocupar todo el ancho disponible */
             height: auto;
-            margin: 0px 24px 0px 0px;
+            margin: 0px 0px 10px 0px; /* Espaciado inferior para dispositivos pequeños */
         }
 
         .cursos-info {
             flex: 1;
+            text-align: center; /* Centrar el texto en dispositivos pequeños */
 
             h2 {
                 color: #333;
@@ -113,7 +114,8 @@ body {
 
             p {
                 color: #666;
-                width: 80%;
+                width: 100%; /* Ancho ligeramente más amplio en dispositivos pequeños */
+                margin: 0 auto; /* Centrar el párrafo */
             }
 
             .level-curso {
@@ -123,7 +125,6 @@ body {
         }
 
         .mas-information-curso {
-            display: flex;
             background-color: #4CAF50;
             color: white;
             padding: 10px 15px;
@@ -131,10 +132,10 @@ body {
             border-radius: 19px;
             cursor: pointer;
             font-size: 16px;
-            align-self: flex-end;
-            text-align: center;
+            margin-top: 10px; /* Agregar un margen superior */
+            width: 80%; /* Ancho del botón */
+            max-width: 200px; /* Ancho máximo para evitar que sea demasiado ancho */
             box-shadow: -5px -9px 15px -3px rgba(0, 0, 0, 0.1), 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
-
 
             &:hover {
                 background-color: #45a049;
@@ -142,3 +143,5 @@ body {
         }
     }
 }
+
+

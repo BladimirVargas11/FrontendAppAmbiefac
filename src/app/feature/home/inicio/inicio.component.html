@@ -1,6 +1,6 @@
 <body>
     <section id="inicio"
-        class="w-full flex flex-col-reverse md:flex-row !mb-[14%] !m-0 p-0 animate-fade-up parallax-container text-white">
+        class="w-full flex flex-col-reverse md:flex-row !m-0 p-0 animate-fade-up parallax-container text-white">
         <div class="w-full md:w-[50%] flex flex-col gap-4 justify-center items-center">
             <div class="flex flex-col items-start gap-1">
                 <h1 class="!text-header  md:text-4xl  lg:text-5xl text-with-shadow title-ambiefac">AMBIEFAC</h1>
@@ -15,106 +15,102 @@
         </div>
 
     </section>
-
-    <section id="que-es" class="w-full !my-[14%] animate-fade-up animate-normal">
+    
+    <section id="que-es" class="w-full flex flex-col-reverse md:flex-row p-0 animate-fade-up animate-normal">
         <div class="content-que-es">
-            <div class="w-[80%] h-full flex flex-row items-center justify-center m-[20%]">
-                <div class="w-1/2 mx-4  text-5xl">
-                    <h1 class="text-5xl font-bold mb-4">¿Qué es Ambiefac?</h1>
-                    <p class="text-xl">Ambiefac es una plataforma dedicada a la promoción de la conciencia
-                        ambiental y la sostenibilidad. Nos esforzamos por ofrecer tematicas
-                        diseñadas
-                        para empoderar a las personas con el conocimiento necesario para comprender, preservar y mejorar
-                        nuestro entorno.</p>
-                    <p class="text-xl">Nuestro compromiso es brindar
-                        oportunidades de aprendizaje que inspiren a la acción positiva. Únete a nosotros en nuestro
-                        viaje
-                        hacia un futuro más verde y sostenible.</p>
-                </div>
-                <div class="w-1/2 flex flex-col items-center">
-                    <button (click)=" redirecToCursos()"
-                        class="w-[16rem] md:w-[20rem] text-base md:text-lg h-[2.7rem] md:h-[3rem] rounded-full  bg-[#2cc04f] text-white font-bold shadow-lg mt-8">
-                        ¡Explora Nuestras temáticas!
-                    </button>
+            <div class="container">
+                <div class="flex flex-col md:flex-row items-center justify-center">
+                    <div class="w-full md:w-1/2 mx-4 text-center md:text-left">
+                        <h1 class="text-5xl font-bold mb-4">¿Qué es Ambiefac?</h1>
+                        <p class="text-xl">Ambiefac es una plataforma dedicada a la promoción de la conciencia
+                            ambiental y la sostenibilidad. Nos esforzamos por ofrecer temáticas
+                            diseñadas para empoderar a las personas con el conocimiento necesario para comprender,
+                            preservar
+                            y mejorar
+                            nuestro entorno.</p>
+                        <p class="text-xl">Nuestro compromiso es brindar
+                            oportunidades de aprendizaje que inspiren a la acción positiva. Únete a nosotros en nuestro
+                            viaje
+                            hacia un futuro más verde y sostenible.</p>
+                    </div>
+                    <div class="w-full md:w-1/2 flex justify-center md:justify-end mt-8 md:mt-0">
+                        <button (click)="redirecToCursos()"
+                            class="w-full md:w-[20rem] text-base md:text-lg h-[2.7rem] md:h-[3rem] rounded-full bg-[#2cc04f] text-white font-bold shadow-lg mt-8">
+                            ¡Explora Nuestras temáticas!
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-
-
-    <section id="cursos-gratis" class="w-full flex flex-col md:flex-row !my-[14%] p-0 animate-fade-up animate-normal">
-        <div class="w-full md:w-1/2 flex flex-col justify-around items-center">
-            <div class="w-full flex overflow-hidden justify-center">
-                <img class="!w-full !h-[500px] !max-w-full object-cover"
-                    src="../.../../../../../assets/AMBIEFACAPP/VISTA PRINCIPAL DESCUBRE.jpg" alt="">
-            </div>
+    <section id="cursos-gratis" class="w-full flex flex-col-reverse md:flex-row p-0 animate-fade-up animate-normal">
+        <div class="w-full md:w-1/2 flex justify-center md:justify-end">
+            <img class="w-full max-w-full h-auto md:h-[500px] object-cover"
+                src="../.../../../../../assets/AMBIEFACAPP/VISTA PRINCIPAL DESCUBRE.jpg" alt="">
         </div>
         <div
-            class="w-full md:w-1/2 flex flex-col justify-center items-start px-4 bg-[#2cc04f] text-white shadow-md gap-5">
+            class="w-full md:w-1/2 flex flex-col justify-center items-center md:items-start px-4 bg-[#2cc04f] text-white shadow-md gap-5">
             <div>
-                <h1 class="font-bold text-2xl">Descubre Nuestras tematicas</h1>
+                <h1 class="font-bold text-3xl">Descubre Nuestras tematicas</h1>
             </div>
-            <div class="w-full md:w-4/5 text-justify text-3xl">
+            <div class="w-full md:w-4/5 text-center md:text-left ">
                 <p>Aprovecha la oportunidad de mejorar tus habilidades con nuestra selección de
                     temas. Amplía tu conocimiento y avanza en tu compromiso con el medio ambiente.</p>
             </div>
         </div>
     </section>
 
-    <section id="sobre-nosotros" class="w-full !my-[14%] animate-fade-up animate-normal">
-        <div class="content-sobre-nosotros">
-            <div class="w-[80%] h-full flex flex-row items-center justify-center m-[20%]">
-                <div class="w-1/2 mx-4 text-5xl">
-                    <h1 class="text-5xl font-bold mb-4">Sobre Nosotros</h1>
-                    <p class="text-xl">En Ambiefac, estamos comprometidos con la causa de la conciencia ambiental y la
-                        sostenibilidad. Nuestra misión es proporcionar una plataforma educativa donde las personas
-                        puedan
-                        aprender, inspirarse y tomar medidas para un futuro más ecológico.</p>
-                    <p class="text-xl">Nuestro compromiso es brindar oportunidades de aprendizaje que inspiren a la
-                        acción positiva únete a nosotros hacía un viaje más verde y Sostenible.</p>
-                    <p class="text-xl">Nos esforzamos a que avances en tu compromiso con el medio ambiente.</p>
-                </div>
-                <div class="w-1/2 flex flex-col items-center">
-                    <img src="../.../../../../../assets/AMBIEFACAPP/VISTA PRINCIPAL IMAGEN 3 SOBRE NOSOTROS.jpg"
-                        alt="Nuestro Equipo" class="rounded-md !h-[310px]">
-                </div>
+    <section id="sobre-nosotros" class="w-full flex flex-col-reverse md:flex-row p-0 animate-fade-up animate-normal">
+        <div class="content-sobre-nosotros flex flex-col md:flex-row items-center justify-center">
+            <div class="w-full md:w-1/2 mx-4 text-center md:text-left">
+                <h1 class="text-5xl font-bold mb-4">Sobre Nosotros</h1>
+                <p class="text-xl">En Ambiefac, estamos comprometidos con la causa de la conciencia ambiental y la
+                    sostenibilidad. Nuestra misión es proporcionar una plataforma educativa donde las personas puedan
+                    aprender, inspirarse y tomar medidas para un futuro más ecológico.</p>
+                <p class="text-xl">Nuestro compromiso es brindar oportunidades de aprendizaje que inspiren a la
+                    acción positiva únete a nosotros hacía un viaje más verde y Sostenible.</p>
+                <p class="text-xl">Nos esforzamos a que avances en tu compromiso con el medio ambiente.</p>
+            </div>
+            <div class="w-full md:w-1/2 flex justify-center items-center mt-8 md:mt-0">
+                <img src="../.../../../../../assets/AMBIEFACAPP/VISTA PRINCIPAL IMAGEN 3 SOBRE NOSOTROS.jpg"
+                    alt="Nuestro Equipo" class="rounded-md h-auto md:h-[310px]">
             </div>
         </div>
     </section>
 
-    <section id="acelera-aprendizaje" class="w-full flex flex-col !my-[14%]  animate-fade-up animate-normal">
-        <div class=" w-full  flex items-center bg-white justify-center ">
-            <div class=" w-[80%] h-[350px] bg-[#f5f5f5] p-8 rounded-lg flex">
-                <div class="w-1/2 pr-8 flex flex-col justify-center">
-                    <h1 class="text-4xl mb-4">Acelera Tu Aprendizaje</h1>
-                    <p class="text-gray-700">Aprovecha la oportunidad de impulsar tu aprendizaje con nuestra selección
-                        de
-                        recursos y tematicas diseñadas para acelerar tu crecimiento. Descubre nuevas habilidades y avanza
-                        rápidamente en tu camino hacia el cuidado del medio ambiente.</p>
-                </div>
-                <div class="w-1/2">
-                    <img src="../.../../../../../assets/wepik-export-20240102185507bjIA.png" alt="Imagen"
-                        class="rounded-md  !h-[310px]">
-                </div>
+    <section id="acelera-aprendizaje" class="w-full flex flex-col-reverse md:flex-row p-0 animate-fade-up animate-normal">
+        <div class="w-full md:w-[80%] bg-[#f5f5f5] p-8 rounded-lg flex flex-col md:flex-row">
+            <div class="w-full md:w-1/2 pr-8 flex flex-col justify-center">
+                <h1 class="text-4xl mb-4 text-center md:text-left">Acelera Tu Aprendizaje</h1>
+                <p class="text-gray-700 text-center md:text-left">Aprovecha la oportunidad de impulsar tu aprendizaje
+                    con nuestra selección
+                    de
+                    recursos y temáticas diseñadas para acelerar tu crecimiento. Descubre nuevas habilidades y
+                    avanza
+                    rápidamente en tu camino hacia el cuidado del medio ambiente.</p>
+            </div>
+            <div class="w-full md:w-1/2 flex justify-center md:justify-end mt-4 md:mt-0">
+                <img src="../.../../../../../assets/wepik-export-20240102185507bjIA.png" alt="Imagen"
+                    class="rounded-md h-auto md:h-[310px]">
             </div>
         </div>
     </section>
 
-    
-    
 
-    <section id="comenzar">
-        <div class="content-comenzar  animate-fade-up animate-normal">
-            <div class="w-[80%] h-full flex flex-row items-center justify-center m-[20%]">
-                <div class="w-1/2 mx-4 text-white text-5xl">
-                    <h2 class=""> Cuidar el planeta no es solo un deber, es una oportunidad para construir un futuro
+    <section id="comenzar" class="w-full flex flex-col-reverse md:flex-row p-0 animate-fade-up animate-normal">
+        <div class="content-comenzar w-full flex flex-col md:flex-row items-center justify-center">
+            <div class="w-full md:w-[80%] h-full flex flex-col md:flex-row items-center justify-center m-[20%]">
+                <div class="w-full md:w-1/2 mx-4 text-center md:text-center">
+                    <h2 class="text-white text-shadow "> Cuidar el planeta no es solo un deber, es una
+                        oportunidad para construir un
+                        futuro
                         sostenible y
                         próspero para las generaciones futuras.</h2>
                 </div>
-                <div class="w-1/2 flex flex-col">
+                <div class="w-full md:w-1/2 flex justify-center md:justify-end mt-4 md:mt-0">
                     <button (click)="redirecToRegister()"
-                        class="w-[16rem] md:w-[20rem] text-base md:text-lg h-[2.7rem] md:h-[3rem] rounded-full  bg-[#2cc04f] text-white font-bold shadow-lg">
+                        class="w-[16rem] md:w-[20rem] text-base md:text-lg h-[2.7rem] md:h-[3rem] rounded-full bg-[#2cc04f] text-white font-bold shadow-lg">
                         ¡Comienza Ya!
                     </button>
                 </div>
@@ -123,7 +119,10 @@
     </section>
 
 
-    <!-- environment-courses.component.html -->
-    <button class="floating-btn" (click)="scrollToTop()">Subir al Inicio</button>
+    <button class="floating-btn" (click)="scrollToTop()">
+        <i class="fa-solid fa-chevron-up"></i>
+    </button>
+
+
 
 </body>

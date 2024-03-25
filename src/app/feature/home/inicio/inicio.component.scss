@@ -7,7 +7,7 @@ body {
 
 section {
   background-color: #f8f9fa;
-  margin: 6% 0;
+  margin-top: 40px;
 }
 
 button:hover {
@@ -35,7 +35,7 @@ button:hover {
   }
 }
 
-.title-ambiefac{
+.title-ambiefac {
   font-size: 5rem;
 }
 
@@ -46,7 +46,7 @@ h1 {
 }
 
 .text-with-shadow {
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); 
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .text-header {
@@ -70,9 +70,10 @@ h2 {
 // }
 
 
-p{
+p {
   text-align: justify;
 }
+
 
 .content-comenzar {
   height: 100vh;
@@ -84,7 +85,6 @@ p{
   background-position: center;
   background-repeat: no-repeat;
   align-items: center;
-  margin: 12% 0px;
 
 
   .comenzar-row {
@@ -129,15 +129,37 @@ p{
   /* Esto crea el efecto de parallax */
 }
 
+
+.text-shadow {
+  background-color: rgba(0, 0, 0, 0.65);
+  /* Fondo semitransparente oscuro */
+  padding: 10px;
+  border-radius: 8%;
+}
+
+
 .floating-btn {
   position: fixed;
   bottom: 20px;
   right: 20px;
-  padding: 10px;
-  background-color: #2cc04f;
+  background-color: #4CAF50;
   color: white;
   border: none;
   border-radius: 5px;
+  padding: 10px;
   cursor: pointer;
-  display: none;
+  z-index: 1000;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s, box-shadow 0.3s;
+  border-radius: 50%;
+}
+
+.floating-btn:hover {
+  background-color: #45a049;
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+
+.floating-btn i {
+  font-size: 40px;
 }
