@@ -21,8 +21,13 @@ export class SubtemasService {
     return this.http.get(`${this.url}subtopic/byTopic/${id}`)
   }
   updateSubtopic(id: number, selectedSubtema: any): Observable<any> {
-    return this.http.put(`${this.url}subtopic/update/${id}`, selectedSubtema, true, 'Actualiacion correcta')
+    const updatedSubtopic = {
+      id: id,
+      name: selectedSubtema.name // Asumiendo que el nombre del subtema está en la propiedad "name"
+    };
+    return this.http.put(`${this.url}subtopic/update/${id}`, updatedSubtopic, true, 'Actualización correcta');
   }
+  
   deleteSubtopic(id: number,): Observable<any> {
     return this.http.delete(`${this.url}subtopic/delete/${id}`, true, 'Actualiacion correcta')
   }

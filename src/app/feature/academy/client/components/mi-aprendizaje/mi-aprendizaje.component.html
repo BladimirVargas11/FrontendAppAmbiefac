@@ -1,37 +1,40 @@
-<section class="w-full h-[170px] p-0 fondo2 flex flex-col items-center justify-center text-white">
-  <div class="w-[90%] flex flex-row items-center justify-between">
-    <div class="flex flex-row items-center">
-      <div class="w-[25%]">
-        <div class="profile">
-          <!-- Aquí va el código SVG de la foto de perfil -->
+<body>
+  <div class="h-[75px]"></div>
+  <section class="w-full h-[130px] p-0 fondo2 flex flex-col items-center justify-center text-white">
+    <div class="w-[90%] flex flex-row items-center justify-between">
+      <div class="flex flex-row items-center">
+        <div class="w-[25%]">
+          <div class="profile">
+            <!-- Aquí va el código SVG de la foto de perfil -->
+          </div>
+          <div class="photo">
+            <!-- Aquí va el código SVG de la estadística de fotos -->
+          </div>
         </div>
-        <div class="photo">
-          <!-- Aquí va el código SVG de la estadística de fotos -->
+        <div class="mx-2 w-full md:w-80">
+          <h2 class="m-0">¡Hola!</h2>
+          <h2 class="m-0">{{response.data.fullName}}</h2>
         </div>
       </div>
-      <div class="mx-2 w-full md:w-80">
-        <h2 class="m-0">¡Hola!</h2>
-        <h2 class="m-0">{{response.data.fullName}}</h2>
+      <div class="flex flex-row items-center">
+        <svg width="73" height="65" viewBox="0 0 73 65" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M31.6333 59.8584C33.0021 60.3408 34.4722 59.3379 34.4722 57.8906V9.97852C34.4722 9.44531 34.2694 8.91211 33.8385 8.58203C31.3545 6.60156 25.6514 4.0625 18.25 4.0625C11.8498 4.0625 5.86788 5.75098 2.29392 7.12207C0.861806 7.68066 0 9.10254 0 10.6387V57.6494C0 59.1602 1.62222 60.2139 3.05434 59.7441C7.04653 58.4111 13.3707 56.875 18.25 56.875C22.5464 56.875 28.2622 58.6523 31.6333 59.8584ZM41.3667 59.8584C44.7378 58.6523 50.4536 56.875 54.75 56.875C59.6293 56.875 65.9535 58.4111 69.9457 59.7441C71.3778 60.2266 73 59.1602 73 57.6494V10.6387C73 9.10254 72.1382 7.68066 70.7061 7.13477C67.1321 5.75098 61.1502 4.0625 54.75 4.0625C47.3486 4.0625 41.6455 6.60156 39.1615 8.58203C38.7432 8.91211 38.5278 9.44531 38.5278 9.97852V57.8906C38.5278 59.3379 40.0106 60.3408 41.3667 59.8584Z"
+            fill="#FFECEC" />
+        </svg>
+        <div class="flex flex-col justify-center ml-3">
+          <span>{{scoreT}}</span>
+          <p>Temáticas completadas</p>
+        </div>
       </div>
-    </div>
-    <div class="flex flex-row items-center">
-      <svg width="73" height="65" viewBox="0 0 73 65" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path
-          d="M31.6333 59.8584C33.0021 60.3408 34.4722 59.3379 34.4722 57.8906V9.97852C34.4722 9.44531 34.2694 8.91211 33.8385 8.58203C31.3545 6.60156 25.6514 4.0625 18.25 4.0625C11.8498 4.0625 5.86788 5.75098 2.29392 7.12207C0.861806 7.68066 0 9.10254 0 10.6387V57.6494C0 59.1602 1.62222 60.2139 3.05434 59.7441C7.04653 58.4111 13.3707 56.875 18.25 56.875C22.5464 56.875 28.2622 58.6523 31.6333 59.8584ZM41.3667 59.8584C44.7378 58.6523 50.4536 56.875 54.75 56.875C59.6293 56.875 65.9535 58.4111 69.9457 59.7441C71.3778 60.2266 73 59.1602 73 57.6494V10.6387C73 9.10254 72.1382 7.68066 70.7061 7.13477C67.1321 5.75098 61.1502 4.0625 54.75 4.0625C47.3486 4.0625 41.6455 6.60156 39.1615 8.58203C38.7432 8.91211 38.5278 9.44531 38.5278 9.97852V57.8906C38.5278 59.3379 40.0106 60.3408 41.3667 59.8584Z"
-          fill="#FFECEC" />
-      </svg>
-      <div class="flex flex-col justify-center ml-3">
-        <span>{{scoreT}}</span>
-        <p>Temáticas completadas</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="w-full flex flex-col lg:flex-row justify-center gap-2 my-4 h-screm">
-  <section class="w-full lg:w-[90%] border flex flex-col gap-4" *ngIf="response.success">
-    <div class="container mx-auto p-4 scrollContent">
-      <app-client-cursos></app-client-cursos>
     </div>
   </section>
-</section>
+
+  <section class="w-full flex flex-col lg:flex-row justify-center gap-2 my-4 h-screm">
+    <section class="w-full lg:w-[90%] border flex flex-col gap-4" *ngIf="response.success">
+      <div class="container mx-auto p-4 scrollContent">
+        <app-client-cursos></app-client-cursos>
+      </div>
+    </section>
+  </section>
+</body>

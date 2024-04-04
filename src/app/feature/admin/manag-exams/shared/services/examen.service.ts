@@ -24,7 +24,11 @@ export class ExamenService {
   }
 
   postNewQuestion(questions: any, id: number): Observable<any> {
-    return this.http.post(`${this.url}exam/new-questions/${id}`, questions, true);
+    const updatedQuestions = {
+      questionStatement: questions[0].questionStatement,
+      answers: questions[0].answers
+    };
+    return this.http.post(`${this.url}exam/new-questions/${id}`, updatedQuestions, true);
   }
   putQuestion(questions: any): Observable<any> {
     return this.http.put(`${this.url}exam/update-questions`, { questions: questions }, true);

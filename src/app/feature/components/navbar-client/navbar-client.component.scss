@@ -1,45 +1,207 @@
-div.my-learning {
-  border-bottom: 4px solid #949694;
-  padding-bottom: 10px;
-  font-weight: bold;
+/* src/app/navbar/navbar.component.scss */
+$font-family-poppins: 'Poppins', sans-serif;
 
+a{
+    text-decoration: none !important;
 }
-
-div.my-learning:hover {
-  border-bottom: 4px solid #2cc04f;
-}
-
-.border-right-icon {
-  border-right: 4px solid #949694;
-}
-
-.explore {
-  width: 12%;
-}
-
-.logo {
-  width: 5%;
-  margin: 0 20px;
-}
-
-.profile-name {
-  width: 20%;
-}
-
-@media (min-width: 400px) and (max-width: 900px) {
-  .explore {
-    width: 50%;
+@media screen and (min-width: 768px) {
+    .dropdown-content {
+      display: none; 
+    }
   }
-
-  .logo {
-    width: 40%;
-  }
-
-  .profile-name {
+.nav_bar {
+    z-index: 10000;
+    font-family: $font-family-poppins;
+    background-color: #FFFFFF;
+    padding: 0px 18px;
+    display: flex;
+    align-items: center;
+    color: rgb(92, 64, 64);
+    justify-content: space-between;
+    position: fixed;
     width: 100%;
-  }
+    box-shadow: 0px 10px 15px -3px rgba(0,0,0,0.1);
 
-  .border-r-2 {
-    border-right: none;
-  }
+
+    .login-button {
+        display: flex;
+        position: relative;
+        cursor: pointer;
+
+        a {
+            display: flex;
+            padding: 10px;
+            text-decoration: none;
+            color: #333;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+            top: 100%;
+
+            a {
+                padding: 12px 16px;
+                text-decoration: none;
+                display: block;
+                color: #333;
+            }
+        }
+
+        &:hover .dropdown-content {
+            display: block;
+        }
+    }
+
+    .logo {
+        background-image: url('../../../../assets/AMBIEFACAPP/AMBIEFAC.png');
+        background-size: contain;
+        background-repeat: no-repeat;
+        margin: 0 20px;
+        height: 90px;
+        width: 90px;
+        cursor: pointer;
+    }
+
+    .nav-list_ {
+        list-style: none;
+        display: flex;
+        margin: 0;
+        padding: 0;
+
+        .dropdown {
+            display: none;
+        }
+
+        li {
+            cursor: pointer;
+            margin: 0 20px;
+
+            a {
+                text-decoration: none;
+                color: rgb(75, 58, 58);
+            }
+        }
+    }
+
+    .burger-menu {
+        display: none;
+        font-size: 1.5em;
+        cursor: pointer;
+    }
+
+    .content {
+        padding: 20px;
+    }
+
+    .search-bar {
+        display: flex;
+        align-items: center;
+        width: 30%;
+        height: 36px;
+        background-color: #fff;
+        border: #3333332a solid 1px;
+        border-radius: 10px;
+
+        input {
+            border: none;
+            width: 100%;
+            background-color: transparent;
+            padding: 0 18px;
+        }
+
+        .button-search {
+            background-image: url('../../../../assets/search\ icons.svg');
+            background-size: contain;
+            background-repeat: no-repeat;
+            width: 5%;
+            height: 20px;
+            border: none;
+            filter: invert(63%) sepia(0%) saturate(747%) hue-rotate(173deg) brightness(96%) contrast(91%);
+        }
+        .width-30{
+            width: 30%;
+        }
+    }
+
+    @media only screen and (max-width: 768px) {
+        .logo {
+            margin: 0 20px;
+            height: 80px;
+            width: 80px;
+        }
+        .nav-list_ {
+            display: none;
+            flex-direction: column;
+            position: absolute;
+            top: 80px;
+            left: 0;
+            width: 100%;
+            height: 100rem;
+            background-color: #ffffffdb;
+            z-index: 1000;
+
+            .dropdown {
+                display: block;
+            }
+
+            &.show {
+                display: flex;
+            }
+
+            li {
+                text-align: center;
+                padding: 18px 0;
+                border-left: #33333349 1px solid;
+                ul{
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    padding: 0;
+
+                }
+                li{
+                    border: none;
+                    margin: 20px 0 ;
+                }
+            }
+            li:hover{
+                background: #7dd660;
+                border-radius: 5px;
+            }
+        }
+        .dropdown-content{
+            li {
+                margin-top: 5px;
+                text-align: center;
+                padding: 18px 0;
+                border-left: #33333349 1px solid;
+                border-bottom: none;
+            }
+        }
+
+        .burger-menu {
+            display: block;
+        }
+
+        .login-button {
+            margin: auto;
+            display: none;
+        }
+
+        .search-bar {
+            width: 50%;
+            margin: 10px 0;
+            .button-search{
+                width: 10%;
+            }
+            .width-30{
+                width: 50%;
+            }
+        }
+    }
 }
