@@ -336,7 +336,6 @@ export class AgregarPreguntasComponent implements OnInit {
         nuevasPreguntas.push({
           questionStatement: pregunta.get('questionStatement')?.value,
           answers: pregunta.get('answers')?.value.map((respuesta: any) => ({
-            id: null,
             answerText: respuesta.answerText,
             correct: respuesta.correct,
           })),
